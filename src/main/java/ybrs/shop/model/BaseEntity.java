@@ -3,8 +3,10 @@ package ybrs.shop.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-public class Entity {
+@MappedSuperclass
+public class BaseEntity {
 
     @Id
     @GeneratedValue
