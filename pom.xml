@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>ybrs</groupId>
+	<groupId>rs</groupId>
 	<artifactId>shop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>shop</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Supershop</name>
+	<description>Online shop</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -34,6 +34,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.3.6.Final</version>
 		</dependency>
 	</dependencies>
 
