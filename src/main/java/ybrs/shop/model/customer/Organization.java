@@ -1,4 +1,4 @@
-package ybrs.shop.model.customerStuff;
+package ybrs.shop.model.customer;
 
 import ybrs.shop.model.BaseEntity;
 

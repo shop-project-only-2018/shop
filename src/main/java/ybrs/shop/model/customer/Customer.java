@@ -1,6 +1,7 @@
-package ybrs.shop.model.customerStuff;
+package ybrs.shop.model.customer;
 
 import ybrs.shop.model.BaseEntity;
+import ybrs.shop.model.order.Order;
 
 import javax.persistence.*;
 import java.util.List;
@@ -22,6 +23,9 @@ public class Customer extends BaseEntity {
 
     @OneToMany
     private List<Address> addresses;
+
+    @OneToMany
+    private List<Order> orders;
 
 
     public Organization getOrganization() {

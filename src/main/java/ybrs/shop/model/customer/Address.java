@@ -1,4 +1,4 @@
-package ybrs.shop.model.customerStuff;
+package ybrs.shop.model.customer;
 
 import ybrs.shop.model.BaseEntity;
 
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Persons")
+@Table(name = "Addresses")
 public class Address extends BaseEntity {
 
     // REDO
