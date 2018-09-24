@@ -1,18 +1,20 @@
-package ybrs.shop.model.customer;
+package shop.model.customer;
 
-import ybrs.shop.model.BaseEntity;
+import shop.model.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Addresses")
+@Table()
 public class Address extends BaseEntity {
 
+    @Id
+    @GeneratedValue
+    private int addressId;
+
     // REDO
-    @Column(name="Address")
+    @Column()
     @NotEmpty
     private String address;
 

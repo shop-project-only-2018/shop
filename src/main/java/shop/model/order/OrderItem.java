@@ -1,22 +1,25 @@
-package ybrs.shop.model.order;
+package shop.model.order;
 
-import ybrs.shop.model.BaseEntity;
-import ybrs.shop.model.customer.*;
+import shop.model.BaseEntity;
+import shop.model.customer.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Order_items")
+@Table(name = "order_item")
 public class OrderItem extends BaseEntity {
 
+    @Id
+    @GeneratedValue
+    private int orderItemId;
+
     @ManyToOne
-    @Column(name="Order")
     private Order order;
 
     @OneToOne
     private Address address;
 
-    @Column(name="Quantity")
+    @Column()
     private int quantity;
 
     public Order getOrder() {

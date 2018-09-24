@@ -1,19 +1,21 @@
-package ybrs.shop.model.customer;
+package shop.model.customer;
 
-import ybrs.shop.model.BaseEntity;
+import shop.model.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Persons")
+@Table()
 public class Person extends BaseEntity {
 
-    @Column(name="First_name")
+    @Id
+    @GeneratedValue
+    private int personId;
+
+    @Column(name="first_name")
     private String firstName;
 
-    @Column(name="First_name")
+    @Column(name="last_name")
     private String lastName;
 
     public String getFirstName() {

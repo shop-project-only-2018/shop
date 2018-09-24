@@ -1,7 +1,3 @@
---liquibase formatted sql
-
---changeset author:1 failOnError:True
-
 create table organization
 (
 	name varchar not null,

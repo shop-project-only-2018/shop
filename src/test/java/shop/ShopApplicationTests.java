@@ -1,4 +1,4 @@
-package ybrs.shop;
+package shop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
