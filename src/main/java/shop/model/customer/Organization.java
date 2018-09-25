@@ -8,12 +8,19 @@ import javax.persistence.*;
 @Table()
 public class Organization extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private int organizationId;
+//    @Id
+//    @GeneratedValue
+//    private int customerId;
+//    @Id
+//    @GeneratedValue
+//    private int organizationId;
 
     @Column()
     private String name;
+
+    @Id
+    @OneToOne
+    private Customer customer;
 
     public String getName() {
         return name;

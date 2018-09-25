@@ -1,73 +1,17 @@
-create table organization
+create table status
 (
-	name varchar not null,
-	organization_id serial not null
-		constraint organizations_pkey
-			primary key
-)
-;
-
-alter table organization owner to postgres
-;
-
-create unique index organizations_id_uindex
-	on organization (organization_id)
-;
-
-create table person
-(
-	person_id serial not null
-		constraint person_pkey
-			primary key,
-	first_name varchar not null,
-	last_name varchar not null
-)
-;
-
-alter table person owner to postgres
-;
-
-create unique index person_id_uindex
-	on person (person_id)
-;
-
-create table phone
-(
-	number varchar not null,
-	phone_id serial not null
-		constraint phone_pk
-			primary key
-		constraint phone_person_person_id_fk
-			references person
-				on delete cascade
-)
-;
-
-alter table phone owner to postgres
-;
-
-create unique index phones_number_uindex
-	on phone (number)
-;
-
-create unique index phone_phone_id_uindex
-	on phone (phone_id)
-;
-
-create table status_code
-(
-	status_code_id serial not null
+	status_id serial not null
 		constraint status_pkey
 			primary key,
 	status varchar not null
 )
 ;
 
-alter table status_code owner to postgres
+alter table status owner to postgres
 ;
 
 create unique index status_id_uindex
-	on status_code (status_code_id)
+	on status (status_id)
 ;
 
 create table payment_method
@@ -90,11 +34,11 @@ create table category
 (
 	category_id serial not null
 		constraint category_pkey
-			primary key
-		constraint child_fk
+			primary key,
+	name varchar not null,
+	parent_id integer
+		constraint category_category_category_id_fk
 			references category
-				on delete cascade,
-	name varchar not null
 )
 ;
 
@@ -110,50 +54,106 @@ create table customer
 	customer_id serial not null
 		constraint customer_pkey
 			primary key
-		constraint customer_person_id_fk
-			references person
-				on delete cascade
 )
 ;
 
 alter table customer owner to postgres
 ;
 
-create table address
+create table person
 (
-	address_id serial not null
-		constraint addresses_pkey
+	first_name varchar not null,
+	last_name varchar not null,
+	customer_id integer not null
+		constraint person_pk
 			primary key
-		constraint address_customer_customer_id_fk
+		constraint person_customer_customer_id_fk
 			references customer
-				on delete cascade,
-	address varchar not null
+				on delete cascade
 )
 ;
 
-alter table address owner to postgres
-;
-
-create unique index addresses_id_uindex
-	on address (address_id)
+alter table person owner to postgres
 ;
 
 create unique index customer_id_uindex
 	on customer (customer_id)
 ;
 
+create table organization
+(
+	name varchar not null,
+	customer_id integer not null
+		constraint organization_pk
+			primary key
+		constraint organization_customer_customer_id_fk
+			references customer
+				on delete cascade
+)
+;
+
+alter table organization owner to postgres
+;
+
+create table phone
+(
+	number varchar not null,
+	phone_id serial not null
+		constraint phone_pk
+			primary key,
+	customer_id integer not null
+		constraint phone_customer_customer_id_fk
+			references customer
+				on delete cascade
+)
+;
+
+alter table phone owner to postgres
+;
+
+create unique index phones_number_uindex
+	on phone (number)
+;
+
+create unique index phone_phone_id_uindex
+	on phone (phone_id)
+;
+
+create table address
+(
+	address varchar not null,
+	customer_id integer not null
+		constraint address_customer_customer_id_fk
+			references customer
+				on delete cascade,
+	address_id serial not null
+		constraint address_pk
+			primary key
+)
+;
+
+alter table address owner to postgres
+;
+
+create unique index address_address_id_uindex
+	on address (address_id)
+;
+
 create table "order"
 (
 	order_id serial not null
 		constraint order_pkey
-			primary key
+			primary key,
+	added timestamp not null,
+	customer_id integer not null
 		constraint order_customer_customer_id_fk
-			references customer
-		constraint order_payment_method_id_fk
-			references payment_method
-		constraint order_status_code_status_code_id_fk
-			references status_code,
-	added timestamp not null
+			references customer,
+	payment_method_id integer not null
+		constraint order_payment_method_payment_method_id_fk
+			references payment_method,
+	status_id integer
+		constraint order_status_status_id_fk
+			references status
 )
 ;
 
@@ -168,12 +168,13 @@ create table product
 (
 	product_id serial not null
 		constraint product_pkey
-			primary key
-		constraint product_category_category_id_fk
-			references category,
+			primary key,
 	name varchar not null,
 	price numeric(10,4) not null,
-	quantity integer not null
+	quantity integer not null,
+	category_id integer
+		constraint product_category_category_id_fk
+			references category
 )
 ;
 
@@ -188,12 +189,15 @@ create table order_item
 (
 	order_item_id serial not null
 		constraint order_item_pkey
-			primary key
+			primary key,
+	quantity integer not null,
+	order_id integer not null
 		constraint order_item_order_order_id_fk
 			references "order"
+				on delete cascade,
+	product_id integer not null
 		constraint order_item_product_product_id_fk
-			references product,
-	quantity integer not null
+			references product
 )
 ;
 

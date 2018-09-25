@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-//@EntityScan({
-//        "shop.model"
-//})
+@EntityScan({
+        "shop.model"
+})
 @EnableJpaRepositories({
         "shop.repository"
 })

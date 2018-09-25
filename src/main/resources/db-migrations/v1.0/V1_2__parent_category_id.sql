@@ -1,1 +1,0 @@
-ALTER TABLE public.category DROP CONSTRAINT child_fk;

@@ -15,20 +15,20 @@ public class Customer extends BaseEntity {
     private int customerId;
 
 
-//    @OneToOne
-//    private Organization organization;
-//
-//    @OneToOne
-//    private Person person;
+    @OneToOne
+    private Organization organization;
 
-//    @OneToMany
-//    private List<Phone> phoneNumberList;
-//
-//    @OneToMany
-//    private List<Address> addressList;
-//
-//    @OneToMany
-//    private List<Order> orderList;
+    @OneToOne
+    private Person person;
+
+    @OneToMany
+    private List<Phone> phoneNumberList;
+
+    @OneToMany
+    private List<Address> addressList;
+
+    @OneToMany
+    private List<Order> orderList;
 
 
 }

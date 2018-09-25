@@ -10,13 +10,20 @@ public class Person extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private int personId;
+    private int customerId;
 
-    @Column(name="first_name")
+//    @Id
+//    @GeneratedValue
+//    private int personId;
+
+    @Column()
     private String firstName;
 
-    @Column(name="last_name")
+    @Column()
     private String lastName;
+
+@OneToOne
+    private Customer customer;
 
     public String getFirstName() {
         return firstName;

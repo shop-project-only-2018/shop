@@ -6,14 +6,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "StatusCodes")
-public class StatusCode extends BaseEntity {
+public class Status extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private int statusCodeId;
+    private int statusId;
 
-    @Column(name="Description")
+    @Column()
     private String description;
 
     @OneToMany

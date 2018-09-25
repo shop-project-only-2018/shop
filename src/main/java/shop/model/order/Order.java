@@ -14,6 +14,7 @@ public class Order extends BaseEntity {
     private int orderId;
 
     @ManyToOne
+    @JoinColumn(name="order_customer_customer_id_fk")
     private Customer customer;
 
 //    @OneToOne
