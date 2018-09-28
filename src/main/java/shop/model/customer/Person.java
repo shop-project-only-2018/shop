@@ -8,10 +8,7 @@ public class Person implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "customer_id")
-//    @MapsId
     private Customer customer;
-//    @Id
-//    private Customer customerId;
 
     @Column
     private String firstName;

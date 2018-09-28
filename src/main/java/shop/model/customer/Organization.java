@@ -6,17 +6,13 @@ import java.io.Serializable;
 @Entity
 public class Organization implements Serializable {
 
-//    @Id
-//    private Integer customerId;
-@Id
+    @Id
     @OneToOne
     @JoinColumn(name = "customer_id")
-//    @MapsId
     private Customer customer;
 
     @Column
     private String name;
-
 
     public String getName() {
         return name;
