@@ -13,7 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "shop.model"
 })
 @EnableJpaRepositories({
-        "shop.repository"
+        "shop.repository.customer",
+        "shop.repository.order"
 })
 @ComponentScan({
         "shop.configuration",

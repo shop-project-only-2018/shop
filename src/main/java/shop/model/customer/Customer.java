@@ -1,34 +1,31 @@
 package shop.model.customer;
 
-import shop.model.BaseEntity;
 import shop.model.order.Order;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "customer")
-public class Customer extends BaseEntity {
+public class Customer implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_customer_id_seq")
+    private Integer customerId;
 
 
-    @OneToOne
-    private Organization organization;
-
-    @OneToOne
-    private Person person;
-
-    @OneToMany
-    private List<Phone> phoneNumberList;
-
-    @OneToMany
-    private List<Address> addressList;
-
-    @OneToMany
-    private List<Order> orderList;
-
+    //    @OneToMany
+//    @JoinColumn(table="phone")
+//    private List<Phone> phones;
+//
+//    @OneToMany
+//    @JoinColumn(table="address")
+//    private List<Address> addresses;
+//
+//    @OneToMany
+//    @JoinColumn(table="order")
+//    private List<Order> orders;
 
 }

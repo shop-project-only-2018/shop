@@ -1,21 +1,39 @@
 package shop.model.order;
 
-import shop.model.BaseEntity;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Status extends BaseEntity {
+public class Status implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int statusId;
 
-    @Column()
-    private String description;
+    @Column
+    private String status;
 
-    @OneToMany
-    private List<Order> orders;
+    public int getStatusId() {
+        return statusId;
+    }
 
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Status() {
+    }
+
+    public Status(String status) {
+        this.status = status;
+    }
 }

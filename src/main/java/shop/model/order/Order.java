@@ -1,25 +1,89 @@
 package shop.model.order;
 
-import shop.model.BaseEntity;
-import shop.model.customer.*;
+import shop.model.customer.Address;
+import shop.model.customer.Customer;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Entity
-@Table()
-public class Order extends BaseEntity {
+@Table(name = "orders")
+public class Order implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="orders_order_id_seq")
+    private Integer orderId;
+
+    @Column
+    private BigDecimal price;
+
+    @Column
+    private Timestamp added;
 
     @ManyToOne
-    @JoinColumn(name="order_customer_customer_id_fk")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-//    @OneToOne
-//    private Address address;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
 
+    @ManyToOne
+    @JoinColumn(name = "payment_method_id")
+    private PaymentMethod paymentMethod;
 
+    public Integer getOrderId() {
+        return orderId;
+    }
 
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Timestamp getAdded() {
+        return added;
+    }
+
+    public void setAdded(Timestamp added) {
+        this.added = added;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Order() {
+        this.added = new Timestamp(0);
+    }
 }

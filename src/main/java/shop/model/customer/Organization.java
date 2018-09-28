@@ -1,26 +1,22 @@
 package shop.model.customer;
 
-import shop.model.BaseEntity;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table()
-public class Organization extends BaseEntity {
+public class Organization implements Serializable {
 
 //    @Id
-//    @GeneratedValue
-//    private int customerId;
-//    @Id
-//    @GeneratedValue
-//    private int organizationId;
+//    private Integer customerId;
+@Id
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+//    @MapsId
+    private Customer customer;
 
-    @Column()
+    @Column
     private String name;
 
-    @Id
-    @OneToOne
-    private Customer customer;
 
     public String getName() {
         return name;

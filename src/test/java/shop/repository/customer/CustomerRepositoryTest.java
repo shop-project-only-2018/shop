@@ -1,4 +1,4 @@
-package shop.repository;
+package shop.repository.customer;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
+import shop.model.customer.Customer;
 
 
 @RunWith(SpringRunner.class)
@@ -15,22 +16,25 @@ import shop.ShopApplication;
 public class CustomerRepositoryTest {
 
     @Autowired
-    public CustomerRepository r;
+    public CustomerRepository customerRepository;
 
     @Before
     public void setUp() {
-        System.out.println("IT'S ALIVE!");
-
+        customerRepository.deleteAll();
     }
 
     @Test
     public void test() {
-        System.out.println("IT'S ALIVE!");
+        customerRepository.save(new Customer());
+        customerRepository.save(new Customer());
+        customerRepository.save(new Customer());
+        customerRepository.save(new Customer());
+        assert customerRepository.count() == 4;
     }
 
     @After
     public void tearDown() {
-        System.out.println("IT'S ALIVE!");
+        customerRepository.deleteAll();
     }
 
 }

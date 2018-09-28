@@ -1,26 +1,39 @@
 package shop.model.order;
 
-import shop.model.BaseEntity;
-import shop.model.customer.*;
+import shop.model.product.Product;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order_item")
-public class OrderItem extends BaseEntity {
+public class OrderItem implements Serializable {
 
     @Id
-    @GeneratedValue
-    private int orderItemId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer orderItemId;
 
     @ManyToOne
+    @JoinColumn(name="order_id")
     private Order order;
 
-    @OneToOne
-    private Address address;
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Product product;
 
-    @Column()
+    @Column
+    private BigDecimal price;
+
+    @Column
     private int quantity;
+
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
+    }
 
     public Order getOrder() {
         return order;
@@ -30,12 +43,20 @@ public class OrderItem extends BaseEntity {
         this.order = order;
     }
 
-    public Address getAddress() {
-        return address;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -45,5 +66,4 @@ public class OrderItem extends BaseEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 }

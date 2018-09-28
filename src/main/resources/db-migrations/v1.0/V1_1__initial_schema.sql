@@ -60,6 +60,10 @@ create table customer
 alter table customer owner to postgres
 ;
 
+create unique index customer_id_uindex
+	on customer (customer_id)
+;
+
 create table person
 (
 	first_name varchar not null,
@@ -74,10 +78,6 @@ create table person
 ;
 
 alter table person owner to postgres
-;
-
-create unique index customer_id_uindex
-	on customer (customer_id)
 ;
 
 create table organization
@@ -139,29 +139,30 @@ create unique index address_address_id_uindex
 	on address (address_id)
 ;
 
-create table "order"
+create table orders
 (
 	order_id serial not null
 		constraint order_pkey
 			primary key,
-	added timestamp not null,
-	customer_id integer not null
+	added timestamp default now() not null,
+	customer_id integer
 		constraint order_customer_customer_id_fk
 			references customer,
-	payment_method_id integer not null
+	payment_method_id integer default 1 not null
 		constraint order_payment_method_payment_method_id_fk
 			references payment_method,
-	status_id integer
+	status_id integer default 1
 		constraint order_status_status_id_fk
-			references status
+			references status,
+	price numeric
 )
 ;
 
-alter table "order" owner to postgres
+alter table orders owner to postgres
 ;
 
 create unique index order_order_id_uindex
-	on "order" (order_id)
+	on orders (order_id)
 ;
 
 create table product
@@ -193,11 +194,12 @@ create table order_item
 	quantity integer not null,
 	order_id integer not null
 		constraint order_item_order_order_id_fk
-			references "order"
+			references orders
 				on delete cascade,
 	product_id integer not null
 		constraint order_item_product_product_id_fk
-			references product
+			references product,
+	price numeric not null
 )
 ;
 

@@ -1,29 +1,25 @@
 package shop.model.customer;
 
-import shop.model.BaseEntity;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table()
-public class Person extends BaseEntity {
-
+public class Person implements Serializable {
     @Id
-    @GeneratedValue
-    private int customerId;
-
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+//    @MapsId
+    private Customer customer;
 //    @Id
-//    @GeneratedValue
-//    private int personId;
+//    private Customer customerId;
 
-    @Column()
+    @Column
     private String firstName;
 
-    @Column()
+    @Column
     private String lastName;
 
-@OneToOne
-    private Customer customer;
+
 
     public String getFirstName() {
         return firstName;
@@ -38,11 +34,6 @@ public class Person extends BaseEntity {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
         this.lastName = lastName;
     }
 }
