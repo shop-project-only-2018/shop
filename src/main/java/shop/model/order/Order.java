@@ -1,6 +1,5 @@
 package shop.model.order;
 
-import shop.model.customer.Address;
 import shop.model.customer.Customer;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="orders_order_id_seq")
     private Integer orderId;
 
     @Column

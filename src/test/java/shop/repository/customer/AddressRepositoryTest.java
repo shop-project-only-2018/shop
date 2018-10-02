@@ -8,13 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
+import shop.model.customer.Address;
 import shop.model.customer.Customer;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
-public class CustomerRepositoryTest {
+public class AddressRepositoryTest {
 
+    @Autowired
+    public AddressRepository addressRepository;
     @Autowired
     public CustomerRepository customerRepository;
 
@@ -25,13 +28,14 @@ public class CustomerRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
+        Customer c = new Customer();
+        customerRepository.save(c);
 
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
+        addressRepository.save(new Address("1", c));
+        addressRepository.save(new Address("2", c));
+        addressRepository.save(new Address("3", c));
 
-        assert customerRepository.count() == 4;
+        assert addressRepository.count() == 3;
     }
 
     @After
@@ -40,6 +44,7 @@ public class CustomerRepositoryTest {
     }
 
     private void clear() {
+        addressRepository.deleteAll();
         customerRepository.deleteAll();
     }
 }

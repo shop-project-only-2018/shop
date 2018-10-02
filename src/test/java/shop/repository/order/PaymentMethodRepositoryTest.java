@@ -1,4 +1,4 @@
-package shop.repository.customer;
+package shop.repository.order;
 
 import org.junit.After;
 import org.junit.Before;
@@ -9,14 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
 import shop.model.customer.Customer;
+import shop.model.order.PaymentMethod;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
-public class CustomerRepositoryTest {
+public class PaymentMethodRepositoryTest {
 
     @Autowired
-    public CustomerRepository customerRepository;
+    public PaymentMethodRepository paymentMethodRepository;
 
     @Before
     public void setUp() {
@@ -25,13 +26,12 @@ public class CustomerRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-
-        assert customerRepository.count() == 4;
+        paymentMethodRepository.save(new PaymentMethod("1"));
+        paymentMethodRepository.save(new PaymentMethod("2"));
+        paymentMethodRepository.save(new PaymentMethod("3"));
+        paymentMethodRepository.save(new PaymentMethod("4"));
+        paymentMethodRepository.save(new PaymentMethod("5"));
+        assert paymentMethodRepository.count() == 5;
     }
 
     @After
@@ -40,6 +40,6 @@ public class CustomerRepositoryTest {
     }
 
     private void clear() {
-        customerRepository.deleteAll();
+        paymentMethodRepository.deleteAll();
     }
 }

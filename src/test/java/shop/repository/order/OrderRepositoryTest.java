@@ -34,14 +34,11 @@ public class OrderRepositoryTest {
 
     @Before
     public void setUp() {
-        orderRepository.deleteAll();
-        customerRepository.deleteAll();
-        paymentMethodRepository.deleteAll();
-        statusRepository.deleteAll();
+        clear();
     }
 
     @Test
-    public void test() {
+    public void saveSeveralItems() {
 
         Order o1 = new Order();
         Order o2 = new Order();
@@ -70,10 +67,13 @@ public class OrderRepositoryTest {
 
     @After
     public void tearDown() {
+        clear();
+    }
+
+    private void clear() {
         orderRepository.deleteAll();
         customerRepository.deleteAll();
         paymentMethodRepository.deleteAll();
         statusRepository.deleteAll();
     }
-
 }

@@ -20,6 +20,14 @@ public class Address implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    public Address(@NotEmpty String address, Customer customer) {
+        this.address = address;
+        this.customer = customer;
+    }
+
+    public Address() {
+    }
+
     public Customer getCustomer() {
         return customer;
     }

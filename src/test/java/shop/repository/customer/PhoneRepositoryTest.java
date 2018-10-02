@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
+import shop.model.customer.Address;
 import shop.model.customer.Customer;
+import shop.model.customer.Phone;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
-public class CustomerRepositoryTest {
+public class PhoneRepositoryTest {
 
+    @Autowired
+    public PhoneRepository phoneRepository;
     @Autowired
     public CustomerRepository customerRepository;
 
@@ -25,13 +29,17 @@ public class CustomerRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
+        Customer c = new Customer();
+        customerRepository.save(c);
 
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
-        customerRepository.save(new Customer());
+        phoneRepository.save(new Phone("1", c));
+        phoneRepository.save(new Phone("2", c));
+        phoneRepository.save(new Phone("3", c));
+        phoneRepository.save(new Phone("4", c));
+        phoneRepository.save(new Phone("5", c));
+        phoneRepository.save(new Phone("6", c));
 
-        assert customerRepository.count() == 4;
+        assert phoneRepository.count() == 6;
     }
 
     @After
@@ -40,6 +48,7 @@ public class CustomerRepositoryTest {
     }
 
     private void clear() {
+        phoneRepository.deleteAll();
         customerRepository.deleteAll();
     }
 }
