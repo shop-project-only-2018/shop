@@ -24,6 +24,22 @@ public class Product implements Serializable {
     @JoinColumn(name="category_id")
     private Category category;
 
+    public Product() {
+    }
+
+    public Product(String name, BigDecimal price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Product(String name, BigDecimal price, int quantity, Category category) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+    }
+
     public int getProductId() {
         return productId;
     }

@@ -20,6 +20,18 @@ public class Category implements Serializable {
     @JoinColumn(name="parent_id")
     private Category parent;
 
+    public Category(String name, Category parent) {
+        this.name = name;
+        this.parent = parent;
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public Category() {
+    }
+
     public int getCategoryId() {
         return categoryId;
     }

@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
 import shop.model.customer.Customer;
 import shop.model.customer.Organization;
-import shop.model.customer.Person;
 
 
 @RunWith(SpringRunner.class)
