@@ -1,11 +1,7 @@
 package shop.model.order;
 
-import shop.model.customer.Address;
-import shop.model.customer.Customer;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
 public class PaymentMethod implements Serializable {

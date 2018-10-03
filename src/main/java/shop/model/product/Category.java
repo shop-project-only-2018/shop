@@ -1,10 +1,7 @@
 package shop.model.product;
 
-import shop.model.order.Order;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Category implements Serializable {

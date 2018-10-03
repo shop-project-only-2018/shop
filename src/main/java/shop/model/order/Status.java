@@ -2,7 +2,6 @@ package shop.model.order;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Status implements Serializable {
