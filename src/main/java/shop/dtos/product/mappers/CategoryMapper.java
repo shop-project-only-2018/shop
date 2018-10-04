@@ -1,8 +1,8 @@
-package shop.DTOs.product.mappers;
+package shop.dtos.product.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import shop.DTOs.product.CategoryDto;
+import shop.dtos.product.CategoryDto;
 import shop.model.product.Category;
 
 @Mapper

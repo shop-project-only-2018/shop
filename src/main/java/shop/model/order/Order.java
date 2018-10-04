@@ -1,5 +1,7 @@
 package shop.model.order;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import shop.model.customer.Customer;
 
 import javax.persistence.*;
@@ -26,6 +28,7 @@ public class Order implements Serializable {
     private Customer customer;
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "status_id")
     private Status status;
 

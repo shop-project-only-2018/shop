@@ -1,4 +1,4 @@
-package shop.service.product;
+package shop.service.order;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,14 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
+import shop.dtos.order.StatusDto;
 import shop.dtos.product.CategoryDto;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
-public class CategoryServiceTest {
+public class StatusServiceTest {
 
     @Autowired
-    public CategoryService categoryService;
+    public StatusService statusService;
 
     @Before
     public void setUp() throws Exception {
@@ -29,13 +30,12 @@ public class CategoryServiceTest {
 
     @Test
     public void save() {
-        assert categoryService.save(new CategoryDto("1"));
-        assert categoryService.save(new CategoryDto("2"));
-        assert categoryService.save(new CategoryDto("3"));
-        assert categoryService.categoryRepository.count() == 3;
+        assert statusService.save(new StatusDto("1"));
+        assert statusService.save(new StatusDto("2"));
+        assert statusService.statusRepository.count() == 2;
     }
 
     private void clear() {
-        categoryService.categoryRepository.deleteAll();
+        statusService.statusRepository.deleteAll();
     }
 }

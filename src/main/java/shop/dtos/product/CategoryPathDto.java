@@ -1,4 +1,4 @@
-package shop.DTOs.product;
+package shop.dtos.product;
 
 import java.util.List;
 

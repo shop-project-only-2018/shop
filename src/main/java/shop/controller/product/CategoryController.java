@@ -2,22 +2,24 @@ package shop.controller.product;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import shop.DTOs.product.CategoryDto;
+import org.springframework.web.bind.annotation.*;
+import shop.dtos.product.CategoryDto;
 import shop.service.product.CategoryService;
 
 @RestController
+@RequestMapping("category")
 public class CategoryController {
 
-    @Autowired
-    public CategoryService categoryService;
+    private final CategoryService categoryService;
 
-    @GetMapping("/category/add")
+    @Autowired
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
+    @PostMapping("/")
     @ResponseBody
-    public CategoryDto addCategory(@RequestParam(name="name") CategoryDto categoryDto) {
+    public CategoryDto add(@RequestParam(name="name") CategoryDto categoryDto) {
         categoryService.save(categoryDto);
         return categoryDto;
     }
