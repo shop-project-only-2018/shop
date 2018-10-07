@@ -1,4 +1,4 @@
-package shop.controller.order;
+package shop.controller.customer;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("status")
-public class StatusController {
+public class CustomerController {
 
     private final StatusService statusService;
 
     @Autowired
-    public StatusController(StatusService statusService) {
+    public CustomerController(StatusService statusService) {
         this.statusService = statusService;
     }
 
