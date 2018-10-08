@@ -15,8 +15,7 @@ import shop.ShopApplication;
 import shop.dtos.order.StatusDto;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -31,12 +30,6 @@ public class StatusControllerTest {
 
     @Autowired
     public StatusController statusController;
-
-//    @MockBean
-//    public StatusService statusService;
-
-//    @MockBean
-//    public StatusRepository statusRepository;
 
     private JacksonTester<StatusDto> jsonTester;
 
@@ -57,17 +50,23 @@ public class StatusControllerTest {
 
     @Test
     public void getById() throws Exception {
-        mockMvc.perform(get("/status/123")).andExpect(status().isNotFound());
+        mockMvc.perform(get("/status").param("id", "0")).andExpect(status().isNotFound());
     }
 
     @Test
-    public void saveAndGetById() throws Exception {
-        StatusDto statusDto = new StatusDto("0987654321");
+    public void saveAndGetAll() throws Exception {
+        StatusDto statusDto = new StatusDto("0987654321", 5);
         String json = jsonTester.write(statusDto).getJson();
         mockMvc
                 .perform(post("/status").contentType(APPLICATION_JSON).content(json))
                 .andExpect(status().isCreated());
 //        mockMvc.perform(get("/status").param("id","0")).andExpect(status().isOk());
-        mockMvc.perform(get("/status").param("id","0")).andExpect(status().isNotFound());
+        mockMvc.perform(get("/status/all"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteNonexistent() throws Exception {
+        mockMvc.perform(delete("/status").param("id", "0")).andExpect(status().isBadRequest());
     }
 }

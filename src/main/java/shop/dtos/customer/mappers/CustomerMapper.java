@@ -12,10 +12,10 @@ public interface CustomerMapper {
 
     CustomerMapper INSTANCE = Mappers.getMapper( CustomerMapper.class );
 
-    @Mapping(source = "", target = "")
+    @Mapping(source = "id", target = "customerId")
     Customer statusDtoToStatus(CustomerDto statusDto);
 
-    @Mapping(source = "", target = "")
+    @Mapping(source = "customerId", target = "id")
     CustomerDto statusToStatusDto(Customer customer);
 
 }

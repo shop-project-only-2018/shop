@@ -1,6 +1,6 @@
 package shop.dtos.order;
 
-public class StatusDto {
+public class OrderDto {
     private String status;
     private Integer id;
 
@@ -12,7 +12,7 @@ public class StatusDto {
         this.status = status;
     }
 
-    public StatusDto(String status, Integer id) {
+    public OrderDto(String status, Integer id) {
         this.status = status;
         this.id = id;
     }
@@ -25,10 +25,10 @@ public class StatusDto {
         this.id = id;
     }
 
-    public StatusDto(String status) {
+    public OrderDto(String status) {
         this.status = status;
     }
 
-    public StatusDto() {
+    public OrderDto() {
     }
 }

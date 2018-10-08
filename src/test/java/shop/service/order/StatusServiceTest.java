@@ -30,8 +30,8 @@ public class StatusServiceTest {
 
     @Test
     public void save() {
-        assert statusService.save(new StatusDto("1"));
-        assert statusService.save(new StatusDto("2"));
+        assert statusService.save(new StatusDto("1", 0));
+        assert statusService.save(new StatusDto("2",0));
         assert statusService.statusRepository.count() == 2;
     }
 

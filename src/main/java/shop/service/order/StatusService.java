@@ -8,6 +8,9 @@ import shop.dtos.order.mappers.StatusMapper;
 import shop.model.order.Status;
 import shop.repository.order.StatusRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class StatusService {
 
@@ -37,5 +40,30 @@ public class StatusService {
             return null;
         }
         return statusDto;
+    }
+
+    public List<StatusDto> getAll() {
+        List<Status> statusList = statusRepository.findAll();
+        List<StatusDto> statusDtoList = new ArrayList<StatusDto>();
+        for (Status s : statusList) {
+            StatusDto sd = StatusMapper.INSTANCE.statusToStatusDto(s);
+            statusDtoList.add(sd);
+        }
+        return statusDtoList;
+    }
+
+    public boolean delete(StatusDto statusDto) {
+        return delete(statusDto.getId());
+    }
+
+    public boolean delete(Integer id) {
+        Status status = null;
+        status = statusRepository.findById(id).orElse(null);
+        if (status != null) {
+            statusRepository.delete(status);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

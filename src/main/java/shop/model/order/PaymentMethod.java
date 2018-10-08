@@ -1,10 +1,12 @@
 package shop.model.order;
 
+import shop.model.AbstractVersionedEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class PaymentMethod implements Serializable {
+public class PaymentMethod extends AbstractVersionedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

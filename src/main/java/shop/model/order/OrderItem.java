@@ -1,5 +1,6 @@
 package shop.model.order;
 
+import shop.model.AbstractVersionedEntity;
 import shop.model.product.Product;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class OrderItem implements Serializable {
+public class OrderItem extends AbstractVersionedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

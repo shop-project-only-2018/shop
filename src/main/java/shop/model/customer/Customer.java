@@ -1,10 +1,12 @@
 package shop.model.customer;
 
+import shop.model.AbstractVersionedEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Customer implements Serializable {
+public class Customer extends AbstractVersionedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

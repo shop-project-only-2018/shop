@@ -1,11 +1,14 @@
 package shop.model.customer;
 
+import shop.model.AbstractVersionedEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Person implements Serializable {
+public class Person  extends AbstractVersionedEntity {
+
     @Id
     @Column(name = "customer_id")
     private Integer customerId;

@@ -1,10 +1,12 @@
 package shop.model.order;
 
+import shop.model.AbstractVersionedEntity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class Status implements Serializable {
+public class Status extends AbstractVersionedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

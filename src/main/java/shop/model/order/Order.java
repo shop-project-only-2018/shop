@@ -2,6 +2,7 @@ package shop.model.order;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import shop.model.AbstractVersionedEntity;
 import shop.model.customer.Customer;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable {
+public class Order extends AbstractVersionedEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
