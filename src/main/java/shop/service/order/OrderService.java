@@ -6,12 +6,24 @@ import org.springframework.stereotype.Service;
 import shop.dtos.order.StatusDto;
 import shop.dtos.order.mappers.StatusMapper;
 import shop.model.order.Status;
+import shop.repository.customer.CustomerRepository;
+import shop.repository.order.OrderRepository;
+import shop.repository.order.PaymentMethodRepository;
 import shop.repository.order.StatusRepository;
 
 @Service
 public class OrderService {
 
     final static Logger logger = Logger.getLogger(OrderService.class);
+
+    @Autowired
+    public OrderRepository orderRepository;
+
+    @Autowired
+    public CustomerRepository customerRepository;
+
+    @Autowired
+    public PaymentMethodRepository paymentMethodRepository;
 
     @Autowired
     public StatusRepository statusRepository;
