@@ -46,7 +46,7 @@ public class CategoryController {
     @GetMapping("/{id}")
     @ApiOperation(value = "Find PaymentMethod by id",
             notes = "Also returns a link to retrieve all PaymentMethods with rel - all")
-    public Resource<Category> retrieveStudent(@PathVariable Integer id) {
+    public Resource<Category> retrieveCategory(@PathVariable Integer id) {
         Optional<Category> category = categoryRepository.findById(id);
 
 //        if (!category.isPresent())
@@ -54,7 +54,7 @@ public class CategoryController {
 
         Resource<Category> resource = new Resource<Category>(category.get());
 
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
 
         resource.add(linkTo.withRel("all"));
 

@@ -107,25 +107,6 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-security</artifactId>-->
-			<!--<version>2.0.5.RELEASE</version>-->
-		<!--</dependency>-->
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-test &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.security</groupId>-->
-			<!--<artifactId>spring-security-test</artifactId>-->
-			<!--<version>5.1.0.RELEASE</version>-->
-			<!--<scope>test</scope>-->
-		<!--</dependency>-->
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>io.jsonwebtoken</groupId>-->
-			<!--<artifactId>jjwt</artifactId>-->
-			<!--<version>0.9.0</version>-->
-		<!--</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -142,6 +123,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security &ndash;&gt;-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-security</artifactId>-->
+		<!--<version>2.0.5.RELEASE</version>-->
+		<!--</dependency>-->
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-test &ndash;&gt;-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.security</groupId>-->
+		<!--<artifactId>spring-security-test</artifactId>-->
+		<!--<version>5.1.0.RELEASE</version>-->
+		<!--<scope>test</scope>-->
+		<!--</dependency>-->
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt &ndash;&gt;-->
+		<!--<dependency>-->
+		<!--<groupId>io.jsonwebtoken</groupId>-->
+		<!--<artifactId>jjwt</artifactId>-->
+		<!--<version>0.9.0</version>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
@@ -161,7 +161,6 @@
 					<user>postgres</user>
 					<password>123456</password>
 					<locations>filesystem:src\main\resources\db-migrations\v1.0</locations>
-          <!--          <baseDir>filesystem:src\main\resources\db-migrations\v1.0</baseDir>&lt;!&ndash;&ndash;&gt;-->
                     <schemas>
 						<schema>public</schema>
 					</schemas>
@@ -221,39 +220,39 @@
 				</configuration>
 			</plugin>
 
-			<!-- SQL MAVEN PLUGIN -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>sql-maven-plugin</artifactId>
-				<version>1.5</version>
+			<!--&lt;!&ndash; SQL MAVEN PLUGIN &ndash;&gt;-->
+			<!--<plugin>-->
+				<!--<groupId>org.codehaus.mojo</groupId>-->
+				<!--<artifactId>sql-maven-plugin</artifactId>-->
+				<!--<version>1.5</version>-->
 
-				<dependencies>
-					<dependency>
-						<groupId>postgresql</groupId>
-						<artifactId>postgresql</artifactId>
-						<version>9.1-901-1.jdbc4</version>
-					</dependency>
-				</dependencies>
+				<!--<dependencies>-->
+					<!--<dependency>-->
+						<!--<groupId>postgresql</groupId>-->
+						<!--<artifactId>postgresql</artifactId>-->
+						<!--<version>9.1-901-1.jdbc4</version>-->
+					<!--</dependency>-->
+				<!--</dependencies>-->
 
-				<configuration>
-					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost:5432/reksoft</url>
-					<username>postgres</username>
-					<password>postgres</password>
-				</configuration>
+				<!--<configuration>-->
+					<!--<driver>org.postgresql.Driver</driver>-->
+					<!--<url>jdbc:postgresql://localhost:5432/reksoft</url>-->
+					<!--<username>postgres</username>-->
+					<!--<password>postgres</password>-->
+				<!--</configuration>-->
 
-				<executions>
-					<execution>
-						<id>demo</id>
-						<configuration>
-							<autocommit>true</autocommit>
-							<srcFiles>
-								<srcFile>database/demo.sql</srcFile>
-							</srcFiles>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>demo</id>-->
+						<!--<configuration>-->
+							<!--<autocommit>true</autocommit>-->
+							<!--<srcFiles>-->
+								<!--<srcFile>database/demo.sql</srcFile>-->
+							<!--</srcFiles>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 
