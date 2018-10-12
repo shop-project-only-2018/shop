@@ -15,13 +15,13 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("status")
-public class StatusController {
+@RequestMapping("order")
+public class OrderController {
 
     private final StatusService statusService;
 
     @Autowired
-    public StatusController(StatusService statusService) {
+    public OrderController(StatusService statusService) {
         this.statusService = statusService;
     }
 

@@ -28,13 +28,13 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("category")
-public class CategoryController {
+public class CategoryResource {
 
 
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryController(CategoryRepository categoryRepository) {
+    public CategoryResource(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -44,8 +44,8 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find PaymentMethod by id",
-            notes = "Also returns a link to retrieve all PaymentMethods with rel - all")
+    @ApiOperation(value = "Find Category by id",
+            notes = "Also returns a link to retrieve all Categories with rel - all")
     public Resource<Category> retrieveCategory(@PathVariable Integer id) {
         Optional<Category> category = categoryRepository.findById(id);
 

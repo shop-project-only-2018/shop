@@ -21,15 +21,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
 @AutoConfigureMockMvc
-public class StatusControllerTest {
+public class StatusResourceTest {
 
-//    final static Logger logger = Logger.getLogger(StatusControllerTest.class);
+    final static Logger logger = Logger.getLogger(StatusResourceTest.class);
 
     @Autowired
     public MockMvc mockMvc;
 
     @Autowired
-    public StatusController statusController;
+    public StatusResource statusResource;
 
     private JacksonTester<StatusDto> jsonTester;
 
@@ -50,7 +50,7 @@ public class StatusControllerTest {
 
     @Test
     public void getById() throws Exception {
-        mockMvc.perform(get("/status").param("id", "0")).andExpect(status().isNotFound());
+        mockMvc.perform(get("/status").param("id", "0")).andExpect(status().is4xxClientError());
     }
 
     @Test
@@ -67,6 +67,6 @@ public class StatusControllerTest {
 
     @Test
     public void deleteNonexistent() throws Exception {
-        mockMvc.perform(delete("/status").param("id", "0")).andExpect(status().isBadRequest());
+        mockMvc.perform(delete("/status").param("id", "0")).andExpect(status().is4xxClientError());
     }
 }
