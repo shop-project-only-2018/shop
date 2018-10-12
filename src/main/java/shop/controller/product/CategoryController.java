@@ -1,12 +1,19 @@
 package shop.controller.product;
 
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import shop.dtos.order.StatusDto;
+import shop.model.order.PaymentMethod;
+import shop.model.product.Category;
+import shop.repository.order.PaymentMethodRepository;
+import shop.repository.product.CategoryRepository;
 import shop.service.order.StatusService;
 import shop.service.product.CategoryService;
 
@@ -14,58 +21,73 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("category")
 public class CategoryController {
 
-    private final CategoryService categoryService;
+
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
+    public CategoryController(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
-//
-//    @PostMapping
-//    public ResponseEntity add(@RequestBody CategoryDto categoryDto) {
-//        categoryService.save(categoryDto);
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-//        return new ResponseEntity(HttpStatus.CREATED);
-//    }
-//
-//    @GetMapping
-//    public ResponseEntity<StatusDto> getById(@RequestParam(value = "id")
-//                                                 @NotNull @Digits(fraction = 0, integer = 10) String statusId) {
-//        Integer id = Integer.parseInt(statusId);
-//        StatusDto statusDto = categoryService.getById(id);
-//        if (statusDto == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(statusDto, HttpStatus.OK);
-//    }
-//
-//    @GetMapping(value = "/all")
-//    public List<StatusDto> getAll() {
-//        List<StatusDto> statusDtoList = categoryService.getAll();
-//        return statusDtoList;
-//    }
-//
-//    @DeleteMapping
-//    public ResponseEntity delete(@RequestParam(value = "id")
-//                                     @NotNull @Digits(fraction = 0, integer = 10) String statusId) {
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-//        Integer id = Integer.parseInt(statusId);
-//        if (categoryService.delete(id)) {
-//            return new ResponseEntity(HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-//        }
-//    }
-//
-//    @PutMapping
-//    public ResponseEntity update(@RequestBody StatusDto statusDto) {
-//        categoryService.save(statusDto);
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
-//        return new ResponseEntity(HttpStatus.OK);
-//    }
+
+    @GetMapping("/all")
+    public List<Category> retrieveAll() {
+        return categoryRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Find PaymentMethod by id",
+            notes = "Also returns a link to retrieve all PaymentMethods with rel - all")
+    public Resource<Category> retrieveStudent(@PathVariable Integer id) {
+        Optional<Category> category = categoryRepository.findById(id);
+
+//        if (!category.isPresent())
+//            throw new StudentNotFoundException("id-" + id);
+
+        Resource<Category> resource = new Resource<Category>(category.get());
+
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+
+        resource.add(linkTo.withRel("all"));
+
+        return resource;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable Integer id) {
+        categoryRepository.deleteById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<Object> createCategory(@RequestBody Category category) {
+        Category savedCategory = categoryRepository.save(category);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedCategory.getCategoryId()).toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateCategory(@RequestBody Category category, @PathVariable Integer id) {
+
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+
+        if (!categoryOptional.isPresent())
+            return ResponseEntity.notFound().build();
+
+        category.setCategoryId(id);
+
+        categoryRepository.save(category);
+
+        return ResponseEntity.noContent().build();
+    }
 }

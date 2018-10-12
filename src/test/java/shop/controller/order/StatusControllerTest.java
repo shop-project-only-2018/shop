@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class StatusControllerTest {
 
-    final static Logger logger = Logger.getLogger(StatusControllerTest.class);
+//    final static Logger logger = Logger.getLogger(StatusControllerTest.class);
 
     @Autowired
     public MockMvc mockMvc;

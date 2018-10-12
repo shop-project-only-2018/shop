@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class StatusService {
 
-    final static Logger logger = Logger.getLogger(StatusService.class);
+//    final static Logger logger = Logger.getLogger(StatusService.class);
 
     @Autowired
     public StatusRepository statusRepository;
@@ -26,9 +26,9 @@ public class StatusService {
     }
 
     public StatusDto getById(Integer id) {
-        if (id == null) {
-            logger.fatal("getById(): id is null");
-        }
+//        if (id == null) {
+//            logger.fatal("getById(): id is null");
+//        }
         Status status = null;
         try {
             status = statusRepository.findById(id).orElse(null);

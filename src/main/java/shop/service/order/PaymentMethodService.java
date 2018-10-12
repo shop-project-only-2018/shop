@@ -11,7 +11,7 @@ import shop.repository.order.StatusRepository;
 @Service
 public class PaymentMethodService {
 
-    final static Logger logger = Logger.getLogger(PaymentMethodService.class);
+//    final static Logger logger = Logger.getLogger(PaymentMethodService.class);
 
     @Autowired
     public StatusRepository statusRepository;
@@ -23,9 +23,9 @@ public class PaymentMethodService {
     }
 
     public StatusDto getById(Integer id) {
-        if (id == null) {
-            logger.fatal("getById(): id is null");
-        }
+//        if (id == null) {
+//            logger.fatal("getById(): id is null");
+//        }
         Status status = null;
         try {
             status = statusRepository.findById(id).orElse(null);
