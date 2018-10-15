@@ -1,0 +1,38 @@
+<!doctype html>
+<html th:fragment="layout (template, menu)" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Supershop</title>
+
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+<nav id="navbar">
+    <div id="innernavbar" class="main">
+        <a href="/" id="logo">Supershop</a>
+    </div>
+</nav>
+<div id="menu">
+    <div id="innermenubar" class="main">
+        <a href="/">Main</a><a href="/">Products</a><a href="/">Help</a><a href="/">About</a><a href="/" class="menuright">Cart</a><a href="/" class="menuright">Sign in</a>
+    </div>
+</div>
+<div id="container" class="main">
+    <div id="content">
+    <th:block th:include="${template}"/>
+    </div>
+    <div id="footer">
+        © Evil corporation 2018
+    </div>
+</div>
+</body>
+
+</html>
