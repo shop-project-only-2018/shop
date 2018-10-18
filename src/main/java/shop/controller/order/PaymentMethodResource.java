@@ -1,7 +1,6 @@
 package shop.controller.order;
 
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -30,22 +29,19 @@ public class PaymentMethodResource {
     }
 
     @GetMapping("/all")
-    public List<PaymentMethod> retrieveAllStudents() {
+    public List<PaymentMethod> retrieveAll() {
         return paymentMethodRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find PaymentMethod by id",
-            notes = "Also returns a link to retrieve all PaymentMethods with rel - all")
-    public Resource<PaymentMethod> retrieveStudent(@PathVariable Integer id) {
+    public Resource<PaymentMethod> getById(@PathVariable Integer id) {
         Optional<PaymentMethod> student = paymentMethodRepository.findById(id);
-
 //        if (!student.isPresent())
 //            throw new StudentNotFoundException("id-" + id);
 
         Resource<PaymentMethod> resource = new Resource<PaymentMethod>(student.get());
 
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllStudents());
+        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
 
         resource.add(linkTo.withRel("all"));
 
@@ -53,7 +49,7 @@ public class PaymentMethodResource {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Integer id) {
+    public void delete(@PathVariable Integer id) {
         paymentMethodRepository.deleteById(id);
     }
 
@@ -68,7 +64,7 @@ public class PaymentMethodResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody PaymentMethod student, @PathVariable Integer id) {
+    public ResponseEntity<Object> update(@RequestBody PaymentMethod student, @PathVariable Integer id) {
 
         Optional<PaymentMethod> studentOptional = paymentMethodRepository.findById(id);
 

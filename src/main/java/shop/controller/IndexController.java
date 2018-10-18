@@ -15,12 +15,12 @@ import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.util.List;
 
-//@Controller
+@Controller
 public class IndexController {
 
-//    @GetMapping(value = {"/", "/index", "/index.htm", "/index.html"})
-//    public String index() {
-//        return "index";
-//    }
+    @GetMapping(value = {"/", "/index", "/index.htm", "/index.html"})
+    public String index() {
+        return "redirect:/swagger-ui.html";
+    }
 
 }

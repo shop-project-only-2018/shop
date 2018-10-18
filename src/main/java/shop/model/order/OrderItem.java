@@ -1,14 +1,13 @@
 package shop.model.order;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 import shop.model.product.Product;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class OrderItem extends AbstractVersionedEntity {
+public class OrderItem extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,5 +65,15 @@ public class OrderItem extends AbstractVersionedEntity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public Integer getId() {
+        return orderItemId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.orderItemId = id;
     }
 }

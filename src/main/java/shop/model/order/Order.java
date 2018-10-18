@@ -2,17 +2,16 @@ package shop.model.order;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 import shop.model.customer.Customer;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "orders")
-public class Order extends AbstractVersionedEntity {
+public class Order extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,5 +86,15 @@ public class Order extends AbstractVersionedEntity {
 
     public Order() {
         this.added = new Timestamp(0);
+    }
+
+    @Override
+    public Integer getId() {
+        return orderId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.orderId = id;
     }
 }

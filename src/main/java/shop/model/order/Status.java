@@ -1,25 +1,41 @@
 package shop.model.order;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Status extends AbstractVersionedEntity {
+public class Status extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int statusId;
+    private Integer statusId;
 
     @Column
     private String status;
 
-    public int getStatusId() {
+    public Status() {
+    }
+
+    public Status(String status) {
+        this.status = status;
+    }
+
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
+    }
+
+    @Override
+    public Integer getId() {
+        return statusId;
+    }
+
+    @Override
+    public void setId(Integer statusId) {
         this.statusId = statusId;
     }
 
@@ -28,13 +44,6 @@ public class Status extends AbstractVersionedEntity {
     }
 
     public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Status() {
-    }
-
-    public Status(String status) {
         this.status = status;
     }
 }

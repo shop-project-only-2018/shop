@@ -1,14 +1,13 @@
 package shop.model.customer;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 
 @Entity
-public class Phone  extends AbstractVersionedEntity {
+public class Phone  extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +30,11 @@ public class Phone  extends AbstractVersionedEntity {
         this.customer = customer;
     }
 
-    public int getPhoneId() {
+    public Integer getPhoneId() {
         return phoneId;
     }
 
-    public void setPhoneId(int phoneId) {
+    public void setPhoneId(Integer phoneId) {
         this.phoneId = phoneId;
     }
 
@@ -53,5 +52,15 @@ public class Phone  extends AbstractVersionedEntity {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @Override
+    public Integer getId() {
+        return phoneId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.phoneId = id;
     }
 }

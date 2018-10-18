@@ -1,13 +1,10 @@
 package shop.model.customer;
 
-import shop.model.AbstractVersionedEntity;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Organization extends AbstractVersionedEntity {
+public class Organization {
 
     @Id
     @Column(name = "customer_id")

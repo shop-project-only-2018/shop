@@ -1,12 +1,11 @@
 package shop.model.customer;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Customer extends AbstractVersionedEntity {
+public class Customer extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +41,15 @@ public class Customer extends AbstractVersionedEntity {
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
+    }
+
+    @Override
+    public Integer getId() {
+        return customerId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.customerId = id;
     }
 }

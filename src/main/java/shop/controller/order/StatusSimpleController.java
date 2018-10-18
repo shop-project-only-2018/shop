@@ -21,15 +21,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("status")
-public class StatusResource {
+public class StatusSimpleController {
 
     private final StatusRepository statusRepository;
 
     @Autowired
-    public StatusResource(StatusRepository statusRepository) {
+    public StatusSimpleController(StatusRepository statusRepository) {
         this.statusRepository = statusRepository;
     }
-
 
     @GetMapping("/all")
     public List<Status> retrieveAll() {
@@ -37,17 +36,10 @@ public class StatusResource {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find Status by id",
-            notes = "Also returns a link to retrieve all Statuses with rel - all")
-    public Resource<Status> retrieveCategory(@PathVariable Integer id) {
+    public Resource<Status> retrieveById(@PathVariable Integer id) {
         Optional<Status> status = statusRepository.findById(id);
-
-//        if (!category.isPresent())
-
         Resource<Status> resource = new Resource<Status>(status.get());
-
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
-
         resource.add(linkTo.withRel("all"));
 
         return resource;
@@ -59,26 +51,26 @@ public class StatusResource {
     }
 
     @PostMapping
-    public ResponseEntity<Object> createCategory(@RequestBody Status category) {
-        Status savedCategory = statusRepository.save(category);
+    public ResponseEntity<Object> create(@RequestBody Status entityToSave) {
+        Status saved = statusRepository.save(entityToSave);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedCategory.getStatusId()).toUri();
+                .buildAndExpand(saved.getStatusId()).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestBody Status status, @PathVariable Integer id) {
+    public ResponseEntity<Object> update(@RequestBody Status entityToUpdate, @PathVariable Integer id) {
 
-        Optional<Status> categoryOptional = statusRepository.findById(id);
+        Optional<Status> optional = statusRepository.findById(id);
 
-        if (!categoryOptional.isPresent())
+        if (!optional.isPresent())
             return ResponseEntity.notFound().build();
 
-        status.setStatusId(id);
+        entityToUpdate.setStatusId(id);
 
-        statusRepository.save(status);
+        statusRepository.save(entityToUpdate);
 
         return ResponseEntity.noContent().build();
     }

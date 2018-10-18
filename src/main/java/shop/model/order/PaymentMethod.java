@@ -1,12 +1,11 @@
 package shop.model.order;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class PaymentMethod extends AbstractVersionedEntity {
+public class PaymentMethod extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +35,15 @@ public class PaymentMethod extends AbstractVersionedEntity {
     }
 
     public PaymentMethod() {
+    }
+
+    @Override
+    public Integer getId() {
+        return paymentMethodId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.paymentMethodId = id;
     }
 }

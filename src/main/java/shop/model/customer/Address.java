@@ -1,20 +1,19 @@
 package shop.model.customer;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Address extends AbstractVersionedEntity {
+public class Address extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressId;
+    private Integer addressId;
 
-    @Column()
+    @Column
     @NotEmpty
     private String address;
 
@@ -28,6 +27,16 @@ public class Address extends AbstractVersionedEntity {
     }
 
     public Address() {
+    }
+
+    @Override
+    public Integer getId() {
+        return addressId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.addressId = id;
     }
 
     public Customer getCustomer() {
@@ -46,11 +55,11 @@ public class Address extends AbstractVersionedEntity {
         this.address = address;
     }
 
-    public int getAddressId() {
+    public Integer getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(int addressId) {
+    public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
 

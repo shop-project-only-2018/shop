@@ -1,13 +1,10 @@
 package shop.model.customer;
 
-import shop.model.AbstractVersionedEntity;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Person  extends AbstractVersionedEntity {
+public class Person  {
 
     @Id
     @Column(name = "customer_id")
@@ -78,4 +75,6 @@ public class Person  extends AbstractVersionedEntity {
     public int hashCode() {
         return Objects.hash(customerId, customer);
     }
+
+
 }

@@ -44,7 +44,7 @@ public class StatusService {
 
     public List<StatusDto> getAll() {
         List<Status> statusList = statusRepository.findAll();
-        List<StatusDto> statusDtoList = new ArrayList<StatusDto>();
+        List<StatusDto> statusDtoList = new ArrayList<>();
         for (Status s : statusList) {
             StatusDto sd = StatusMapper.INSTANCE.statusToStatusDto(s);
             statusDtoList.add(sd);

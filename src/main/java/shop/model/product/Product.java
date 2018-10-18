@@ -1,13 +1,12 @@
 package shop.model.product;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-public class Product extends AbstractVersionedEntity {
+public class Product extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,7 @@ public class Product extends AbstractVersionedEntity {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Product() {
@@ -80,5 +79,16 @@ public class Product extends AbstractVersionedEntity {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+
+    @Override
+    public Integer getId() {
+        return productId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.productId = id;
     }
 }

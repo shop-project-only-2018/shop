@@ -4,10 +4,9 @@ package shop.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
-import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class AbstractVersionedEntity implements Serializable {
+public abstract class EntityWithVersion extends ModelEntity {
 
 //    @Version
 //    @Column

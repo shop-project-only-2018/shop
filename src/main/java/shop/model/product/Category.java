@@ -1,12 +1,11 @@
 package shop.model.product;
 
-import shop.model.AbstractVersionedEntity;
+import shop.model.EntityWithIntId;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-public class Category extends AbstractVersionedEntity {
+public class Category extends EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +52,15 @@ public class Category extends AbstractVersionedEntity {
 
     public void setParent(Category parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public Integer getId() {
+        return categoryId;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.categoryId = id;
     }
 }

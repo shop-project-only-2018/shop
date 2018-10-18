@@ -45,31 +45,20 @@ public class CategoryResource {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find category by id",
-            notes = "Also returns a link to retrieve all Categories with rel - all")
     public Resource<Category> retrieveCategory(@PathVariable Integer id) {
         Optional<Category> category = categoryRepository.findById(id);
-
-//        if (!category.isPresent())
-//            throw new StudentNotFoundException("id-" + id);
-
         Resource<Category> resource = new Resource<Category>(category.get());
-
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
-
         resource.add(linkTo.withRel("all"));
-
         return resource;
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "Delete category by id")
     public void delete(@PathVariable Integer id) {
         categoryRepository.deleteById(id);
     }
 
     @PostMapping
-    @ApiOperation(value = "Create new category")
     public ResponseEntity<Object> create(@RequestBody Category category) {
         Category savedCategory = categoryRepository.save(category);
 
@@ -80,7 +69,6 @@ public class CategoryResource {
     }
 
     @PutMapping("/{id}")
-    @ApiOperation(value = "Update category")
     public ResponseEntity<Object> update(@RequestBody Category category, @PathVariable Integer id) {
 
         Optional<Category> categoryOptional = categoryRepository.findById(id);
