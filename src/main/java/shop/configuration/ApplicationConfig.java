@@ -3,6 +3,7 @@ package shop.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -19,6 +20,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
+@PropertySource("classpath:paths.properties")
 public class ApplicationConfig implements WebMvcConfigurer {
 
     /**
