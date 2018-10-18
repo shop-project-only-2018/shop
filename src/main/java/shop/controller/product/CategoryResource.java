@@ -39,12 +39,13 @@ public class CategoryResource {
     }
 
     @GetMapping("/all")
+    @ApiOperation(value = "Retrieve all categories")
     public List<Category> retrieveAll() {
         return categoryRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Find Category by id",
+    @ApiOperation(value = "Find category by id",
             notes = "Also returns a link to retrieve all Categories with rel - all")
     public Resource<Category> retrieveCategory(@PathVariable Integer id) {
         Optional<Category> category = categoryRepository.findById(id);
@@ -62,12 +63,14 @@ public class CategoryResource {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategory(@PathVariable Integer id) {
+    @ApiOperation(value = "Delete category by id")
+    public void delete(@PathVariable Integer id) {
         categoryRepository.deleteById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Object> createCategory(@RequestBody Category category) {
+    @ApiOperation(value = "Create new category")
+    public ResponseEntity<Object> create(@RequestBody Category category) {
         Category savedCategory = categoryRepository.save(category);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -77,7 +80,8 @@ public class CategoryResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateCategory(@RequestBody Category category, @PathVariable Integer id) {
+    @ApiOperation(value = "Update category")
+    public ResponseEntity<Object> update(@RequestBody Category category, @PathVariable Integer id) {
 
         Optional<Category> categoryOptional = categoryRepository.findById(id);
 

@@ -13,9 +13,13 @@ public interface CustomerMapper {
     CustomerMapper INSTANCE = Mappers.getMapper( CustomerMapper.class );
 
     @Mapping(source = "id", target = "customerId")
-    Customer statusDtoToStatus(CustomerDto statusDto);
+    Customer customerDtoToCustomer(CustomerDto customerDto);
 
     @Mapping(source = "customerId", target = "id")
-    CustomerDto statusToStatusDto(Customer customer);
+    CustomerDto customerToCustomerDto(Customer customer);
+
+//    default CustomerDto customerToCustomerDto(Customer customer){
+//
+//    }
 
 }
