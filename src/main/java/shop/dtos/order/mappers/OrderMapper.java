@@ -5,14 +5,12 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import shop.dtos.order.OrderDto;
-import shop.dtos.order.StatusDto;
 import shop.model.order.Order;
-import shop.model.order.Status;
 
 @Mapper
 public interface OrderMapper {
 
-    OrderMapper INSTANCE = Mappers.getMapper( OrderMapper.class );
+    OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
     @Mappings({
             @Mapping(source = "id", target = "orderId")

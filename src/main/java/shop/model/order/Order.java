@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "orders")
-public class Order extends EntityWithIntId {
+public class Order implements EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

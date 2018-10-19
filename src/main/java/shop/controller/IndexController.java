@@ -1,20 +1,12 @@
 package shop.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import shop.dtos.order.StatusDto;
-import shop.service.order.StatusService;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
-import java.net.URI;
-import java.util.List;
-
+/**
+ * The main function is to redirect to /swagger-ui.html
+ */
 @Controller
 public class IndexController {
 

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class OrderItem extends EntityWithIntId {
+public class OrderItem implements EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

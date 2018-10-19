@@ -5,7 +5,7 @@ import shop.model.EntityWithIntId;
 import javax.persistence.*;
 
 @Entity
-public class Category extends EntityWithIntId {
+public class Category implements EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

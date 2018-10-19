@@ -1,4 +1,5 @@
 package shop.dtos.order.mappers;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -9,7 +10,7 @@ import shop.model.order.Status;
 @Mapper
 public interface StatusMapper {
 
-    StatusMapper INSTANCE = Mappers.getMapper( StatusMapper.class );
+    StatusMapper INSTANCE = Mappers.getMapper(StatusMapper.class);
 
     @Mappings({
             @Mapping(source = "status", target = "status"),

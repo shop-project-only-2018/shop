@@ -2,6 +2,7 @@ package shop.dtos.order;
 
 public class OrderDto {
     private Integer id;
+
     public OrderDto() {
     }
 

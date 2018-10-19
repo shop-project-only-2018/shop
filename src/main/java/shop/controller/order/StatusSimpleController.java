@@ -1,7 +1,6 @@
 package shop.controller.order;
 
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import shop.model.order.Status;
-import shop.model.product.Category;
 import shop.repository.order.StatusRepository;
 
 import java.net.URI;

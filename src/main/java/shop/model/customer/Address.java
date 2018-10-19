@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
-public class Address extends EntityWithIntId {
+public class Address implements EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

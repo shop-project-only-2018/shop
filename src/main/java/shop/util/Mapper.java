@@ -6,6 +6,9 @@ import shop.model.order.Order;
 
 /**
  * All the mappers in one place
+ *
+ * Every mapping should have getDto() and getEntity() methods.
+ *
  */
 public class Mapper {
 

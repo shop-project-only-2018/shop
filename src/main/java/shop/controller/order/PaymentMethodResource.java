@@ -36,9 +36,6 @@ public class PaymentMethodResource {
     @GetMapping("/{id}")
     public Resource<PaymentMethod> getById(@PathVariable Integer id) {
         Optional<PaymentMethod> student = paymentMethodRepository.findById(id);
-//        if (!student.isPresent())
-//            throw new StudentNotFoundException("id-" + id);
-
         Resource<PaymentMethod> resource = new Resource<PaymentMethod>(student.get());
 
         ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
@@ -64,16 +61,16 @@ public class PaymentMethodResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestBody PaymentMethod student, @PathVariable Integer id) {
+    public ResponseEntity<Object> update(@RequestBody PaymentMethod paymentMethod, @PathVariable Integer id) {
 
         Optional<PaymentMethod> studentOptional = paymentMethodRepository.findById(id);
 
         if (!studentOptional.isPresent())
             return ResponseEntity.notFound().build();
 
-        student.setPaymentMethodId(id);
+        paymentMethod.setPaymentMethodId(id);
 
-        paymentMethodRepository.save(student);
+        paymentMethodRepository.save(paymentMethod);
 
         return ResponseEntity.noContent().build();
     }

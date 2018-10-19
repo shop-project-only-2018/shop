@@ -7,7 +7,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Phone  extends EntityWithIntId {
+public class Phone implements EntityWithIntId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

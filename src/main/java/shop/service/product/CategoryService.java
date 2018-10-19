@@ -13,7 +13,7 @@ public class CategoryService {
     @Autowired
     public CategoryRepository categoryRepository;
 
-    public boolean save(CategoryDto categoryDTO){
+    public boolean save(CategoryDto categoryDTO) {
         Category category = CategoryMapper.INSTANCE.categoryDtoToCategory(categoryDTO);
         categoryRepository.save(category);
         return true;
