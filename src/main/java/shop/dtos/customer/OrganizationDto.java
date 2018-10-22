@@ -1,25 +1,12 @@
 package shop.dtos.customer;
 
+import javax.validation.constraints.NotBlank;
+
 public class OrganizationDto {
-
-    private Integer id;
-
+    @NotBlank
     private String organizationName;
 
     public OrganizationDto() {
-    }
-
-    public OrganizationDto(Integer id, String organizationName) {
-        this.id = id;
-        this.organizationName = organizationName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getOrganizationName() {

@@ -1,18 +1,35 @@
 package shop.dtos.customer;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class CustomerDto {
+
+    @NotNull
     private Integer id;
 
+    //    @NotNull
     private OrganizationDto organizationDto;
 
+    //    @NotNull
     private PersonDto personDto;
 
+    //    @NotEmpty
     private List<String> phoneNumberList;
+
+    //    @NotEmpty
     private List<String> addressList;
 
     public CustomerDto() {
+    }
+
+    @AssertTrue
+    public boolean check() {
+        if (personDto == null & organizationDto == null) {
+            return false;
+        }
+        return true;
     }
 
     public Integer getId() {
@@ -52,14 +69,6 @@ public class CustomerDto {
     }
 
     public void setAddressList(List<String> addressList) {
-        this.addressList = addressList;
-    }
-
-    public CustomerDto(Integer id, OrganizationDto organizationDto, PersonDto personDto, List<String> phoneNumberList, List<String> addressList) {
-        this.id = id;
-        this.organizationDto = organizationDto;
-        this.personDto = personDto;
-        this.phoneNumberList = phoneNumberList;
         this.addressList = addressList;
     }
 }
