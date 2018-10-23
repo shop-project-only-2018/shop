@@ -8,6 +8,10 @@ public class PersonDto {
     @NotBlank
     private String lastName;
 
+    public PersonDto(@NotBlank String firstName, @NotBlank String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public PersonDto() {
     }

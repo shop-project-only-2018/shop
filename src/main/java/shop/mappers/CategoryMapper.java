@@ -1,4 +1,4 @@
-package shop.dtos.product.mappers;
+package shop.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

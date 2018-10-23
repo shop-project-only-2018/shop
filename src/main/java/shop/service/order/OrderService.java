@@ -3,7 +3,7 @@ package shop.service.order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.dtos.order.OrderDto;
-import shop.dtos.order.mappers.OrderMapper;
+//import shop.dtos.order.mappers.OrderMapper;
 import shop.model.order.Order;
 import shop.repository.order.OrderRepository;
 import shop.system.exceptions.ResourceNotFoundException;
@@ -69,8 +69,8 @@ public class OrderService {
 
     public boolean update(OrderDto orderDto) {
         try {
-            Order order = OrderMapper.INSTANCE.orderDtoToOrder(orderDto);
-            orderRepository.save(order);
+//            Order order = OrderMapper.INSTANCE.orderDtoToOrder(orderDto);
+//            orderRepository.save(order);
         } catch (Exception e) {
             return false;
         }

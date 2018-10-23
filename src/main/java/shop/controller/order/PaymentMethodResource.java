@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import shop.model.order.PaymentMethod;
 import shop.repository.order.PaymentMethodRepository;
+import shop.service.order.PaymentMethodService;
 
 import java.net.URI;
 import java.util.List;
@@ -18,15 +19,12 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("paymentmethod")
+@RequestMapping("${paths.paymentmethods}")
 public class PaymentMethodResource {
 
-    private final PaymentMethodRepository paymentMethodRepository;
 
     @Autowired
-    public PaymentMethodResource(PaymentMethodRepository paymentMethodRepository) {
-        this.paymentMethodRepository = paymentMethodRepository;
-    }
+    private PaymentMethodService paymentMethodService;
 
     @GetMapping("/all")
     public List<PaymentMethod> retrieveAll() {

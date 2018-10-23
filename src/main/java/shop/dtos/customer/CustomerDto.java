@@ -9,10 +9,7 @@ public class CustomerDto {
     @NotNull
     private Integer id;
 
-    //    @NotNull
     private OrganizationDto organizationDto;
-
-    //    @NotNull
     private PersonDto personDto;
 
     //    @NotEmpty

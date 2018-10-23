@@ -3,9 +3,9 @@ package shop.service.order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shop.dtos.order.StatusDto;
-import shop.dtos.order.mappers.StatusMapper;
 import shop.model.order.Status;
 import shop.repository.order.StatusRepository;
+import shop.util.Mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class StatusService {
     public StatusRepository statusRepository;
 
     public boolean save(StatusDto statusDto) {
-        Status status = StatusMapper.INSTANCE.statusDtoToStatus(statusDto);
+        Status status = Mapper.getEntity(statusDto);
         statusRepository.save(status);
         return true;
     }
@@ -34,7 +34,7 @@ public class StatusService {
         } catch (javax.persistence.EntityNotFoundException e) {
             return null;
         }
-        StatusDto statusDto = StatusMapper.INSTANCE.statusToStatusDto(status);
+        StatusDto statusDto = Mapper.getDto(status);
         if (status == null || statusDto == null) {
             return null;
         }
@@ -44,9 +44,9 @@ public class StatusService {
     public List<StatusDto> getAll() {
         List<Status> statusList = statusRepository.findAll();
         List<StatusDto> statusDtoList = new ArrayList<>();
-        for (Status s : statusList) {
-            StatusDto sd = StatusMapper.INSTANCE.statusToStatusDto(s);
-            statusDtoList.add(sd);
+        for (Status status : statusList) {
+            StatusDto statusDto = Mapper.getDto(status);
+            statusDtoList.add(statusDto);
         }
         return statusDtoList;
     }

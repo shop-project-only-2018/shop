@@ -1,4 +1,4 @@
-package shop.dtos.order.mappers;
+package shop.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,12 +16,12 @@ public interface StatusMapper {
             @Mapping(source = "status", target = "status"),
             @Mapping(source = "id", target = "statusId", defaultValue = "0")
     })
-    Status statusDtoToStatus(StatusDto statusDto);
+    Status getStatus(StatusDto statusDto);
 
     @Mappings({
             @Mapping(source = "status", target = "status"),
             @Mapping(source = "statusId", target = "id", defaultValue = "0")
     })
-    StatusDto statusToStatusDto(Status status);
+    StatusDto getDto(Status status);
 
 }

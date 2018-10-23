@@ -4,16 +4,16 @@ import javax.validation.constraints.NotBlank;
 
 public class OrganizationDto {
     @NotBlank
-    private String organizationName;
+    private String name;
 
     public OrganizationDto() {
     }
 
-    public String getOrganizationName() {
-        return organizationName;
+    public String getName() {
+        return name;
     }
 
-    public void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
