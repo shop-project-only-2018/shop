@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
 import shop.dtos.order.StatusDto;
-import shop.dtos.product.CategoryDto;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ShopApplication.class)
@@ -31,7 +30,7 @@ public class StatusServiceTest {
     @Test
     public void save() {
         assert statusService.save(new StatusDto("1", 0));
-        assert statusService.save(new StatusDto("2",0));
+        assert statusService.save(new StatusDto("2", 0));
         assert statusService.statusRepository.count() == 2;
     }
 

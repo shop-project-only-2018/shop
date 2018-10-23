@@ -24,9 +24,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class OrderControllerTest {
 
-    final static Logger logger = Logger.getLogger(OrderControllerTest.class);
+//    final static Logger logger = Logger.getLogger(OrderControllerTest.class);
     @Value("${paths.order}")
     public String URL;
+
     @Autowired
     public MockMvc mockMvc;
 

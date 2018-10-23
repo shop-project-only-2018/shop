@@ -18,6 +18,7 @@ public class OrganizationRepositoryTest {
 
     @Autowired
     public OrganizationRepository organizationRepository;
+
     @Autowired
     public CustomerRepository customerRepository;
 

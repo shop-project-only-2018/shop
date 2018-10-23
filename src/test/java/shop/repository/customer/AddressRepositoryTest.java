@@ -18,6 +18,7 @@ public class AddressRepositoryTest {
 
     @Autowired
     public AddressRepository addressRepository;
+
     @Autowired
     public CustomerRepository customerRepository;
 

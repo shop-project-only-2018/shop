@@ -13,6 +13,7 @@ import shop.system.exceptions.EntityMappingException;
  * All the mappers in one place
  * <p>
  * Every mapping should have getDto() and getEntity() methods.
+ * Some mappings may have a merge() method.
  */
 public class Mapper {
 
