@@ -19,14 +19,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("category")
-public class CategoryResource {
+@RequestMapping("${paths.categories}")
+public class CategoryController {
 
 
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public CategoryResource(CategoryRepository categoryRepository) {
+    public CategoryController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 

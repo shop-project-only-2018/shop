@@ -26,50 +26,50 @@ public class PaymentMethodResource {
     @Autowired
     private PaymentMethodService paymentMethodService;
 
-    @GetMapping("/all")
-    public List<PaymentMethod> retrieveAll() {
-        return paymentMethodRepository.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Resource<PaymentMethod> getById(@PathVariable Integer id) {
-        Optional<PaymentMethod> student = paymentMethodRepository.findById(id);
-        Resource<PaymentMethod> resource = new Resource<PaymentMethod>(student.get());
-
-        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
-
-        resource.add(linkTo.withRel("all"));
-
-        return resource;
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        paymentMethodRepository.deleteById(id);
-    }
-
-    @PostMapping
-    public ResponseEntity<Object> createStudent(@RequestBody PaymentMethod student) {
-        PaymentMethod savedStudent = paymentMethodRepository.save(student);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedStudent.getPaymentMethodId()).toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestBody PaymentMethod paymentMethod, @PathVariable Integer id) {
-
-        Optional<PaymentMethod> studentOptional = paymentMethodRepository.findById(id);
-
-        if (!studentOptional.isPresent())
-            return ResponseEntity.notFound().build();
-
-        paymentMethod.setPaymentMethodId(id);
-
-        paymentMethodRepository.save(paymentMethod);
-
-        return ResponseEntity.noContent().build();
-    }
+//    @GetMapping("/all")
+//    public List<PaymentMethod> retrieveAll() {
+//        return paymentMethodService.getAll();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public Resource<PaymentMethod> getById(@PathVariable Integer id) {
+//        Optional<PaymentMethod> student = paymentMethodRepository.findById(id);
+//        Resource<PaymentMethod> resource = new Resource<PaymentMethod>(student.get());
+//
+//        ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAll());
+//
+//        resource.add(linkTo.withRel("all"));
+//
+//        return resource;
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void delete(@PathVariable Integer id) {
+//        paymentMethodRepository.deleteById(id);
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity<Object> createStudent(@RequestBody PaymentMethod student) {
+//        PaymentMethod savedStudent = paymentMethodRepository.save(student);
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(savedStudent.getPaymentMethodId()).toUri();
+//
+//        return ResponseEntity.created(location).build();
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Object> update(@RequestBody PaymentMethod paymentMethod, @PathVariable Integer id) {
+//
+//        Optional<PaymentMethod> studentOptional = paymentMethodRepository.findById(id);
+//
+//        if (!studentOptional.isPresent())
+//            return ResponseEntity.notFound().build();
+//
+//        paymentMethod.setPaymentMethodId(id);
+//
+//        paymentMethodRepository.save(paymentMethod);
+//
+//        return ResponseEntity.noContent().build();
+//    }
 }

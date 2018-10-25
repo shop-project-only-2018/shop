@@ -29,9 +29,9 @@ public class CategoryServiceTest {
 
     @Test
     public void save() {
-        assert categoryService.save(new CategoryDto("1"));
-        assert categoryService.save(new CategoryDto("2"));
-        assert categoryService.save(new CategoryDto("3"));
+        categoryService.save(new CategoryDto("1"));
+        categoryService.save(new CategoryDto("2"));
+        categoryService.save(new CategoryDto("3"));
         assert categoryService.categoryRepository.count() == 3;
     }
 

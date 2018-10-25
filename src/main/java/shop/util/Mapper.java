@@ -28,14 +28,6 @@ public class Mapper {
     //
     // Mapstruct mappings
     //
-//
-//    public static OrderDto getDto(Order entity) {
-//        return OrderMapper.INSTANCE.orderToOrderDto(entity);
-//    }
-//
-//    public static Order getEntity(OrderDto dto) {
-//        return OrderMapper.INSTANCE.orderDtoToOrder(dto);
-//    }
 
     public static PersonDto getDto(Person entity) {
         return PersonMapper.INSTANCE.getDto(entity);

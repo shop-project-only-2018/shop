@@ -5,7 +5,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import shop.dtos.customer.OrganizationDto;
+import shop.dtos.order.PaymentMethodDto;
 import shop.model.customer.Organization;
+import shop.model.order.PaymentMethod;
 
 @Mapper
 public interface PaymentMethodMapper {
@@ -16,12 +18,12 @@ public interface PaymentMethodMapper {
             @Mapping(source = "paymentMethodId", target = "paymentMethodId"),
             @Mapping(source = "description", target = "description")
     })
-    Organization getEntity(OrganizationDto personDto);
+    PaymentMethod getEntity(PaymentMethodDto paymentMethodDto);
 
     @Mappings({
             @Mapping(source = "paymentMethodId", target = "paymentMethodId"),
             @Mapping(source = "description", target = "description")
     })
-    OrganizationDto getDto(Organization person);
+    PaymentMethodDto getDto(PaymentMethod paymentMethod);
 
 }
