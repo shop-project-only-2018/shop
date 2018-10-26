@@ -14,10 +14,8 @@ public class CustomerDto implements DTO {
     private OrganizationDto organizationDto;
     private PersonDto personDto;
 
-    //    @NotEmpty
     private List<String> phoneNumberList;
 
-    //    @NotEmpty
     private List<String> addressList;
 
     public CustomerDto() {

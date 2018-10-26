@@ -22,46 +22,8 @@ import java.util.Collections;
 @EnableSwagger2
 @PropertySource("classpath:paths.properties")
 public class ApplicationConfig implements WebMvcConfigurer {
-
-    /**
-     * Swagger configuration.
-     *
-     * @return docket bean
-     */
-    @Bean
-    public Docket api() {
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("shop.controller"))
-                .paths(PathSelectors.any())
-                .build();
-
-        return docket.globalOperationParameters(
-                Collections.singletonList(
-                        new ParameterBuilder()
-                                .name(HttpHeaders.AUTHORIZATION)
-                                .modelRef(new ModelRef("string"))
-                                .parameterType("header")
-                                .required(false)
-                                .build()
-                )
-        );
-    }
-
-
-    /**
-     * Suffix pattern matching disabling.
-     */
     @Override
-    public void configurePathMatch(PathMatchConfigurer configurer) {
-        configurer.setUseSuffixPatternMatch(false);
-    }
-
-    /**
-     * Resource handlers configuration.
-     */
+    public void configurePathMatch(PathMatchConfigurer configurer) {configurer.setUseSuffixPatternMatch(false);}
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-    }
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {}
 }

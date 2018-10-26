@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    @GetMapping(value = {"/", "/index", "/index.htm", "/index.html"})
-    public String index() {
-        return "redirect:/swagger-ui.html";
-    }
+    @GetMapping(value = {"/", "/index", "/index.html"})
+    public String redirectToSwaggerUI() {return "redirect:/swagger-ui.html";}
 
 }

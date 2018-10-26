@@ -21,9 +21,12 @@ public class IndexControllerTest {
     public MockMvc mockMvc;
 
     @Test
-    public void getRedirection() throws Exception {
+    public void expectRedirection() throws Exception {
         mockMvc
                 .perform(get("/"))
+                .andExpect(status().is3xxRedirection());
+        mockMvc
+                .perform(get("/index.html"))
                 .andExpect(status().is3xxRedirection());
     }
 

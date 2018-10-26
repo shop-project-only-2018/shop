@@ -28,14 +28,7 @@ public class CategoryRepositoryTest {
         categoryRepository.save(new Category("1"));
         categoryRepository.save(new Category("2"));
         categoryRepository.save(new Category("3"));
-        categoryRepository.save(new Category("4"));
-        categoryRepository.save(new Category("5"));
-        categoryRepository.save(new Category("6"));
-        categoryRepository.save(new Category("7"));
-        categoryRepository.save(new Category("8"));
-        categoryRepository.save(new Category("9"));
-        categoryRepository.save(new Category("10"));
-        assert categoryRepository.count() == 10;
+        assert categoryRepository.count() == 3;
     }
 
     @After

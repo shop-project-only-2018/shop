@@ -13,7 +13,7 @@ import java.util.List;
 import static shop.util.ResponseEntityBuilder.*;
 
 @RestController
-@RequestMapping("${paths.categories}")
+@RequestMapping("categories")
 public class CategoryController {
 
     private CategoryService service;
@@ -29,13 +29,13 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody CategoryDto dto) {
+    public ResponseEntity<Void> update(@RequestBody CategoryDto dto) throws ResourceNotFoundException {
         service.update(dto);
         return ok();
     }
 
     @GetMapping("/{id}")
-    public CategoryDto retrieveCategory(@PathVariable Integer id) throws ResourceNotFoundException {
+    public CategoryDto getOne(@PathVariable Integer id) throws ResourceNotFoundException {
         return service.getDtoById(id);
     }
 
@@ -46,7 +46,7 @@ public class CategoryController {
     }
 
     @GetMapping("${paths.all}")
-    public List<CategoryDto> retrieveAll() {
-        return service.retrieveAll();
+    public List<CategoryDto> getAll() {
+        return service.getAll();
     }
 }

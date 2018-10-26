@@ -6,14 +6,6 @@ public class CategoryDto implements DTO {
     private int categoryId;
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public CategoryDto(String name) {
         this.name = name;
     }
@@ -23,15 +15,23 @@ public class CategoryDto implements DTO {
         this.name = name;
     }
 
+    public CategoryDto() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getCategoryId() {
         return categoryId;
     }
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public CategoryDto() {
     }
 
     @Override

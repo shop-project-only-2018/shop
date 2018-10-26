@@ -30,9 +30,7 @@ public class ProductRepositoryTest {
         productRepository.save(new Product("1", new BigDecimal(10), 1));
         productRepository.save(new Product("2", new BigDecimal(10), 1));
         productRepository.save(new Product("3", new BigDecimal(10), 1));
-        productRepository.save(new Product("4", new BigDecimal(10), 1));
-        productRepository.save(new Product("5", new BigDecimal(10), 1));
-        assert productRepository.count() == 5;
+        assert productRepository.count() == 3;
     }
 
     @After
