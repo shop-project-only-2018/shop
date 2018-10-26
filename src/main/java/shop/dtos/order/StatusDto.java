@@ -1,6 +1,8 @@
 package shop.dtos.order;
 
-public class StatusDto {
+import shop.dtos.DTO;
+
+public class StatusDto implements DTO {
     private String status;
     private Integer id;
 

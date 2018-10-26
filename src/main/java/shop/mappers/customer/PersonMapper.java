@@ -1,4 +1,4 @@
-package shop.mappers;
+package shop.mappers.customer;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -7,10 +7,8 @@ import org.mapstruct.factory.Mappers;
 import shop.dtos.customer.PersonDto;
 import shop.model.customer.Person;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PersonMapper {
-
-    PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
     @Mappings({
             @Mapping(source = "firstName", target = "firstName"),

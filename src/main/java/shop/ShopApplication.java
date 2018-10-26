@@ -20,7 +20,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan({
         "shop.configuration",
         "shop.service",
-        "shop.controller"
+        "shop.controller",
+        "shop.mappers"
 })
 public class ShopApplication extends SpringBootServletInitializer {
 

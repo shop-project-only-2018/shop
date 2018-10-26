@@ -9,10 +9,8 @@ import shop.dtos.product.CategoryDto;
 import shop.model.customer.Person;
 import shop.model.product.Category;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CategoryMapper {
-
-    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
     @Mappings({
             @Mapping(source = "name", target = "name"),

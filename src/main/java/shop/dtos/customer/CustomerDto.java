@@ -1,10 +1,12 @@
 package shop.dtos.customer;
 
+import shop.dtos.DTO;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class CustomerDto {
+public class CustomerDto implements DTO {
 
     @NotNull
     private Integer id;

@@ -1,8 +1,10 @@
 package shop.dtos.order;
 
+import shop.dtos.DTO;
+
 import javax.validation.constraints.NotEmpty;
 
-public class PaymentMethodDto {
+public class PaymentMethodDto implements DTO {
     private Integer paymentMethodId;
     @NotEmpty
     private String description;

@@ -1,4 +1,4 @@
-package shop.mappers;
+package shop.mappers.order;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -7,16 +7,14 @@ import org.mapstruct.factory.Mappers;
 import shop.dtos.order.StatusDto;
 import shop.model.order.Status;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface StatusMapper {
-
-    StatusMapper INSTANCE = Mappers.getMapper(StatusMapper.class);
 
     @Mappings({
             @Mapping(source = "status", target = "status"),
             @Mapping(source = "id", target = "statusId", defaultValue = "0")
     })
-    Status getStatus(StatusDto statusDto);
+    Status getEntity(StatusDto statusDto);
 
     @Mappings({
             @Mapping(source = "status", target = "status"),

@@ -1,8 +1,10 @@
 package shop.dtos.customer;
 
+import shop.dtos.DTO;
+
 import javax.validation.constraints.NotBlank;
 
-public class PersonDto {
+public class PersonDto implements DTO {
     @NotBlank
     private String firstName;
     @NotBlank

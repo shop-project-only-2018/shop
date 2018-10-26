@@ -1,6 +1,8 @@
 package shop.dtos.order;
 
-public class OrderDto {
+import shop.dtos.DTO;
+
+public class OrderDto implements DTO {
     private Integer id;
 
     public OrderDto() {

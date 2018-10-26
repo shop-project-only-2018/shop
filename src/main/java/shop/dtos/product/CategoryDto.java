@@ -1,6 +1,8 @@
 package shop.dtos.product;
 
-public class CategoryDto {
+import shop.dtos.DTO;
+
+public class CategoryDto implements DTO {
     private int categoryId;
     private String name;
 
@@ -30,5 +32,13 @@ public class CategoryDto {
     }
 
     public CategoryDto() {
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryDto{" +
+                "categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

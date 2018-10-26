@@ -9,10 +9,8 @@ import shop.dtos.order.PaymentMethodDto;
 import shop.model.customer.Organization;
 import shop.model.order.PaymentMethod;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PaymentMethodMapper {
-
-    PaymentMethodMapper INSTANCE = Mappers.getMapper(PaymentMethodMapper.class);
 
     @Mappings({
             @Mapping(source = "paymentMethodId", target = "paymentMethodId"),
