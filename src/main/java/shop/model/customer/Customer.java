@@ -11,13 +11,11 @@ public class Customer implements EntityWithIntId {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer customerId;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @PrimaryKeyJoinColumn
-    private Person person;
+    @Column
+    private String firstName;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @PrimaryKeyJoinColumn
-    private Organization organization;
+    @Column
+    private String lastName;
 
     public Integer getCustomerId() {
         return customerId;
@@ -27,20 +25,28 @@ public class Customer implements EntityWithIntId {
         this.customerId = customerId;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Organization getOrganization() {
-        return organization;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Customer(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Customer() {
     }
 
     @Override

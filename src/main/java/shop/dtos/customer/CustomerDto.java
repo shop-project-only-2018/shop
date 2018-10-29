@@ -2,17 +2,20 @@ package shop.dtos.customer;
 
 import shop.dtos.DTO;
 
-import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class CustomerDto implements DTO {
 
     @NotNull
-    private Integer id;
+    private Integer customerId;
 
-    private OrganizationDto organizationDto;
-    private PersonDto personDto;
+    @NotEmpty
+    private String firstName;
+
+    @NotEmpty
+    private String lastName;
 
     private List<String> phoneNumberList;
 
@@ -21,36 +24,28 @@ public class CustomerDto implements DTO {
     public CustomerDto() {
     }
 
-    @AssertTrue
-    public boolean check() {
-        if (personDto == null & organizationDto == null) {
-            return false;
-        }
-        return true;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public Integer getId() {
-        return id;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public OrganizationDto getOrganizationDto() {
-        return organizationDto;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setOrganizationDto(OrganizationDto organizationDto) {
-        this.organizationDto = organizationDto;
+    public String getLastName() {
+        return lastName;
     }
 
-    public PersonDto getPersonDto() {
-        return personDto;
-    }
-
-    public void setPersonDto(PersonDto personDto) {
-        this.personDto = personDto;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public List<String> getPhoneNumberList() {

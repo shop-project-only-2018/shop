@@ -29,13 +29,6 @@ public class CategoryService {
         this.mapper = mapper;
     }
 
-    /**
-     * Retrieve a category by id
-     *
-     * @param id
-     * @return category if exists
-     * @throws ResourceNotFoundException
-     */
     private Category getById(Integer id) throws ResourceNotFoundException {
         Category category = repo.findById(id).orElse(null);
         if (category == null) {

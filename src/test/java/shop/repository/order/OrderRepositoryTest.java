@@ -42,7 +42,7 @@ public class OrderRepositoryTest {
 
         Order o1 = new Order();
         Order o2 = new Order();
-        Customer c = new Customer();
+        Customer c = new Customer("abc", "def");
         PaymentMethod p = new PaymentMethod("Blah-blah");
         Status s = new Status("Done");
 

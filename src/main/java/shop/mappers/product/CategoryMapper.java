@@ -21,9 +21,9 @@ public interface CategoryMapper {
     })
     CategoryDto getDto(Category category);
 
-    default Category merge(Category c1, Category c2) {
-        c1.setName(c2.getName());
-        return c1;
+    default Category merge(Category recipient, Category source) {
+        recipient.setName(source.getName());
+        return recipient;
     }
 
 }

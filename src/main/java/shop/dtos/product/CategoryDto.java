@@ -17,19 +17,15 @@ public class CategoryDto implements DTO {
 
     public CategoryDto() {
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public int getCategoryId() {
         return categoryId;
     }
-
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
@@ -40,5 +36,4 @@ public class CategoryDto implements DTO {
                 "categoryId=" + categoryId +
                 ", name='" + name + '\'' +
                 '}';
-    }
-}
+    }}

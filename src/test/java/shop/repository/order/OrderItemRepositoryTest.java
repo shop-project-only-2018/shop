@@ -49,7 +49,7 @@ public class OrderItemRepositoryTest {
     @Test
     public void saveSeveralItems() {
 
-        Customer c = new Customer();
+        Customer c = new Customer("abc", "def");
         PaymentMethod p = new PaymentMethod("Blah-blah");
         Status s = new Status("Done");
         customerRepository.save(c);

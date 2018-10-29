@@ -28,7 +28,7 @@ public class PhoneRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-        Customer c = new Customer();
+        Customer c = new Customer("abc", "def");
         customerRepository.save(c);
 
         phoneRepository.save(new Phone("1", c));

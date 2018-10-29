@@ -53,7 +53,9 @@ create table customer
 (
 	customer_id serial not null
 		constraint customer_pkey
-			primary key
+			primary key,
+	first_name varchar not null,
+	last_name varchar not null
 )
 ;
 
@@ -62,37 +64,6 @@ alter table customer owner to postgres
 
 create unique index customer_id_uindex
 	on customer (customer_id)
-;
-
-create table person
-(
-	first_name varchar not null,
-	last_name varchar not null,
-	customer_id integer not null
-		constraint person_pk
-			primary key
-		constraint person_customer_customer_id_fk
-			references customer
-				on delete cascade
-)
-;
-
-alter table person owner to postgres
-;
-
-create table organization
-(
-	name varchar not null,
-	customer_id integer not null
-		constraint organization_pk
-			primary key
-		constraint organization_customer_customer_id_fk
-			references customer
-				on delete cascade
-)
-;
-
-alter table organization owner to postgres
 ;
 
 create table phone
@@ -209,4 +180,3 @@ alter table order_item owner to postgres
 create unique index order_item_order_item_id_uindex
 	on order_item (order_item_id)
 ;
-

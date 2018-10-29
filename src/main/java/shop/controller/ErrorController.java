@@ -19,8 +19,6 @@ public class ErrorController {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<Void> handleResourceNotFoundException(ResourceNotFoundException e) {
-        return notFound();
-    }
+    public ResponseEntity<Void> handleResourceNotFoundException(ResourceNotFoundException e) { return notFound(); }
 
 }
