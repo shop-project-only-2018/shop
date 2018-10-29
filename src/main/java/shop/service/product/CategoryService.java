@@ -8,6 +8,7 @@ import shop.mappers.product.CategoryMapper;
 import shop.model.product.Category;
 import shop.repository.product.CategoryRepository;
 import shop.system.exceptions.ResourceNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class CategoryService {
 
     /**
      * Retrieve a category by id
+     *
      * @param id
      * @return category if exists
      * @throws ResourceNotFoundException

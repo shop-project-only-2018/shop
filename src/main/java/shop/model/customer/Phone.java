@@ -19,7 +19,7 @@ public class Phone implements EntityWithIntId {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public Phone() {

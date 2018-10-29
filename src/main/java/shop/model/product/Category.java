@@ -15,7 +15,7 @@ public class Category implements EntityWithIntId {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="parent_id")
+    @JoinColumn(name = "parent_id")
     private Category parent;
 
     public Category(String name, Category parent) {

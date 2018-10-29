@@ -1,6 +1,7 @@
 package shop.configuration;
 
-import io.swagger.annotations.*;
+import io.swagger.annotations.Info;
+import io.swagger.annotations.SwaggerDefinition;
 
 @SwaggerDefinition(
         info = @Info(

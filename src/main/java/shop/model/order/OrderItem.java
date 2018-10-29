@@ -14,11 +14,11 @@ public class OrderItem implements EntityWithIntId {
     private Integer orderItemId;
 
     @ManyToOne
-    @JoinColumn(name="order_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @Column

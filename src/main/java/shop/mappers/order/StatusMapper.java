@@ -3,7 +3,6 @@ package shop.mappers.order;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 import shop.dtos.order.StatusDto;
 import shop.model.order.Status;
 
