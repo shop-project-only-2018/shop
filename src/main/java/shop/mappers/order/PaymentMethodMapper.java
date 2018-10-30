@@ -8,17 +8,5 @@ import shop.model.order.PaymentMethod;
 
 @Mapper(componentModel = "spring")
 public interface PaymentMethodMapper {
-
-    @Mappings({
-            @Mapping(source = "paymentMethodId", target = "paymentMethodId"),
-            @Mapping(source = "description", target = "description")
-    })
     PaymentMethod getEntity(PaymentMethodDto paymentMethodDto);
-
-    @Mappings({
-            @Mapping(source = "paymentMethodId", target = "paymentMethodId"),
-            @Mapping(source = "description", target = "description")
-    })
-    PaymentMethodDto getDto(PaymentMethod paymentMethod);
-
-}
+    PaymentMethodDto getDto(PaymentMethod paymentMethod);}

@@ -1,15 +1,16 @@
 package shop.model.product;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 
 @Entity
-public class Category implements EntityWithIntId {
+public class Category implements EntityWithIntegerId {
 
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
+    private Integer categoryId;
 
     @Column
     private String name;
@@ -17,6 +18,17 @@ public class Category implements EntityWithIntId {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
+
+    public Category(Integer categoryId, String name, Category parent) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.parent = parent;
+    }
+
+    public Category(Integer categoryId, String name) {
+        this.categoryId = categoryId;
+        this.name = name;
+    }
 
     public Category(String name, Category parent) {
         this.name = name;
@@ -30,11 +42,11 @@ public class Category implements EntityWithIntId {
     public Category() {
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

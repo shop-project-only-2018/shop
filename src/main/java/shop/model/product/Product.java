@@ -1,12 +1,12 @@
 package shop.model.product;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Product implements EntityWithIntId {
+public class Product implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

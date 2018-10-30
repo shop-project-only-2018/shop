@@ -9,16 +9,15 @@ import shop.model.product.Product;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
-//    @Mappings({
-//            @Mapping(target = "productId", ignore = true)
-//    })
-//    Product getEntity(ProductDto personDto);
+    @Mappings({
+            @Mapping(target = "productId", ignore = true)
+    })
+    Product getEntity(ProductDto personDto);
 
-//    @Mappings({
-//            @Mapping(target = "productId", ignore = true)
-//    })
-//    @Mapping(target = "")
-//    ProductDto getDto(Product category);
+    @Mappings({
+            @Mapping(target = "categoryId", ignore = true)
+    })
+    ProductDto getDto(Product category);
 
     default Product merge(Product recipient, Product source) {
         recipient.setName(source.getName());

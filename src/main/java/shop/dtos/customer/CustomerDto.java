@@ -8,7 +8,6 @@ import java.util.List;
 
 public class CustomerDto implements DTO {
 
-    @NotNull
     private Integer customerId;
 
     @NotEmpty

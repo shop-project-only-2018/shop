@@ -23,7 +23,7 @@ public class CategoryServiceTest {
     @Test
     public void createRetrieveAndDelete() throws ResourceNotFoundException {
         String name = "Category 1";
-        CategoryDto categoryDto = new CategoryDto(name);
+        CategoryDto categoryDto = new CategoryDto( name);
         Integer id = service.create(categoryDto);
         assert id != null;
         assert id > -1;

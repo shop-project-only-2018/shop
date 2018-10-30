@@ -1,7 +1,7 @@
 package shop.model;
 
 
-public interface EntityWithIntId {
+public interface EntityWithIntegerId {
     Integer getId();
 
     void setId(Integer id);

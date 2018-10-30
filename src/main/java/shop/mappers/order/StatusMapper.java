@@ -8,17 +8,5 @@ import shop.model.order.Status;
 
 @Mapper(componentModel = "spring")
 public interface StatusMapper {
-
-    @Mappings({
-            @Mapping(source = "status", target = "status"),
-            @Mapping(source = "id", target = "statusId", defaultValue = "0")
-    })
     Status getEntity(StatusDto statusDto);
-
-    @Mappings({
-            @Mapping(source = "status", target = "status"),
-            @Mapping(source = "statusId", target = "id", defaultValue = "0")
-    })
-    StatusDto getDto(Status status);
-
-}
+    StatusDto getDto(Status status);}

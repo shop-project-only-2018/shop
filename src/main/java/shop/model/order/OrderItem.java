@@ -1,13 +1,13 @@
 package shop.model.order;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 import shop.model.product.Product;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class OrderItem implements EntityWithIntId {
+public class OrderItem implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,7 +15,7 @@ import static shop.util.ResponseEntityBuilder.notFound;
 @RestControllerAdvice
 public class ErrorController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ErrorController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(ErrorController.class);
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

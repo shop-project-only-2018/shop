@@ -1,55 +1,46 @@
 package shop.dtos.product;
 
 import shop.dtos.DTO;
-import shop.model.EntityWithIntId;
-import shop.model.product.Category;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 public class ProductDto implements DTO {
 
+    private Integer productId;
+    private Integer categoryId;
     private String name;
+    private BigDecimal price;
+    private Integer quantity;
 
-    private String price;
+    public ProductDto() {}
 
-    private String quantity;
-
-    private String category;
-
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
-
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
-    public String getCategory() {
-        return category;
+    public Integer getProductId() {
+        return productId;
+    }    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public ProductDto() {
-    }
-
 }

@@ -1,11 +1,11 @@
 package shop.model.customer;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 
 @Entity
-public class Customer implements EntityWithIntId {
+public class Customer implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,9 @@ public class Customer implements EntityWithIntId {
 
     @Column
     private String lastName;
+
+//    @Column private String email;
+//    @Column private String password;
 
     public Integer getCustomerId() {
         return customerId;

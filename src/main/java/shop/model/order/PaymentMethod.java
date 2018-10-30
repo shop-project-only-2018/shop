@@ -1,11 +1,11 @@
 package shop.model.order;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 
 @Entity
-public class PaymentMethod implements EntityWithIntId {
+public class PaymentMethod implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

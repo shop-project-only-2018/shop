@@ -1,13 +1,13 @@
 package shop.model.customer;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Phone implements EntityWithIntId {
+public class Phone implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,7 @@ public class Phone implements EntityWithIntId {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Phone() {
-    }
+    public Phone() {}
 
     public Phone(@NotEmpty @Digits(fraction = 0, integer = 10) String number, Customer customer) {
         this.number = number;

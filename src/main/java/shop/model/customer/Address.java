@@ -1,13 +1,13 @@
 package shop.model.customer;
 
-import shop.model.EntityWithIntId;
+import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
-public class Address implements EntityWithIntId {
+public class Address implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
