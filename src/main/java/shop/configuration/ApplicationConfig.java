@@ -14,10 +14,5 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class ApplicationConfig implements WebMvcConfigurer {
 //    @Override
 //    public void configurePathMatch(PathMatchConfigurer configurer) {
-//        configurer.setUseSuffixPatternMatch(false);
-//    }
-//
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//    }
+//        configurer.setUseSuffixPatternMatch(false);    }
 }
