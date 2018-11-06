@@ -47,5 +47,4 @@ public class PaymentMethodController {
     @GetMapping("${paths.all}")
     public List<PaymentMethodDto> getAll() {
         return service.getAll();
-    }
-}
+    }}

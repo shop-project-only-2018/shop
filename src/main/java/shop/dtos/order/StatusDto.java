@@ -16,8 +16,7 @@ public class StatusDto implements DTO {
 
     public StatusDto(String status, Integer id) {
         this.status = status;
-        this.id = id;
-    }
+        this.id = id;    }
 
     public Integer getId() {
         return id;

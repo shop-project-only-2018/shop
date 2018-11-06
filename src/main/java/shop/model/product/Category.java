@@ -39,8 +39,7 @@ public class Category implements EntityWithIntegerId {
         this.name = name;
     }
 
-    public Category() {
-    }
+    public Category() {}
 
     public Integer getCategoryId() {
         return categoryId;

@@ -15,9 +15,9 @@ public class CustomerDto implements DTO {
     @NotEmpty
     private String lastName;
 
-    private List<String> phoneNumberList;
+    private List<PhoneDto> phoneNumberList;
 
-    private List<String> addressList;
+    private List<AddressDto> addressList;
 
     public CustomerDto() {
     }
@@ -46,19 +46,19 @@ public class CustomerDto implements DTO {
         this.lastName = lastName;
     }
 
-    public List<String> getPhoneNumberList() {
+    public List<PhoneDto> getPhoneNumberList() {
         return phoneNumberList;
     }
 
-    public void setPhoneNumberList(List<String> phoneNumberList) {
+    public void setPhoneNumberList(List<PhoneDto> phoneNumberList) {
         this.phoneNumberList = phoneNumberList;
     }
 
-    public List<String> getAddressList() {
+    public List<AddressDto> getAddressList() {
         return addressList;
     }
 
-    public void setAddressList(List<String> addressList) {
+    public void setAddressList(List<AddressDto> addressList) {
         this.addressList = addressList;
     }
 }

@@ -13,7 +13,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
     /**
      * Swagger 2 configuration
-     *
      * @return Docket bean
      */
     @Bean
@@ -23,5 +22,4 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("shop.controller"))
                 .paths(PathSelectors.any())
                 .build();
-    }
-}
+    }}

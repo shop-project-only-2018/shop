@@ -8,9 +8,6 @@ import shop.model.product.Category;
 public class CategoryMapper {
     /**
      * The parent category must be retrieved and set by CategoryService
-     *
-     * @param dto
-     * @return
      */
     public Category getEntity(CategoryDto dto) {
         Category result = new Category();
@@ -25,8 +22,7 @@ public class CategoryMapper {
         dto.setCategoryId(category.getCategoryId());
         dto.setName(category.getName());
         if (category.getParent() != null) {
-            dto.setParentCategoryId(category.getParent().getCategoryId());
-        }
+            dto.setParentCategoryId(category.getParent().getCategoryId());}
         return dto;
     }
 

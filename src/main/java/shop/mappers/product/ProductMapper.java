@@ -10,8 +10,7 @@ import shop.model.product.Product;
 public interface ProductMapper {
 
     @Mappings({
-            @Mapping(target = "productId", ignore = true)
-    })
+            @Mapping(target = "productId", ignore = true)})
     Product getEntity(ProductDto personDto);
 
     @Mappings({
