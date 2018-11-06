@@ -37,7 +37,8 @@ public class CategoryMapperTest {
 
         Category orphan = new Category("Abc abc");
         dto = mapper.getDto(orphan);
-        assert dto.getParentCategoryId()==null;}
+        assert dto.getParentCategoryId() == null;
+    }
 
     @Test
     public void merge() {

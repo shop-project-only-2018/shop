@@ -1,7 +1,5 @@
 package shop.mappers.product;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import shop.dtos.product.CategoryDto;
 import shop.model.product.Category;
@@ -10,6 +8,7 @@ import shop.model.product.Category;
 public class CategoryMapper {
     /**
      * The parent category must be retrieved and set by CategoryService
+     *
      * @param dto
      * @return
      */
@@ -18,14 +17,16 @@ public class CategoryMapper {
         result.setCategoryId(dto.getCategoryId());
         result.setName(dto.getName());
         result.setParent(null);
-        return result;}
+        return result;
+    }
 
-    public CategoryDto getDto(Category category)    {
+    public CategoryDto getDto(Category category) {
         CategoryDto dto = new CategoryDto();
         dto.setCategoryId(category.getCategoryId());
         dto.setName(category.getName());
-        if(category.getParent()!=null){
-        dto.setParentCategoryId(category.getParent().getCategoryId());}
+        if (category.getParent() != null) {
+            dto.setParentCategoryId(category.getParent().getCategoryId());
+        }
         return dto;
     }
 

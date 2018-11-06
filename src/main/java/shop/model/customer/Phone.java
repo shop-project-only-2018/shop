@@ -22,7 +22,8 @@ public class Phone implements EntityWithIntegerId {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    public Phone() {}
+    public Phone() {
+    }
 
     public Phone(@NotEmpty @Digits(fraction = 0, integer = 10) String number, Customer customer) {
         this.number = number;

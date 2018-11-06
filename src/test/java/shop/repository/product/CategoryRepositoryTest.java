@@ -25,9 +25,9 @@ public class CategoryRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-        categoryRepository.save(new Category(0,"1"));
-        categoryRepository.save(new Category(0,"2"));
-        categoryRepository.save(new Category(0,"3"));
+        categoryRepository.save(new Category(0, "1"));
+        categoryRepository.save(new Category(0, "2"));
+        categoryRepository.save(new Category(0, "3"));
         assert categoryRepository.count() == 3;
     }
 

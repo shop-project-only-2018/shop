@@ -65,14 +65,13 @@ public class CategoryService {
 
     public Integer create(CategoryDto categoryDto) {
         Category category = mapper.getEntity(categoryDto);
-        if(categoryDto.getParentCategoryId()!=null){
+        if (categoryDto.getParentCategoryId() != null) {
             try {
-                Category parent =  getById(categoryDto.getParentCategoryId());
+                Category parent = getById(categoryDto.getParentCategoryId());
                 category.setParent(parent);
-            } catch (ResourceNotFoundException e) {}}
-        if(repo==null)System.out.println("\n\n\n\n\n\n\nFUUUUUUUCK\n\n\n\n\n\n\n\n\n");
-        if(category==null)System.out.println("\n\n\n\n\n\n\nWTF\n\n\n\n\n\n\n\n\n");
-        if(category.getId()==null)System.out.println("\n\n\n\n\n\n\nTHIS IS NORMAL\n\n\n\n\n\n\n\n\n");
+            } catch (ResourceNotFoundException e) {
+            }
+        }
         repo.saveAndFlush(category);
         return category.getId();
     }

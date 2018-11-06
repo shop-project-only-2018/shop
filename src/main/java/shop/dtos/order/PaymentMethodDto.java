@@ -25,7 +25,8 @@ public class PaymentMethodDto implements DTO {
         this.description = description;
     }
 
-    public PaymentMethodDto() { }
+    public PaymentMethodDto() {
+    }
 
     public PaymentMethodDto(@NotEmpty String description) {
         this.description = description;

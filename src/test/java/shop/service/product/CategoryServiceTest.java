@@ -1,7 +1,5 @@
 package shop.service.product;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class CategoryServiceTest {
     @Test
     public void createRetrieveAndDelete() throws ResourceNotFoundException {
         String name = "Category 1";
-        CategoryDto categoryDto = new CategoryDto( name);
+        CategoryDto categoryDto = new CategoryDto(name);
         Integer id = service.create(categoryDto);
         assert id != null;
         assert id > -1;
@@ -35,6 +33,7 @@ public class CategoryServiceTest {
         try {
             service.getDtoById(id);
             fail("Expected ResourceNotFoundException");
-        } catch(ResourceNotFoundException e){}
+        } catch (ResourceNotFoundException e) {
+        }
     }
 }
