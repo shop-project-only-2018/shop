@@ -11,7 +11,8 @@ public class CategoryDto implements DTO {
         this.name = name;
     }
 
-    public CategoryDto() {    }
+    public CategoryDto() {
+    }
 
     public CategoryDto(Integer categoryId, String name, Integer parentCategoryId) {
         this.categoryId = categoryId;

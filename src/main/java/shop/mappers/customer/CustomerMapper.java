@@ -8,4 +8,6 @@ import shop.model.customer.Customer;
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
     Customer getEntity(CustomerDto dto);
-    CustomerDto getDto(Customer entity);}
+
+    CustomerDto getDto(Customer entity);
+}

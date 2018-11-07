@@ -40,10 +40,12 @@ public class CustomerDtoForList implements DTO {
         this.numberOfOrders = numberOfOrders;
     }
 
-    public CustomerDtoForList() {}
+    public CustomerDtoForList() {
+    }
 
     public CustomerDtoForList(@NotNull Integer id, @NotEmpty String name, @NotNull Integer numberOfOrders) {
         this.id = id;
         this.name = name;
         this.numberOfOrders = numberOfOrders;
-    }}
+    }
+}

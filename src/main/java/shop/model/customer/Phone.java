@@ -11,7 +11,7 @@ public class Phone implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int phoneId;
+    private Integer phoneId;
 
     @Column
     @NotEmpty

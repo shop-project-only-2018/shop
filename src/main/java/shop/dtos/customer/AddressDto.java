@@ -23,4 +23,5 @@ public class AddressDto implements DTO {
 
     public void setAddress(String address) {
         this.address = address;
-    }}
+    }
+}

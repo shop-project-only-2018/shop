@@ -20,11 +20,13 @@ public class PaymentMethodDto implements DTO {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public PaymentMethodDto() {}
+    public PaymentMethodDto() {
+    }
 
     public PaymentMethodDto(@NotEmpty String description) {
         this.description = description;

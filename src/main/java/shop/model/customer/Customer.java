@@ -1,11 +1,15 @@
 package shop.model.customer;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
-public class Customer implements EntityWithIntegerId {
+public class Customer implements EntityWithIntegerId, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +20,31 @@ public class Customer implements EntityWithIntegerId {
 
     @Column
     private String lastName;
+    @Column
+    private String username;
+    @Column
+    private String password;
+    @ManyToOne
+    @JoinColumn(name = "roles")
+    private Role role;
 
-//    @Column private String email;
-//    @Column private String password;
+    public Customer(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Customer() {
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -44,14 +70,6 @@ public class Customer implements EntityWithIntegerId {
         this.lastName = lastName;
     }
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Customer() {
-    }
-
     @Override
     public Integer getId() {
         return customerId;
@@ -60,5 +78,48 @@ public class Customer implements EntityWithIntegerId {
     @Override
     public void setId(Integer id) {
         this.customerId = id;
+    }
+
+    @Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

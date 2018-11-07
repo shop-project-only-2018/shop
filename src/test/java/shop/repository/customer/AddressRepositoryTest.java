@@ -29,7 +29,7 @@ public class AddressRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-        Customer c = new Customer("abc", "def");
+        Customer c = new Customer("abc", "def","abc", "def");
         customerRepository.save(c);
 
         addressRepository.save(new Address("1", c));

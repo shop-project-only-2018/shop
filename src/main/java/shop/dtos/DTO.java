@@ -1,3 +1,4 @@
 package shop.dtos;
 
-public interface DTO {}
+public interface DTO {
+}

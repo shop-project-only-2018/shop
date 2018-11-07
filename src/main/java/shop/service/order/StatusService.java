@@ -20,11 +20,13 @@ public class StatusService {
 
     @Autowired
     public void setRepo(StatusRepository repo) {
-        this.repo = repo;    }
+        this.repo = repo;
+    }
 
     @Autowired
     public void setMapper(StatusMapper mapper) {
-        this.mapper = mapper;    }
+        this.mapper = mapper;
+    }
 
     private Status getById(Integer id) throws ResourceNotFoundException {
         Status status = repo.findById(id).orElse(null);
@@ -70,4 +72,5 @@ public class StatusService {
 //        Status updStatus = mapper.getEntity(dto);
 //        status = mapper.merge(status, updStatus);
 //        repo.saveAndFlush(status);
-    }}
+    }
+}

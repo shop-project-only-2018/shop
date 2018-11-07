@@ -1,11 +1,7 @@
 package shop.dtos.order;
 
 import shop.dtos.DTO;
-import shop.model.EntityWithIntegerId;
-import shop.model.order.Order;
-import shop.model.product.Product;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
 public class OrderItemDto implements DTO {
@@ -48,4 +44,5 @@ public class OrderItemDto implements DTO {
     }
 
     public OrderItemDto() {
-    }}
+    }
+}

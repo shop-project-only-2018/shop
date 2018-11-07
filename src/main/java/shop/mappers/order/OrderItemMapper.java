@@ -7,4 +7,6 @@ import shop.model.order.OrderItem;
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
     OrderItem getEntity(OrderItemDto orderItemDto);
-    OrderItemDto getDto(OrderItem orderItem);}
+
+    OrderItemDto getDto(OrderItem orderItem);
+}

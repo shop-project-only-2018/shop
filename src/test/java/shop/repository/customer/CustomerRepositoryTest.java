@@ -26,10 +26,10 @@ public class CustomerRepositoryTest {
     @Test
     public void saveSeveralItems() {
 
-        customerRepository.save(new Customer("abc", "def"));
-        customerRepository.save(new Customer("abc", "def"));
-        customerRepository.save(new Customer("abc", "def"));
-        customerRepository.save(new Customer("abc", "def"));
+        customerRepository.save(new Customer("abc", "def", "ghi", "jkl"));
+        customerRepository.save(new Customer("abc", "def", "ghi1", "jkl"));
+        customerRepository.save(new Customer("abc", "def", "ghi2", "jkl"));
+        customerRepository.save(new Customer("abc", "def", "ghi3", "jkl"));
 
         assert customerRepository.count() == 4;
     }

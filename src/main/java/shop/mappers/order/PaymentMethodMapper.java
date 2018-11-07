@@ -7,4 +7,6 @@ import shop.model.order.PaymentMethod;
 @Mapper(componentModel = "spring")
 public interface PaymentMethodMapper {
     PaymentMethod getEntity(PaymentMethodDto paymentMethodDto);
-    PaymentMethodDto getDto(PaymentMethod paymentMethod);}
+
+    PaymentMethodDto getDto(PaymentMethod paymentMethod);
+}

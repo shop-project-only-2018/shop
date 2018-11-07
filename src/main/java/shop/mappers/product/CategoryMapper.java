@@ -22,7 +22,8 @@ public class CategoryMapper {
         dto.setCategoryId(category.getCategoryId());
         dto.setName(category.getName());
         if (category.getParent() != null) {
-            dto.setParentCategoryId(category.getParent().getCategoryId());}
+            dto.setParentCategoryId(category.getParent().getCategoryId());
+        }
         return dto;
     }
 

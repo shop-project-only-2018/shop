@@ -1,10 +1,11 @@
-package shop.controller.order;
+package shop.controller.customer;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shop.dtos.order.PaymentMethodDto;
-import shop.service.order.PaymentMethodService;
+import shop.dtos.customer.PhoneDto;
+import shop.service.customer.PhoneService;
 import shop.system.exceptions.ResourceNotFoundException;
 
 import java.util.List;
@@ -12,29 +13,29 @@ import java.util.List;
 import static shop.util.ResponseEntityBuilder.*;
 
 @RestController
-@RequestMapping("paymentmethods")
-public class PaymentMethodController {
+@RequestMapping("phones")
+public class PhoneController {
 
-    private PaymentMethodService service;
+    private PhoneService service;
 
     @Autowired
-    public void setService(PaymentMethodService service) {
+    public void setService(PhoneService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody PaymentMethodDto dto) {
+    public ResponseEntity<Void> create(@RequestBody PhoneDto dto) {
         return created(service.create(dto));
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody PaymentMethodDto dto) throws ResourceNotFoundException {
+    public ResponseEntity<Void> update(@RequestBody PhoneDto dto) throws ResourceNotFoundException {
         service.update(dto);
         return ok();
     }
 
     @GetMapping("/{id}")
-    public PaymentMethodDto getOne(@PathVariable Integer id) throws ResourceNotFoundException {
+    public PhoneDto getOne(@PathVariable Integer id) throws ResourceNotFoundException {
         return service.getDtoById(id);
     }
 
@@ -45,7 +46,7 @@ public class PaymentMethodController {
     }
 
     @GetMapping("${paths.all}")
-    public List<PaymentMethodDto> getAll() {
+    public List<PhoneDto> getAll() {
         return service.getAll();
     }
 }

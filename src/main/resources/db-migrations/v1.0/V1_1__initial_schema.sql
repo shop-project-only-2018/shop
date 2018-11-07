@@ -180,3 +180,4 @@ alter table order_item owner to postgres
 create unique index order_item_order_item_id_uindex
 	on order_item (order_item_id)
 ;
+
