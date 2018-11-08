@@ -1,4 +1,4 @@
-package shop.configuration;
+package shop.configuration.security;
 
 import shop.model.customer.Customer;
 

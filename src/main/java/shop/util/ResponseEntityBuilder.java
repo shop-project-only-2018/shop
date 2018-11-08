@@ -29,5 +29,4 @@ public class ResponseEntityBuilder {
     public static ResponseEntity<Void> created(@NotNull Integer id) {
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + id.toString()).build().toUri()).build();
     }
-
 }
