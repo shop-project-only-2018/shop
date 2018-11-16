@@ -1,7 +1,10 @@
 package shop.service.security;
 
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.mappers.customer.CustomerDetailsMapper;
+import shop.service.security.userdetails.IdentifiedUserDetails;
 
 @Service
 public class SecurityService {
@@ -13,11 +16,11 @@ public class SecurityService {
         this.tokenService = tokenService;
     }
 
-//    private UserDetailsMapper mapper;
-//    @Autowired
-//    public void setMapper(UserDetailsMapper mapper) {
-//        this.mapper = mapper;
-//    }
+    private CustomerDetailsMapper customerDetailsMapper;
+    @Autowired
+    public void setCustomerDetailsMapper(CustomerDetailsMapper customerDetailsMapper) {
+        this.customerDetailsMapper = customerDetailsMapper;
+    }
 
 
     /**
@@ -30,23 +33,11 @@ public class SecurityService {
     }
 
 
-//    /**
-//     * Returns JWT by UserDetails.
-//     *
-//     * @param identifiedUserDetails - user data
-//     * @return encoded json
-//     */
-//    public String login(IdentifiedUserDetails identifiedUserDetails) throws JwtException {
-//        return tokenService.generate(mapper.toMap(identifiedUserDetails));
-//    }
-//
-//    /**
-//     * Returns UserDetails by JWT.
-//     *
-//     * @param token - encoded json
-//     * @return user data
-//     */
-//    public IdentifiedUserDetails authentication(String token) throws JwtException {
-//        return mapper.toIdentifiedUserDetails(tokenService.verify(token));
-//    }
+    public String login(IdentifiedUserDetails identifiedUserDetails) throws JwtException {
+        return tokenService.generate(customerDetailsMapper.toMap(identifiedUserDetails));
+    }
+
+    public IdentifiedUserDetails authentication(String token) throws JwtException {
+        return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token));
+    }
 }

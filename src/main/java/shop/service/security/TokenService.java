@@ -45,22 +45,12 @@ public class TokenService implements Clock {
         this.sign = sign;
     }
 
-
-    /**
-     * Secret key Base64 encoding.
-     */
     @PostConstruct
     private void init() {
         sign = TextCodec.BASE64.encode(sign);
     }
 
 
-    /**
-     * Returns JWT.
-     *
-     * @param attributes - map of token data
-     * @return encoded json
-     */
     public String generate(final Map<String, Object> attributes) throws JwtException {
         final Claims claims = Jwts
                 .claims(attributes)

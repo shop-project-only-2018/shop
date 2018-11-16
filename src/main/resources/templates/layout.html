@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Authentication</title>
+</head>
+<body>
+<div class="container">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Authentication</h2>
+            </div>
+            <form id="login">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputLogin" placeholder="Login"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+                <div id="result"></div>
+            </form>
+            <p id="message" style="margin-top: 10px; color: #f00; font-weight: bold"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

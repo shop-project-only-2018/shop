@@ -6,4 +6,5 @@ import shop.model.customer.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+    Customer findByUsername(String username);
 }

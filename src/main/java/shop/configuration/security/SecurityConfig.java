@@ -50,10 +50,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(USER_API_URLS).hasRole("USER")
                 .and()
 
-                .httpBasic().disable()
-                .formLogin().disable()
-                .logout().disable()
-                .csrf().disable();
+//                .httpBasic().disable()
+//                .formLogin().disable()
+//                .logout().disable()
+                .csrf().disable()
+                .formLogin()
+                .loginPage("/login.html")
+                .failureUrl("/login-error.html")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/index.html");;
     }
 
 
