@@ -37,7 +37,7 @@ public class SecurityService {
         return tokenService.generate(customerDetailsMapper.toMap(identifiedUserDetails));
     }
 
-    public IdentifiedUserDetails authentication(String token) throws JwtException {
+    public IdentifiedUserDetails checkToken(String token) throws JwtException {
         return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token));
     }
 }

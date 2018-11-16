@@ -10,21 +10,17 @@
     display: block;
     color: #fff;
     text-decoration: none;
-    font-family: Arial;
     font-size: 42px !important;
     padding: 24px 15px;
     margin-left: 0;
 }
-body {
-    margin: 0;
-    font-family: Arial;
-    font-size: 16px;
-    background-color: #aaaaaa;
-}
 #container {
     background-color: #ffffff;
+    margin: 0 auto;
+    width: 1000px;
 }
 #content {
+    margin: 0;
     padding: 15px;
 }
 #footer {
@@ -66,4 +62,30 @@ body {
 }
 #innermenubar a.menuright {
     float:right;
+}
+#form {
+    text-align: center;
+    margin: 0 auto;
+    width: 300px;
+}
+body {
+    font-family: Arial;
+    background-color: #eee;
+    padding: 0;
+    margin: 0;
+}
+input[type="text"],input[type="password"] {
+    margin: 5px;
+    padding: 10px;
+}
+button, input[type="submit"], input[type="button"] {
+    margin: 5px;
+    padding: 10px;
+}
+h1 {
+    font-size: 18px;
+    margin: 0;
+    padding: 15px;
+    display: block;
+    text-align: center;
 }

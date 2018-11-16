@@ -28,7 +28,7 @@ final class TokenAuthenticationProvider extends AbstractUserDetailsAuthenticatio
     @Override
     protected UserDetails retrieveUser(final String username, final UsernamePasswordAuthenticationToken token) {
         try {
-            return securityService.authentication(token.getCredentials().toString());
+            return securityService.checkToken(token.getCredentials().toString());
         } catch (JwtException e) {
             throw new BadCredentialsException("", e);
         }

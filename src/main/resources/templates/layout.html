@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      lang="en">
+<html th:fragment="layout (template, menu)" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Authentication</title>
+    <title th:text="#{${title}}">Bookstore</title>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body>
-<div class="container">
-    <div class="login-form">
-        <div class="main-div">
-            <div class="panel">
-                <h2>Authentication</h2>
-            </div>
-            <form id="login">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="inputLogin" placeholder="Login"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"/>
-                </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
-                <div id="result"></div>
-            </form>
-            <p id="message" style="margin-top: 10px; color: #f00; font-weight: bold"></p>
-        </div>
+<nav id="navbar">
+    <div id="innernavbar" class="main">
+        <a href="/" id="logo">Bookstore</a>
+    </div>
+</nav>
+<div id="menu">
+    <div id="innermenubar" class="main">
+        <a href="/">Main</a><a href="/">Products</a><a href="/">Help</a><a href="/">About</a><a href="/" class="menuright">Cart</a><a href="/login" class="menuright">Sign in</a>
+    </div>
+</div>
+<div id="container">
+    <div id="content">
+        <th:block th:include="${template}"/>
+    </div>
+    <div id="footer">
+        © 2018
     </div>
 </div>
 </body>
