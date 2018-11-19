@@ -1,9 +1,9 @@
 # Bookstore
 Just another project with some serious business logic issues. Nothing special here.
 ## Technologies
-###Spring
+### Spring
 Spring Boot, Spring Data, Spring Security
-###Libraries
+### Libraries
 hibernate-core, postgresql\
 springfox-swagger2, springfox-swagger-ui\
 spring-boot-starter-thymeleaf + jquery-3.3.1.min.js
