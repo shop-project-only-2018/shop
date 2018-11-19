@@ -1,16 +1,14 @@
 # Bookstore
-Just another project with some serious business logic issues. Nothing special here.
+A Spring Boot project.
 ## Technologies
-### Spring
-Spring Boot, Spring Data, Spring Security
-### Libraries
-hibernate-core, postgresql\
-springfox-swagger2, springfox-swagger-ui\
-spring-boot-starter-thymeleaf + jquery-3.3.1.min.js
+**Spring:** Core, Boot, Data, Security\
+**DB:** hibernate-core, postgresql\
+**Swagger:** springfox-swagger2, springfox-swagger-ui\
+**UI:** spring-boot-starter-thymeleaf, jquery-3.3.1.min.js
 ## Credentials
 ### Admin
-Login: admin\
-Password: 123
+**Login:** admin\
+**Password:** 123
 ### User
-Login: user\
-Password: 123
+**Login:** user\
+**Password:** 123
