@@ -6,16 +6,23 @@ import java.net.URI;
 
 public class LoginDTO implements DTO {
 
-    private String login;
+    private String username;
     private URI userURI;
 
-    public String getLogin() {
-        return login;
+    public LoginDTO() {
     }
 
-    public LoginDTO setLogin(String login) {
-        this.login = login;
-        return this;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LoginDTO(String username, URI userURI) {
+        this.username = username;
+        this.userURI = userURI;
     }
 
     public URI getUserURI() {

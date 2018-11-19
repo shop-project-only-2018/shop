@@ -21,4 +21,9 @@ public class UsernamePasswordDTO implements DTO {
     public void setPassword(String password) {
         this.password = password;
     }
-}
+    public UsernamePasswordDTO() {
+    }
+    public UsernamePasswordDTO(@NotEmpty String username, @NotEmpty String password) {
+        this.username = username;
+        this.password = password;
+    }}

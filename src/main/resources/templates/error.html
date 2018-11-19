@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::body},'container')}">
+<head>
+</head>
+<body>
+<div class="container">
+    <div style="padding:100px;">
+        <div style="text-align:center;font-size:42px;padding: 10px;" th:text="#{${title}}">
+
+        </div>
+        <div style="text-align:center;font-size:16px;" th:text="#{${description}}">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

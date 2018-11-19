@@ -24,10 +24,10 @@ public class IndexControllerTest {
     public void expectRedirection() throws Exception {
         mockMvc
                 .perform(get("/"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk());
         mockMvc
                 .perform(get("/index.html"))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk());
     }
 
 }

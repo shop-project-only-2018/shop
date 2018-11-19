@@ -4,33 +4,22 @@
 <head>
 </head>
 <body>
-<script type="text/javascript">
-function validateForm() {
-    var x1 = document.forms["authenticationForm"]["inputUsername"].value;
-    var x2 = document.forms["authenticationForm"]["inputPassword"].value;
-    if (x1 == "") {
-        return false;
-    }
-    if (x2 == "") {
-        return false;
-    }
-    return true;
-}
-
-</script>
+<script src="../static/js/login.js" th:src="@{/js/login.js}"></script>
 <div id="form">
     <h1 th:text="#{${title}}"></h1>
-        <form name="authenticationForm" th:action="@{/login.html}" method="post"
-              onsubmit="if(!validateForm()) return false;">
-            <div class="form-group">
-                <input type="text" name="inputUsername" placeholder="Username" th:value="${authData.username}"/>
-            </div>
-            <div class="form-group">
-                <input type="password" name="inputPassword" placeholder="Password"/>
-            </div>
-            <button type="submit">Sign in</button>
-        </form>
-        <p id="message"></p>
+    <div th:if="${loginError}" class="errorMessage" th:text="#{signIn.error}"></div>
+    <form name="authenticationForm" th:action="@{/login}" method="post"
+          onsubmit="if(!validateForm()) return false;">
+        <div class="form-group">
+            <input type="text" id="inputUsername" name="inputUsername" placeholder="#{signIn.Username}"
+                   th:value="${authData.username}"/>
+        </div>
+        <div class="form-group">
+            <input type="password" id="inputPassword" name="inputPassword" placeholder="#{signIn.Password}"
+                   th:value="${authData.password}"/>
+        </div>
+        <button type="submit">Sign in</button>
+    </form>
 </div>
 </body>
 </html>

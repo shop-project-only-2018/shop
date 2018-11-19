@@ -30,7 +30,7 @@ final class TokenAuthenticationProvider extends AbstractUserDetailsAuthenticatio
         try {
             return securityService.checkToken(token.getCredentials().toString());
         } catch (JwtException e) {
-            throw new BadCredentialsException("", e);
+            throw new BadCredentialsException("BadCredentialsException: retrieveUser()", e);
         }
     }
 }

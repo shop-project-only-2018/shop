@@ -50,16 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(USER_API_URLS).hasRole("USER")
                 .and()
 
-//                .httpBasic().disable()
-//                .formLogin().disable()
-//                .logout().disable()
-                .csrf().disable()
-                .formLogin()
-                .loginPage("/login.html")
-                .failureUrl("/login-error.html")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/index.html");;
+                .httpBasic().disable()
+                .formLogin().disable()
+                .logout().disable()
+                .csrf().disable();
     }
 
 
@@ -90,7 +84,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler successHandler() {
         final SimpleUrlAuthenticationSuccessHandler successHandler = new SimpleUrlAuthenticationSuccessHandler();
         successHandler.setRedirectStrategy((httpServletRequest, httpServletResponse, s) -> {
-            // no redirect
         });
 
         return successHandler;
