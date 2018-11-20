@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
-import shop.model.product.Product;
+import shop.model.product.Book;
 
 import java.math.BigDecimal;
 
@@ -27,9 +27,9 @@ public class ProductRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-        productRepository.save(new Product("1", new BigDecimal(10), 1));
-        productRepository.save(new Product("2", new BigDecimal(10), 1));
-        productRepository.save(new Product("3", new BigDecimal(10), 1));
+        productRepository.save(new Book("1", new BigDecimal(10), 1));
+        productRepository.save(new Book("2", new BigDecimal(10), 1));
+        productRepository.save(new Book("3", new BigDecimal(10), 1));
         assert productRepository.count() == 3;
     }
 

@@ -13,7 +13,7 @@ import shop.model.order.Order;
 import shop.model.order.OrderItem;
 import shop.model.order.PaymentMethod;
 import shop.model.order.Status;
-import shop.model.product.Product;
+import shop.model.product.Book;
 import shop.repository.customer.CustomerRepository;
 import shop.repository.product.ProductRepository;
 
@@ -63,14 +63,14 @@ public class OrderItemRepositoryTest {
         o1.setPrice(new BigDecimal(10));
         orderRepository.save(o1);
 
-        Product product1 = new Product();
-        product1.setName("Product 1");
+        Book product1 = new Book();
+        product1.setName("Book 1");
         product1.setPrice(new BigDecimal(10));
         product1.setQuantity(10);
         productRepository.save(product1);
 
-        Product product2 = new Product();
-        product2.setName("Product 2");
+        Book product2 = new Book();
+        product2.setName("Book 2");
         product2.setPrice(new BigDecimal(10));
         product2.setQuantity(10);
         productRepository.save(product2);

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dtos.product.ProductDto;
 import shop.mappers.product.ProductMapper;
-import shop.model.product.Product;
+import shop.model.product.Book;
 import shop.repository.product.CategoryRepository;
 import shop.repository.product.ProductRepository;
 import shop.system.exceptions.ResourceNotFoundException;
@@ -36,10 +36,10 @@ public class ProductService {
     }
 
 
-    private Product getById(Integer id) throws ResourceNotFoundException {
-        Product product = productRepository.findById(id).orElse(null);
+    private Book getById(Integer id) throws ResourceNotFoundException {
+        Book product = productRepository.findById(id).orElse(null);
         if (product == null) {
-            throw new ResourceNotFoundException("Product id = " + id.toString());
+            throw new ResourceNotFoundException("Book id = " + id.toString());
         }
         return product;
     }
@@ -50,9 +50,9 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> getAll() {
-        List<Product> list = productRepository.findAll();
+        List<Book> list = productRepository.findAll();
         List<ProductDto> dtoList = new ArrayList<>();
-        for (Product product : list) {
+        for (Book product : list) {
             ProductDto dto = mapper.getDto(product);
             dtoList.add(dto);
         }
@@ -61,7 +61,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public ProductDto getDtoById(Integer id) throws ResourceNotFoundException {
-        Product product = getById(id);
+        Book product = getById(id);
         if (product == null) {
             throw new ResourceNotFoundException();
         } else {
@@ -71,14 +71,14 @@ public class ProductService {
     }
 
     public Integer create(ProductDto productDto) {
-        Product product = mapper.getEntity(productDto);
+        Book product = mapper.getEntity(productDto);
         productRepository.save(product);
         return product.getId();
     }
 
     public void update(ProductDto dto) throws ResourceNotFoundException {
-        Product product = getById(dto.getProductId());
-        Product updProduct = mapper.getEntity(dto);
+        Book product = getById(dto.getProductId());
+        Book updProduct = mapper.getEntity(dto);
         product = mapper.merge(product, updProduct);
         productRepository.saveAndFlush(product);
     }

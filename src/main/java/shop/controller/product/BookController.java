@@ -14,7 +14,7 @@ import static shop.util.ResponseEntityBuilder.*;
 
 @RestController
 @RequestMapping("books")
-public class ProductController {
+public class BookController {
 
     private ProductService service;
 

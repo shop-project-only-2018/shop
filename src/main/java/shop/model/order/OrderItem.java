@@ -1,7 +1,7 @@
 package shop.model.order;
 
 import shop.model.EntityWithIntegerId;
-import shop.model.product.Product;
+import shop.model.product.Book;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ public class OrderItem implements EntityWithIntegerId {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Book product;
 
     @Column
     private BigDecimal price;
@@ -43,11 +43,11 @@ public class OrderItem implements EntityWithIntegerId {
         this.order = order;
     }
 
-    public Product getProduct() {
+    public Book getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Book product) {
         this.product = product;
     }
 

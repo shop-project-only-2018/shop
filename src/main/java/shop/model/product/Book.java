@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Product implements EntityWithIntegerId {
+@Table(name = "product")
+public class Book implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,16 +26,16 @@ public class Product implements EntityWithIntegerId {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product() {
+    public Book() {
     }
 
-    public Product(String name, BigDecimal price, int quantity) {
+    public Book(String name, BigDecimal price, int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 
-    public Product(String name, BigDecimal price, int quantity, Category category) {
+    public Book(String name, BigDecimal price, int quantity, Category category) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
