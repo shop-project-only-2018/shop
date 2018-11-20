@@ -91,25 +91,18 @@ public class CustomerService {
         }
     }
 
-    public Integer create(CreateUpdateCustomerDto customerDto) {
-        if(exists(customerDto.getUsername())) {
+    public Integer create(CreateUpdateCustomerDto dto) {
+        if(exists(dto.getUsername())) {
             throw new BadCredentialsException("Input error");
         }
-        Customer customer = mapper.getEntity(customerDto);
-        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
+        Customer customer = mapper.getEntity(dto);
+        customer.setPassword(passwordEncoder.encode(dto.getPassword()));
         repo.saveAndFlush(customer);
-
-        //////////////////////////////
-        List<Customer> list = repo.findAll();
-        for (Customer c1 : list) {
-            System.out.println(c1.getFirstName()+" "+c1.getLastName()+"\nPassword: "+c1.getPassword());
-        }
-        //////////////////////////////
 
         return customer.getId();
     }
 
-    public void update(CustomerDto dto) throws ResourceNotFoundException {
+    public void update(CreateUpdateCustomerDto dto) throws ResourceNotFoundException {
 //        Customer customer = getById(dto.getCustomerId());
 //        Customer updCustomer = mapper.getEntity(dto);
 //        customer = mapper.merge(customer, updCustomer);
