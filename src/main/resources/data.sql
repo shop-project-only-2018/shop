@@ -1,2 +1,0 @@
-INSERT INTO market.public.customer(customer_id, first_name, last_name, username, "password") VALUES(1, 'Abc', 'Abc', 'admin', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2')
-INSERT INTO market.public.customer(customer_id, first_name, last_name, username, "password") VALUES(2, 'Abc', 'Abc', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2')

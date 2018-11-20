@@ -6,9 +6,9 @@ A Spring Boot project.
 **Swagger:** springfox-swagger2, springfox-swagger-ui\
 **UI:** spring-boot-starter-thymeleaf, jquery-3.3.1.min.js
 ## Credentials
-### Admin
-**Login:** admin\
-**Password:** 123
-### User
-**Login:** user\
-**Password:** 123
+**Admin**\
+Login: admin\
+Password: 123\
+**User**\
+Login: user\
+Password: 123

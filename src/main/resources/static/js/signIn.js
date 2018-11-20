@@ -3,7 +3,7 @@ function validateForm() {
     const passwordF = document.forms["authenticationForm"]["inputPassword"].value;
     if (usernameF != "" && passwordF != "") {
 $.ajax({
-    url: '/login',
+    url: '/sign-in',
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({
@@ -11,10 +11,11 @@ $.ajax({
         password: passwordF,
     }),
     success: function(result) {
-        alert('success');
+        $('#errorMessage').hide();
+        window.location = '/';
     },
     error: function(result) {
-        alert('failure');
+        $('#errorMessage').show(200);
     }
 });
     }

@@ -4,11 +4,11 @@
 <head>
 </head>
 <body>
-<script src="../static/js/login.js" th:src="@{/js/login.js}"></script>
+<script src="../static/js/signin.js" th:src="@{/js/login.js}"></script>
 <div id="form">
     <h1 th:text="#{${title}}"></h1>
     <div th:if="${loginError}" class="errorMessage" th:text="#{signIn.error}"></div>
-    <form name="authenticationForm" th:action="@{/login}" method="post"
+    <form name="authenticationForm" th:action="@{/signin}" method="post"
           onsubmit="if(!validateForm()) return false;">
         <div class="form-group">
             <input type="text" id="inputUsername" name="inputUsername" placeholder="#{signIn.Username}"

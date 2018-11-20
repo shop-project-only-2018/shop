@@ -12,6 +12,4 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @Configuration
 @PropertySource("classpath:paths.properties")
-public class ApplicationConfig implements WebMvcConfigurer {
-
-}
+public class ApplicationConfig implements WebMvcConfigurer {}

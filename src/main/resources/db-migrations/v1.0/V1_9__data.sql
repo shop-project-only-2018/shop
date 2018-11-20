@@ -1,0 +1,2 @@
+INSERT INTO customer(customer_id, first_name, last_name, username, "password") VALUES(100, 'Admin', 'Admin', 'admin', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
+INSERT INTO customer(customer_id, first_name, last_name, username, "password") VALUES(101, 'User', 'User', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');

@@ -89,3 +89,8 @@ h1 {
     display: block;
     text-align: center;
 }
+.errorMessage {
+    background:#fdd;
+    color: #a00;
+    padding: 15px;
+}

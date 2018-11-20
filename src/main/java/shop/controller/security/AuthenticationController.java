@@ -31,7 +31,7 @@ public class AuthenticationController {
         this.customerService = customerService;
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/sign-in")
     public String getLoginForm(Model model) {
         model.addAttribute("authData", new UsernamePasswordDTO());
         model.addAttribute("title", "signIn.title");
@@ -39,15 +39,15 @@ public class AuthenticationController {
         UsernamePasswordDTO authData = new UsernamePasswordDTO("admin", "123");
         model.addAttribute("authData", authData);
 
-        return "loginForm";
+        return "customers/signInForm";
     }
 
-    @RequestMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        model.addAttribute("title", "signIn.title");
-        return "loginForm";
-    }
+//    @RequestMapping("/login-error")
+//    public String loginError(Model model) {
+//        model.addAttribute("loginError", true);
+//        model.addAttribute("title", "signIn.title");
+//        return "customers/signInForm";
+//    }
 
 
 

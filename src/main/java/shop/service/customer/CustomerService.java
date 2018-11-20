@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shop.dtos.customer.CreateUpdateCustomerDto;
 import shop.dtos.customer.CustomerDto;
 import shop.dtos.security.TokenDTO;
 import shop.mappers.customer.CustomerMapper;
@@ -51,6 +52,11 @@ public class CustomerService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    private boolean exists(String username) {
+        if(repo.findByUsername(username)==null){
+            return false;
+        }return true;
+    }
     private Customer getById(Integer id) throws ResourceNotFoundException {
         Customer customer = repo.findById(id).orElse(null);
         if (customer == null) {
@@ -85,9 +91,21 @@ public class CustomerService {
         }
     }
 
-    public Integer create(CustomerDto customerDto) {
+    public Integer create(CreateUpdateCustomerDto customerDto) {
+        if(exists(customerDto.getUsername())) {
+            throw new BadCredentialsException("Input error");
+        }
         Customer customer = mapper.getEntity(customerDto);
+        customer.setPassword(passwordEncoder.encode(customerDto.getPassword()));
         repo.saveAndFlush(customer);
+
+        //////////////////////////////
+        List<Customer> list = repo.findAll();
+        for (Customer c1 : list) {
+            System.out.println(c1.getFirstName()+" "+c1.getLastName()+"\nPassword: "+c1.getPassword());
+        }
+        //////////////////////////////
+
         return customer.getId();
     }
 
@@ -99,7 +117,7 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public TokenDTO login(@NotNull String login, @NotNull String password) throws BadCredentialsException, JwtException {
+    public TokenDTO signIn(@NotNull String login, @NotNull String password) throws BadCredentialsException, JwtException {
         Customer user;
 
         user = repo.findByUsername(login);

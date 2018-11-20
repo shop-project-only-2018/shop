@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout (~{::body},'container')}">
+<head>
+</head>
+<body>
+<table border="0" id="maintable">
+    <tr>
+        <td id="leftMenu">
+            <a href="/" th:text="#{customerPersonalMenu.myProfile}"></a>
+            <a href="/" th:text="#{customerPersonalMenu.editPersonalInfo}"></a>
+            <a href="/" th:text="#{customerPersonalMenu.}"></a>
+            <a href="/" th:text="#{customerPersonalMenu.}"></a>
+        </td>
+        <td id="rightMain">
+        </td>
+    </tr>
+</table>
+</body>
+</html>

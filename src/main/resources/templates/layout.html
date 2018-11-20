@@ -16,15 +16,15 @@
 </nav>
 <div id="menu">
     <div id="innermenubar" class="main">
-        <a href="/" th:text="#{menu.Books}"></a><a href="/" th:text="#{menu.Help}"></a><a href="/" th:text="#{menu.About}"></a><a href="/" class="menuright" th:text="#{menu.Cart}"></a><a href="/login" class="menuright" th:text="#{menu.SignIn}"></a>
+        <a href="/" th:text="#{menu.Books}"></a><a href="/" th:text="#{menu.Help}"></a><a href="/" th:text="#{menu.About}"></a>
+        <a href="/" class="menuright" th:text="#{menu.Cart}"></a><a href="/sign-in" class="menuright" th:text="#{menu.SignIn}"></a><a href="/sign-up" class="menuright" th:text="#{menu.SignUp}"></a>
     </div>
 </div>
 <div id="container">
     <div id="content">
         <th:block th:include="${template}"/>
     </div>
-    <div id="footer">
-        © 2018
+    <div id="footer" th:text="#{customerPersonalMenu.termsEtc}">
     </div>
 </div>
 <div id="floatingLoginForm"></div>
