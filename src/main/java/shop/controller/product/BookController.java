@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shop.dtos.product.ProductDto;
-import shop.service.product.ProductService;
+import shop.service.product.BookService;
 import shop.system.exceptions.ResourceNotFoundException;
 
 import java.util.List;
@@ -16,10 +16,10 @@ import static shop.util.ResponseEntityBuilder.*;
 @RequestMapping("books")
 public class BookController {
 
-    private ProductService service;
+    private BookService service;
 
     @Autowired
-    public void setService(ProductService service) {
+    public void setService(BookService service) {
         this.service = service;
     }
 
@@ -45,8 +45,8 @@ public class BookController {
         return noContent();
     }
 
-    @GetMapping("${paths.all}")
-    public List<ProductDto> getAll() {
-        return service.getAll();
-    }
+//    @GetMapping("${paths.all}")
+//    public List<ProductDto> getAll() {
+//        return service.getAll();
+//    }
 }

@@ -3,25 +3,27 @@ package shop.service.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shop.dtos.pagination.PageDTO;
+import shop.dtos.product.BookDto;
 import shop.dtos.product.ProductDto;
-import shop.mappers.product.ProductMapper;
+import shop.mappers.product.BookMapper;
 import shop.model.product.Book;
+import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
-import shop.repository.product.ProductRepository;
 import shop.system.exceptions.ResourceNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductService {
+public class BookService {
 
     private CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
-    private ProductMapper mapper;
+    private BookRepository productRepository;
+    private BookMapper mapper;
 
     @Autowired
-    public void setMapper(ProductMapper mapper) {
+    public void setMapper(BookMapper mapper) {
         this.mapper = mapper;
     }
 
@@ -31,7 +33,7 @@ public class ProductService {
     }
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
+    public void setProductRepository(BookRepository productRepository) {
         this.productRepository = productRepository;
     }
 
@@ -48,14 +50,27 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+//    @Transactional(readOnly = true)
+//    public List<ProductDto> getAll() {
+//        List<Book> list = productRepository.findAll();
+//        List<ProductDto> dtoList = new ArrayList<>();
+//        for (Book product : list) {
+//            ProductDto dto = mapper.getDto(product);
+//            dtoList.add(dto);
+//        }
+//        return dtoList;
+//    }
+
     @Transactional(readOnly = true)
-    public List<ProductDto> getAll() {
-        List<Book> list = productRepository.findAll();
-        List<ProductDto> dtoList = new ArrayList<>();
-        for (Book product : list) {
-            ProductDto dto = mapper.getDto(product);
+    public List<BookDto> getNewBooks() {
+
+        // TODO: REDO
+        List<BookDto> dtoList = new ArrayList<>();
+        productRepository.findAll().forEach(book -> {
+            BookDto dto = mapper.getIndexDto(book);
             dtoList.add(dto);
-        }
+        });
+
         return dtoList;
     }
 
@@ -80,7 +95,7 @@ public class ProductService {
         Book product = getById(dto.getProductId());
         Book updProduct = mapper.getEntity(dto);
         product = mapper.merge(product, updProduct);
-        productRepository.saveAndFlush(product);
+        productRepository.save(product);
     }
 
 }

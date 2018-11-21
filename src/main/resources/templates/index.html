@@ -5,11 +5,29 @@
 </head>
 <body>
 <!--
-    <tr th:each="prod: ${allProducts}">
+    <tr th:each="">
       <td th:text="${prod.name}">Oranges</td>
       <td th:text="${#numbers.formatDecimal(prod.price, 1, 2)}">0.99</td>
+    <span class="bookprice" th:text="${#numbers.formatDecimal(prod.price, 1, 2)}"></span>
     </tr>
-<div class="book" th:foreach=""></div>
--->
+    -->
+<script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
+<table id="maintable" border="0">
+    <tr>
+        <td id="menuleft" valign="top">
+            <div th:each="c: ${categories}">
+                <a th:text="${c.name}"></a>
+            </div>
+        </td>
+        <td id="tdcontent" valign="top">
+            <div id="content">
+                <h1 th:text="#{h1.newBooks}"></h1>
+                <div id="newBooks" th:text="#{general.loading}"></div>
+                <h1 th:text="#{h1.bestsellers}"></h1>
+                <div id="bestsellers" th:text="#{general.loading}"></div>
+            </div>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

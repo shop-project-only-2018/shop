@@ -36,7 +36,7 @@
 
 
     <form name="registrationForm" th:action="@{/sign-up}" method="post" onsubmit="validateForm();return false">
-        <div class="form-group">
+        <div class="form-fields"><div class="form-group">
             <input type="text" name="inputUsername" th:placeholder="#{general.Username}"/>
         </div>
         <div class="form-group">
@@ -47,7 +47,7 @@
         </div>
         <div class="form-group">
             <input type="text" name="inputLastName" th:placeholder="#{general.lastName}"/>
-        </div>
+        </div></div>
         <button type="submit" th:text="#{signUp.button}"></button>
     </form>
 </div>

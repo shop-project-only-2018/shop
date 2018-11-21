@@ -15,7 +15,7 @@ import shop.model.order.PaymentMethod;
 import shop.model.order.Status;
 import shop.model.product.Book;
 import shop.repository.customer.CustomerRepository;
-import shop.repository.product.ProductRepository;
+import shop.repository.product.BookRepository;
 
 import java.math.BigDecimal;
 
@@ -39,7 +39,7 @@ public class OrderItemRepositoryTest {
     public StatusRepository statusRepository;
 
     @Autowired
-    public ProductRepository productRepository;
+    public BookRepository productRepository;
 
     @Before
     public void setUp() {

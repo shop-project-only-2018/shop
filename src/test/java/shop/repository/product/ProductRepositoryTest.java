@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 public class ProductRepositoryTest {
 
     @Autowired
-    public ProductRepository productRepository;
+    public BookRepository productRepository;
 
     @Before
     public void setUp() {

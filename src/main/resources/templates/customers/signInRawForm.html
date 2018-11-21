@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: layout (~{::body},'container')}">
-<head>
-</head>
-<body>
-<script src="../static/js/signIn.js" th:src="@{/js/signIn.js}"></script>
-<div id="errorMessage" class="errorMessage" style="display:none" th:text="#{signIn.error}"></div>
-<div id="form">
+<div id="form" xmlns:th="http://www.thymeleaf.org">
     <h1 th:text="#{${title}}"></h1>
 
     <!-- TODO: REMOVE -->
@@ -43,5 +35,3 @@
         <button type="submit" th:text="#{signIn.button}"></button>
     </form>
 </div>
-</body>
-</html>

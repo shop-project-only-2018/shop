@@ -6,12 +6,11 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "product")
 public class Book implements EntityWithIntegerId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private int bookId;
 
     @Column
     private String name;
@@ -42,12 +41,12 @@ public class Book implements EntityWithIntegerId {
         this.category = category;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public String getName() {
@@ -85,11 +84,11 @@ public class Book implements EntityWithIntegerId {
 
     @Override
     public Integer getId() {
-        return productId;
+        return bookId;
     }
 
     @Override
     public void setId(Integer id) {
-        this.productId = id;
+        this.bookId = id;
     }
 }

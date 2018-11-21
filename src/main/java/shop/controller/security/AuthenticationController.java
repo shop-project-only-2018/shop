@@ -17,13 +17,6 @@ import shop.service.customer.CustomerService;
 @Controller
 public class AuthenticationController {
 
-//    private String pageTitle;
-//
-//    @Value("${signIn.title}")
-//    public void setPageTitle(String pageTitle) {
-//        this.pageTitle = pageTitle;
-//    }
-
     private CustomerService customerService;
 
     @Autowired
@@ -40,15 +33,4 @@ public class AuthenticationController {
         model.addAttribute("authData", authData);
 
         return "customers/signInForm";
-    }
-
-//    @RequestMapping("/login-error")
-//    public String loginError(Model model) {
-//        model.addAttribute("loginError", true);
-//        model.addAttribute("title", "signIn.title");
-//        return "customers/signInForm";
-//    }
-
-
-
-}
+    }}
