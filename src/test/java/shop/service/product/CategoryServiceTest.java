@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import shop.ShopApplication;
 import shop.dtos.product.CategoryDto;
-import shop.system.exceptions.ResourceNotFoundException;
 
 import static org.junit.Assert.fail;
 
@@ -19,7 +18,7 @@ public class CategoryServiceTest {
     public CategoryService service;
 
     @Test
-    public void createRetrieveAndDelete() throws ResourceNotFoundException {
+    public void createRetrieveAndDelete() throws Exception {
         String name = "Category 1";
         CategoryDto categoryDto = new CategoryDto(name);
         Integer id = service.create(categoryDto);
@@ -32,8 +31,8 @@ public class CategoryServiceTest {
         service.delete(id);
         try {
             service.getDtoById(id);
-            fail("Expected ResourceNotFoundException");
-        } catch (ResourceNotFoundException e) {
+            fail("Expected Exception");
+        } catch (Exception e) {
         }
     }
 }

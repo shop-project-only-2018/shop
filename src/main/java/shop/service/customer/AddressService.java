@@ -7,8 +7,7 @@ import shop.dtos.customer.AddressDto;
 import shop.mappers.customer.AddressMapper;
 import shop.model.customer.Address;
 import shop.repository.customer.AddressRepository;
-import shop.system.exceptions.ResourceNotFoundException;
-
+import shop.service.message.Messages;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +17,13 @@ public class AddressService {
     private AddressRepository repo;
 
     private AddressMapper mapper;
+
+    private Messages messages;
+
+    @Autowired
+    public void setMessages(Messages messages) {
+        this.messages = messages;
+    }
 
     @Autowired
     public void setRepo(AddressRepository repo) {
@@ -29,10 +35,11 @@ public class AddressService {
         this.mapper = mapper;
     }
 
-    private Address getById(Integer id) throws ResourceNotFoundException {
+    private Address getById(Integer id) throws Exception {
         Address address = repo.findById(id).orElse(null);
         if (address == null) {
-            throw new ResourceNotFoundException("Address id = " + id.toString());
+            throw new Exception(messages.get("error.unknown"));
+            // TODO: log id
         }
         return address;
     }
@@ -53,14 +60,10 @@ public class AddressService {
     }
 
     @Transactional(readOnly = true)
-    public AddressDto getDtoById(Integer id) throws ResourceNotFoundException {
+    public AddressDto getDtoById(Integer id) throws Exception {
         Address address = getById(id);
-        if (address == null) {
-            throw new ResourceNotFoundException();
-        } else {
-            AddressDto orderDto = mapper.getDto(address);
-            return orderDto;
-        }
+        AddressDto orderDto = mapper.getDto(address);
+        return orderDto;
     }
 
     public Integer create(AddressDto addressDto) {
@@ -69,11 +72,5 @@ public class AddressService {
         return address.getId();
     }
 
-    public void update(AddressDto dto) throws ResourceNotFoundException {
-//        Address address = getById(dto.getAddressId());
-//        Address updAddress = mapper.getEntity(dto);
-//        address = mapper.merge(address, updAddress);
-//        repo.saveAndFlush(address);
-    }
 
 }

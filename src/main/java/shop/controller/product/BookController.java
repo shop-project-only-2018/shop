@@ -2,15 +2,12 @@ package shop.controller.product;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import shop.dtos.product.ProductDto;
 import shop.service.product.BookService;
-import shop.system.exceptions.ResourceNotFoundException;
-
-import java.util.List;
-
-import static shop.util.ResponseEntityBuilder.*;
 
 @RestController
 @RequestMapping("books")
@@ -23,26 +20,9 @@ public class BookController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> create(@RequestBody ProductDto dto) {
-        return created(service.create(dto));
-    }
-
-    @PutMapping
-    public ResponseEntity<Void> update(@RequestBody ProductDto dto) throws ResourceNotFoundException {
-        service.update(dto);
-        return ok();
-    }
-
     @GetMapping("/{id}")
-    public ProductDto getOne(@PathVariable Integer id) throws ResourceNotFoundException {
+    public ProductDto getOne(@PathVariable Integer id) throws Exception {
         return service.getDtoById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-        service.delete(id);
-        return noContent();
     }
 
 //    @GetMapping("${paths.all}")

@@ -13,9 +13,9 @@ import shop.dtos.security.TokenDTO;
 import shop.mappers.customer.CustomerMapper;
 import shop.model.customer.Customer;
 import shop.repository.customer.CustomerRepository;
+import shop.service.message.Messages;
 import shop.service.security.SecurityService;
 import shop.service.security.userdetails.IdentifiedUser;
-import shop.system.exceptions.ResourceNotFoundException;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -31,6 +31,12 @@ public class CustomerService {
     private CustomerMapper mapper;
 
     private SecurityService securityService;
+    private Messages messages;
+
+    @Autowired
+    public void setMessages(Messages messages) {
+        this.messages = messages;
+    }
 
     @Autowired
     public void setRepo(CustomerRepository repo) {
@@ -53,14 +59,15 @@ public class CustomerService {
     }
 
     private boolean exists(String username) {
-        if(repo.findByUsername(username)==null){
+        if (repo.findByUsername(username) == null) {
             return false;
-        }return true;
+        }        return true;
     }
-    private Customer getById(Integer id) throws ResourceNotFoundException {
+
+    private Customer getById(Integer id) throws Exception {
         Customer customer = repo.findById(id).orElse(null);
         if (customer == null) {
-            throw new ResourceNotFoundException("Customer id = " + id.toString());
+            throw new Exception(messages.get("error.unknown"));
         }
         return customer;
     }
@@ -81,18 +88,14 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public CustomerDto getDtoById(Integer id) throws ResourceNotFoundException {
+    public CustomerDto getDtoById(Integer id) throws Exception {
         Customer customer = getById(id);
-        if (customer == null) {
-            throw new ResourceNotFoundException();
-        } else {
-            CustomerDto orderDto = mapper.getDto(customer);
-            return orderDto;
-        }
+        CustomerDto orderDto = mapper.getDto(customer);
+        return orderDto;
     }
 
     public Integer create(CreateUpdateCustomerDto dto) {
-        if(exists(dto.getUsername())) {
+        if (exists(dto.getUsername())) {
             throw new BadCredentialsException("Input error");
         }
         Customer customer = mapper.getEntity(dto);
@@ -100,13 +103,6 @@ public class CustomerService {
         repo.saveAndFlush(customer);
 
         return customer.getId();
-    }
-
-    public void update(CreateUpdateCustomerDto dto) throws ResourceNotFoundException {
-//        Customer customer = getById(dto.getCustomerId());
-//        Customer updCustomer = mapper.getEntity(dto);
-//        customer = mapper.merge(customer, updCustomer);
-//        repo.saveAndFlush(customer);
     }
 
     @Transactional(readOnly = true)

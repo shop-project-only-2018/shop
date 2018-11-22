@@ -1,4 +1,6 @@
-package shop.dtos;
+package shop.dtos.message;
+
+import shop.dtos.DTO;
 
 import java.util.UUID;
 

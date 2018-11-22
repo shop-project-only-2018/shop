@@ -7,7 +7,7 @@ import shop.dtos.order.OrderDto;
 import shop.mappers.order.OrderMapper;
 import shop.model.order.Order;
 import shop.repository.order.OrderRepository;
-import shop.system.exceptions.ResourceNotFoundException;
+import shop.service.message.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,13 @@ public class OrderService {
 
     private OrderMapper mapper;
 
+    private Messages messages;
+
+    @Autowired
+    public void setMessages(Messages messages) {
+        this.messages = messages;
+    }
+
     @Autowired
     public void setRepo(OrderRepository repo) {
         this.repo = repo;
@@ -29,10 +36,11 @@ public class OrderService {
         this.mapper = mapper;
     }
 
-    private Order getById(Integer id) throws ResourceNotFoundException {
+    private Order getById(Integer id) throws Exception {
         Order order = repo.findById(id).orElse(null);
         if (order == null) {
-            throw new ResourceNotFoundException("Order id = " + id.toString());
+            throw new Exception(messages.get("error.unknown"));
+            // TODO: log id
         }
         return order;
     }
@@ -53,26 +61,15 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public OrderDto getDtoById(Integer id) throws ResourceNotFoundException {
+    public OrderDto getDtoById(Integer id) throws Exception {
         Order order = getById(id);
-        if (order == null) {
-            throw new ResourceNotFoundException();
-        } else {
-            return mapper.getDto(order);
-        }
+        return mapper.getDto(order);
     }
 
     public Integer create(OrderDto orderDto) {
         Order order = mapper.getEntity(orderDto);
         repo.saveAndFlush(order);
         return order.getId();
-    }
-
-    public void update(OrderDto dto) {
-//        Order order = getById(dto.getOrderId());
-//        Order updOrder = mapper.getEntity(dto);
-//        order = mapper.merge(order, updOrder);
-//        repo.saveAndFlush(order);
     }
 
 }

@@ -10,6 +10,9 @@ INSERT INTO book(book_id, "name", price, quantity, "category_id") VALUES(103, 'O
 INSERT INTO book(book_id, "name", price, quantity, "category_id") VALUES(104, 'On the Origin of Species 5', 100, 100, null);
 INSERT INTO book(book_id, "name", price, quantity, "category_id") VALUES(105, 'On the Origin of Species 6', 100, 100, null);
 INSERT INTO book(book_id, "name", price, quantity, "category_id") VALUES(106, 'On the Origin of Species 7', 100, 100, null);
+INSERT INTO book("name", price, quantity, "category_id") VALUES('On the Origin of Species 8', 100, 100, null);
+INSERT INTO book("name", price, quantity, "category_id") VALUES('On the Origin of Species 9', 100, 100, null);
+INSERT INTO book("name", price, quantity, "category_id") VALUES('On the Origin of Species 10', 100, 100, null);
 
 -- CATEGORIES
 INSERT INTO "category"("name", parent_id) VALUES('Tragedy', null);

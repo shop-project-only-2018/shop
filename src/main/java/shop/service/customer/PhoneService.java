@@ -7,7 +7,7 @@ import shop.dtos.customer.PhoneDto;
 import shop.mappers.customer.PhoneMapper;
 import shop.model.customer.Phone;
 import shop.repository.customer.PhoneRepository;
-import shop.system.exceptions.ResourceNotFoundException;
+import shop.service.message.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,12 @@ public class PhoneService {
     private PhoneRepository repo;
 
     private PhoneMapper mapper;
+    private Messages messages;
+
+    @Autowired
+    public void setMessages(Messages messages) {
+        this.messages = messages;
+    }
 
     @Autowired
     public void setRepo(PhoneRepository repo) {
@@ -29,10 +35,11 @@ public class PhoneService {
         this.mapper = mapper;
     }
 
-    private Phone getById(Integer id) throws ResourceNotFoundException {
+    private Phone getById(Integer id) throws Exception {
         Phone phone = repo.findById(id).orElse(null);
         if (phone == null) {
-            throw new ResourceNotFoundException("Phone id = " + id.toString());
+            throw new Exception(messages.get("error.unknown"));
+            // TODO: log id
         }
         return phone;
     }
@@ -53,14 +60,10 @@ public class PhoneService {
     }
 
     @Transactional(readOnly = true)
-    public PhoneDto getDtoById(Integer id) throws ResourceNotFoundException {
+    public PhoneDto getDtoById(Integer id) throws Exception {
         Phone phone = getById(id);
-        if (phone == null) {
-            throw new ResourceNotFoundException();
-        } else {
-            PhoneDto orderDto = mapper.getDto(phone);
-            return orderDto;
-        }
+        PhoneDto orderDto = mapper.getDto(phone);
+        return orderDto;
     }
 
     public Integer create(PhoneDto phoneDto) {
@@ -69,11 +72,11 @@ public class PhoneService {
         return phone.getId();
     }
 
-    public void update(PhoneDto dto) throws ResourceNotFoundException {
+//    public void update(PhoneDto dto) throws ResourceNotFoundException {
 //        Phone phone = getById(dto.getPhoneId());
 //        Phone updPhone = mapper.getEntity(dto);
 //        phone = mapper.merge(phone, updPhone);
 //        repo.saveAndFlush(phone);
-    }
+//    }
 
 }
