@@ -27,10 +27,6 @@ public class ProductRepositoryTest {
 
     @Test
     public void saveSeveralItems() {
-        productRepository.save(new Book("1", new BigDecimal(10), 1));
-        productRepository.save(new Book("2", new BigDecimal(10), 1));
-        productRepository.save(new Book("3", new BigDecimal(10), 1));
-        assert productRepository.count() == 3;
     }
 
     @After

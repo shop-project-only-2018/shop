@@ -3,11 +3,14 @@ function buyButtonsComponent() {
         "</div><div class=\"buttonBuy\">\n" + buttonBuyNowText + "</div>"
 }
 
+function imageComponent(url) {
+    return "<img src=\"" + url + "\" />";
+}
 
 function bookComponent(book) {
-    return "<div class=\"book\">\n" +
+    return "<div class=\"book\">\n" + imageComponent("/api/images/" + book.coverId) +
         "<div class=\"bookname\">\n" + book.name +
-        "</div>" + buyButtonsComponent() + "</div>"
+        "</div>" + buyButtonsComponent() + "</div>";
 }
 
 function loadBooks(u, elementId) {

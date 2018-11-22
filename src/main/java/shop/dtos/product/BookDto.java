@@ -12,6 +12,15 @@ public class BookDto implements DTO {
     private String name;
     private BigDecimal price;
     private int quantity;
+    private Integer coverId;
+
+    public Integer getCoverId() {
+        return coverId;
+    }
+
+    public void setCoverId(Integer coverId) {
+        this.coverId = coverId;
+    }
 
     public String getName() {
         return name;

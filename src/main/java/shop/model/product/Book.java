@@ -25,20 +25,19 @@ public class Book implements EntityWithIntegerId {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "cover_id")
+    private Image cover;
+
     public Book() {
     }
 
-    public Book(String name, BigDecimal price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    public Image getCover() {
+        return cover;
     }
 
-    public Book(String name, BigDecimal price, int quantity, Category category) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.category = category;
+    public void setCover(Image cover) {
+        this.cover = cover;
     }
 
     public int getBookId() {

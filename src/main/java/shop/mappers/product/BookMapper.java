@@ -20,7 +20,8 @@ public interface BookMapper {
     ProductDto getDto(Book book);
 
     @Mappings({
-            @Mapping(target = "name", source = "name")
+            @Mapping(target = "name", source = "name"),
+            @Mapping(target = "coverId", source = "cover.imageId")
     })
     BookDto getIndexDto(Book book);
 
