@@ -32,6 +32,6 @@ function renderNewBooks(data, elementId) {
     });
 }
 function renderPage() {
-    loadBooks('api/new-books', '#newBooks');
-    loadBooks('api/bestsellers', "#bestsellers");
+    loadBooks('api/books/new', '#newBooks');
+    loadBooks('api/books/bestsellers', "#bestsellers");
 }
