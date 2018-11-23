@@ -4,8 +4,10 @@
     padding: 0;
     background-color: #2d170c;
 }
+
 #innernavbar {
 }
+
 #logo {
     display: block;
     color: #fff;
@@ -14,6 +16,7 @@
     padding: 24px 15px;
     margin-left: 0;
 }
+
 #container {
     background-color: #ffffff;
     margin: 0 auto;
@@ -21,34 +24,39 @@
     width: 80%;
     box-shadow: 5px #000;
 }
+
 #content {
     margin: 0;
     padding: 15px;
 }
+
 #footer {
     color: #bbbbbb;
     font-size: 14px;
     text-align: center;
     padding: 8px;
 }
+
 #menu {
     margin: 0;
     padding: 0;
     background-color: #562c17;
 }
+
 .main {
     display: block;
     min-width: 1000px;
     width: 80%;
     margin: 0 auto;
 }
-#innermenubar a {
+
+.topmenu {
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -o-transition: all 0.3s;
     -ms-transition: all 0.3s;
-    display:inline-block;
+    display: inline-block;
     position: relative;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -61,19 +69,22 @@
     padding: 15px;
     margin: 0;
 }
-#innermenubar a:hover {
+
+.topmenu:hover {
     background-color: #67351c;
 }
 
-#innermenubar a.menuright {
-    float:right;
+.menuright {
+    float: right;
 }
+
 #form {
     text-align: center;
     margin: 0 auto !important;
     padding: 30px;
     width: 240px;
 }
+
 body {
     font-family: Arial;
     background-color: #eee;
@@ -81,10 +92,12 @@ body {
     margin: 0;
     background-image: url("/images/background.png") !important;
 }
-input[type="text"],input[type="password"],button, input[type="submit"], input[type="button"] {
+
+input[type="text"], input[type="password"], button, input[type="submit"], input[type="button"] {
     margin: 7px;
     padding: 12px;
 }
+
 h1 {
     font-size: 24px;
     margin-top: 0 !important;
@@ -95,11 +108,13 @@ h1 {
     border-bottom: #555 solid 2px;
     color: #222;
 }
+
 .errorMessage {
-    background:#fdd;
+    background: #fdd;
     color: #a00;
     padding: 15px;
 }
+
 .book {
     width: 30% !important;
     display: inline-block;
@@ -107,10 +122,12 @@ h1 {
     margin: 5px;
     text-align: center;
 }
+
 .book-table {
     width: 100% !important;
     min-height: 220px !important;
 }
+
 .book-table-img {
     width: 40% !important;
     background-size: cover;
@@ -118,38 +135,48 @@ h1 {
     background-color: #f0f0f0;
     background-position: center;
 }
+
 .book-table-main {
     width: 60% !important;
     padding: 0 5px;
     text-align: left;
 }
+
 .book img {
     max-width: 95%;
     max-height: 200px;
 }
+
 .book-name {
     color: #562c17;
     font-size: 20px;
 }
+
 .book-author {
 
 }
+
 .book-description {
     font-size: 12px;
 }
+
 table {
     border-spacing: 0 !important;
 }
+
 #maintable {
     width: 100% !important;
 }
+
 #menuleft, #tdcontent {
     padding: 0 !important;
 }
+
 #menuleft {
     min-width: 200px !important;
     width: 20% !important;
 }
+
 #menuleft div {
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
@@ -163,17 +190,21 @@ table {
     padding: 15px;
     cursor: pointer;
 }
+
 #menuleft div:hover {
     background-color: #e4ddd9;
 }
+
 #content {
     width: auto;
     margin: 0 auto;
     text-align: center;
 }
+
 .form-fields {
     padding: 12px;
 }
+
 .buttonBuy {
     font-size: 16px;
     display: inline-block;
@@ -183,6 +214,7 @@ table {
     margin: 2px;
     padding: 8px;
 }
+
 #menuRightCart:hover, .buttonBuy:hover {
     background-color: #67351c !important;
 }

@@ -106,10 +106,10 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public ProductDto getDtoById(Integer id) throws Exception {
-        Book product = getById(id);
-        ProductDto orderDto = mapper.getDto(product);
-        return orderDto;
+    public BookDto getDtoById(Integer id) throws CheckedException {
+        Book book = getById(id);
+        BookDto dto = mapper.getIndexDto(book);
+        return dto;
     }
 
     public Integer create(ProductDto productDto) {

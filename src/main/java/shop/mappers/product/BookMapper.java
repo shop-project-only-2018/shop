@@ -21,6 +21,7 @@ public interface BookMapper {
     ProductDto getDto(Book book);
 
     @Mappings({
+            @Mapping(target = "id", source = "bookId"),
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "description", source = "description"),
             @Mapping(target = "author", source = "author"),

@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html th:fragment="layout (template, menu)" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title th:text="#{${title}}">Bookstore</title>
-    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
 
     <script th:inline="javascript">
-/*<![CDATA[*/
-    const buttonAddToCartText = /*[[#{button.addToCart}]]*/ 'Add to Cart!';
-    const buttonBuyNowText = /*[[#{button.buyNow}]]*/ 'Buy now!';
-/*]]>*/
-</script>    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+        /*<![CDATA[*/
+        const buttonAddToCartText = /*[[#{button.addToCart}]]*/ 'Add to Cart!';
+        const buttonBuyNowText = /*[[#{button.buyNow}]]*/ 'Buy now!';
+        /*]]>*/
+    </script>
+    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
+    <script src="../static/js/components.js" th:src="@{/js/components.js}"></script>
+    <script src="../static/js/cart.js" th:src="@{/js/cart.js}"></script>
+    <script src="../static/js/ajax.js" th:src="@{/js/ajax.js}"></script>
 
 </head>
 <body onload="renderPage()">
@@ -21,12 +26,15 @@
 </nav>
 <div id="menu">
     <div id="innermenubar" class="main">
-        <a href="/" th:text="#{menu.Books}"></a><a href="/" th:text="#{menu.Help}"></a><a href="/" th:text="#{menu.About}"></a>
-        <a href="/" id="menuRightCart" class="menuright" th:text="#{menu.Cart}"></a><a href="/sign-in" class="menuright" th:text="#{menu.SignIn}"></a><a href="/sign-up" class="menuright" th:text="#{menu.SignUp}"></a>
+        <span class="topmenu" th:text="#{menu.Books}"></span><span class="topmenu" href="/" th:text="#{menu.Help}"></span><span class="topmenu" href="/"
+                                                                                          th:text="#{menu.About}"></span>
+        <span  id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu" th:text="#{menu.Cart}"></span><a href="/sign-in" class="menuright topmenu"
+                                                                                       th:text="#{menu.SignIn}"></a><a
+            href="/sign-up" class="menuright topmenu" th:text="#{menu.SignUp}"></a>
     </div>
 </div>
 <div id="container">
-                    <th:block th:include="${template}"/>
+    <th:block th:include="${template}"/>
     <div id="footer" th:text="#{customerPersonalMenu.termsEtc}">
     </div>
 </div>
