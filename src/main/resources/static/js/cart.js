@@ -41,7 +41,7 @@ function addToCart(id) {
 
 
 function showCart() {
-    var books = "<h1>/redo/ Cart items</h1>";
+    var books = "<h1></h1>";
     ids = JSON.parse(getStoredArray());
     var arrayLength = ids.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -50,7 +50,7 @@ function showCart() {
                 url: '/api/books/' + ids[i],
                 dataType: "json",
                 success: function (data) {
-                    books +=  bookComponent(data);
+                    books += bookComponent(data);
                     $('#container').html(books);
                 }
             });
