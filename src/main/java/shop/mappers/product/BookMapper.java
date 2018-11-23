@@ -5,9 +5,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import shop.dtos.product.BookDto;
 import shop.dtos.product.ProductDto;
+import shop.mappers.util.CustomerURIMapper;
 import shop.model.product.Book;
 
-@Mapper(componentModel = "spring")
+@Mapper(uses = {AuthorDtoMapper.class}, componentModel = "spring")
 public interface BookMapper {
 
     @Mappings({
@@ -21,6 +22,9 @@ public interface BookMapper {
 
     @Mappings({
             @Mapping(target = "name", source = "name"),
+            @Mapping(target = "description", source = "description"),
+            @Mapping(target = "author", source = "author"),
+            @Mapping(target = "quantity", source = "quantity"),
             @Mapping(target = "coverId", source = "cover.imageId")
     })
     BookDto getIndexDto(Book book);
@@ -32,4 +36,5 @@ public interface BookMapper {
         recipient.setCategory(source.getCategory());
         return recipient;
     }
+
 }

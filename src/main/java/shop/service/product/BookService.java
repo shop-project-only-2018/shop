@@ -82,7 +82,7 @@ public class BookService {
         int i = 0;
         for (BookDto dto : dtoList) {
             list.add(dto);
-            if (i > 3) break;
+            if (i > 1) break;
             i++;
         }
 

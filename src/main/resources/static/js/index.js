@@ -1,16 +1,25 @@
-function buyButtonsComponent() {
-    return "<div class=\"buttonBuy\">\n" + buttonAddToCartText +
-        "</div><div class=\"buttonBuy\">\n" + buttonBuyNowText + "</div>"
+function divClassComponent(className, content) {
+    return "<div class=\""+ className + "\">" + content + "</div>" ;
 }
 
-function imageComponent(url) {
-    return "<img src=\"" + url + "\" />";
+function buyButtonsComponent() {
+    return divClassComponent("buttonBuy", buttonAddToCartText) + divClassComponent("buttonBuy", buttonBuyNowText);
+}
+
+function imageTdComponent(url) {
+    return "<td class=\"book-table-img\" style=\"background-image: url('" + url + "') !important;\">";
 }
 
 function bookComponent(book) {
-    return "<div class=\"book\">\n" + imageComponent("/api/images/" + book.coverId) +
-        "<div class=\"bookname\">\n" + book.name +
-        "</div>" + buyButtonsComponent() + "</div>";
+console.log(book.name);
+    return "<div class=\"book\"><table border=\"0\" class=\"book-table\"><tr>"
+    + imageTdComponent("/api/images/" + book.coverId) + "</td>"
+    + "<td class=\"book-table-main\" valign=\"top\">"
+    + divClassComponent("book-name", book.name)
+    + divClassComponent("book-author", book.author)
+    + divClassComponent("book-description", book.description)
+    + buyButtonsComponent()
+    + "</td></tr></table></div>";
 }
 
 function loadBooks(u, elementId) {
@@ -19,11 +28,10 @@ function loadBooks(u, elementId) {
         url: u,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
-            console.log('Accepted Data:', data);
             renderNewBooks(data, elementId);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log('Accepted Error Data:', jqXHR.responseJSON);
+            console.log('Error! Data:', jqXHR.responseJSON);
         }
     });
 }

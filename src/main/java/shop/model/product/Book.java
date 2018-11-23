@@ -16,6 +16,9 @@ public class Book implements EntityWithIntegerId {
     private String name;
 
     @Column
+    private String description;
+
+    @Column
     private BigDecimal price;
 
     @Column
@@ -29,7 +32,25 @@ public class Book implements EntityWithIntegerId {
     @JoinColumn(name = "cover_id")
     private Image cover;
 
-    public Book() {
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    } public Book() {
     }
 
     public Image getCover() {

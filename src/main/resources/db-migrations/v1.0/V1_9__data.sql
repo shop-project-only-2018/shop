@@ -4,18 +4,17 @@ INSERT INTO customer(customer_id, first_name, last_name, username, "password") V
 
 -- COVERS
 INSERT INTO image(image_id) VALUES(1);
+INSERT INTO image(image_id) VALUES(2);
+INSERT INTO image(image_id) VALUES(3);
+
+-- AUTHORS
+INSERT INTO author(author_id, first_name, last_name) VALUES(2000, 'Charles', 'Darwin');
 
 -- BOOKS
-INSERT INTO book(book_id, "name", price, quantity, cover_id) VALUES(100, 'On the Origin of Species', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(101, 'On the Origin of Species 2', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(102, 'On the Origin of Species 3', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(103, 'On the Origin of Species 4', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(104, 'On the Origin of Species 5', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(105, 'On the Origin of Species 6', 100, 100, 1);
-INSERT INTO book(book_id, "name", price, quantity, "cover_id") VALUES(106, 'On the Origin of Species 7', 100, 100, 1);
-INSERT INTO book("name", price, quantity, "cover_id") VALUES('On the Origin of Species 8', 100, 100, 1);
-INSERT INTO book("name", price, quantity, "cover_id") VALUES('On the Origin of Species 9', 100, 100, 1);
-INSERT INTO book("name", price, quantity, "cover_id") VALUES('On the Origin of Species 10', 100, 100, 1);
+INSERT INTO book("name", price, quantity, cover_id, author_id, description) VALUES( 'On the Origin of Species', 100, 100, 1, 2000, 'On the Origin of Species, published on 24 November 1859, is a work of scientific literature by Charles Darwin which is considered to be the foundation of evolutionary biology.');
+INSERT INTO book("name", price, quantity, cover_id, author_id, description) VALUES( 'On the Origin of Species 1', 100, 100, 2, 2000, 'On the Origin of Species, published on 24 November 1859, is a work of scientific literature by Charles Darwin which is considered to be the foundation of evolutionary biology.');
+INSERT INTO book("name", price, quantity, cover_id, author_id, description) VALUES( 'On the Origin of Species 2', 100, 100, 3, 2000, 'On the Origin of Species, published on 24 November 1859, is a work of scientific literature by Charles Darwin which is considered to be the foundation of evolutionary biology.');
+INSERT INTO book("name", price, quantity, cover_id, author_id, description) VALUES( 'On the Origin of Species 3', 100, 100, 1, 2000, 'On the Origin of Species, published on 24 November 1859, is a work of scientific literature by Charles Darwin which is considered to be the foundation of evolutionary biology.');
 
 -- CATEGORIES
 INSERT INTO "category"("name", parent_id) VALUES('Tragedy', null);

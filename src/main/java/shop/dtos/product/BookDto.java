@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 public class BookDto implements DTO {
 
     private String name;
+    private String author;
+    private String description;
     private BigDecimal price;
     private int quantity;
     private Integer coverId;
@@ -49,9 +51,19 @@ public class BookDto implements DTO {
     public BookDto() {
     }
 
-    public BookDto(String name, BigDecimal price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

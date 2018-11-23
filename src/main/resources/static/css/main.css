@@ -2,7 +2,7 @@
     display: block;
     margin: 0;
     padding: 0;
-    background-color: #222222;
+    background-color: #2d170c;
 }
 #innernavbar {
 }
@@ -10,14 +10,16 @@
     display: block;
     color: #fff;
     text-decoration: none;
-    font-size: 42px !important;
+    font-size: 64px !important;
     padding: 24px 15px;
     margin-left: 0;
 }
 #container {
     background-color: #ffffff;
     margin: 0 auto;
-    width: 1000px;
+    min-width: 1000px;
+    width: 80%;
+    box-shadow: 5px #000;
 }
 #content {
     margin: 0;
@@ -32,11 +34,12 @@
 #menu {
     margin: 0;
     padding: 0;
-    background-color: #444444;
+    background-color: #562c17;
 }
 .main {
     display: block;
-    width: 1000px;
+    min-width: 1000px;
+    width: 80%;
     margin: 0 auto;
 }
 #innermenubar a {
@@ -59,7 +62,7 @@
     margin: 0;
 }
 #innermenubar a:hover {
-    background-color: #555555;
+    background-color: #67351c;
 }
 
 #innermenubar a.menuright {
@@ -76,6 +79,7 @@ body {
     background-color: #eee;
     padding: 0;
     margin: 0;
+    background-image: url("/images/background.png") !important;
 }
 input[type="text"],input[type="password"],button, input[type="submit"], input[type="button"] {
     margin: 7px;
@@ -97,32 +101,54 @@ h1 {
     padding: 15px;
 }
 .book {
-    width: 120px !important;
-    height: 220px !important;
-    border: #aaa solid 2px;
+    width: 30% !important;
     display: inline-block;
     padding: 5px;
-    margin: 5px 8px;
+    margin: 5px;
     text-align: center;
 }
-.book img {
-    max-width: 100px;
-    max-height: 150px;
+.book-table {
+    width: 100% !important;
+    min-height: 220px !important;
 }
-.bookname {
-    color: #333;
-    font-weight: bold;
-    font-size: 14px;
+.book-table-img {
+    width: 40% !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f0f0f0;
+    background-position: center;
+}
+.book-table-main {
+    width: 60% !important;
+    padding: 0 5px;
+    text-align: left;
+}
+.book img {
+    max-width: 95%;
+    max-height: 200px;
+}
+.book-name {
+    color: #562c17;
+    font-size: 20px;
+}
+.book-author {
+
+}
+.book-description {
+    font-size: 12px;
+}
+table {
+    border-spacing: 0 !important;
 }
 #maintable {
     width: 100% !important;
-    border-spacing: 0 !important;
 }
-#maintable td {
+#menuleft, #tdcontent {
     padding: 0 !important;
 }
 #menuleft {
-    width: 200px !important;
+    min-width: 200px !important;
+    width: 20% !important;
 }
 #menuleft div {
     transition: all 0.3s;
@@ -132,16 +158,13 @@ h1 {
     -ms-transition: all 0.3s;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-
-    color: #fff;
     margin: 0;
-    background: #555555;
-    padding: 10px 14px;
-    font-size: 14px;
+    font-size: 16px !important;
+    padding: 15px;
     cursor: pointer;
 }
 #menuleft div:hover {
-    background-color: #666666;
+    background-color: #e4ddd9;
 }
 #content {
     width: auto;
@@ -152,14 +175,14 @@ h1 {
     padding: 12px;
 }
 .buttonBuy {
-    font-size: 10px;
+    font-size: 16px;
     display: inline-block;
     cursor: pointer;
-    background: #aa0000;
+    background: #562c17;
     color: white;
     margin: 2px;
-    padding: 5px;
+    padding: 8px;
 }
 #menuRightCart:hover, .buttonBuy:hover {
-    background-color: #bb0000 !important;
+    background-color: #67351c !important;
 }
