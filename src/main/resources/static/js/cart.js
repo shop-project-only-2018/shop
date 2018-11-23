@@ -41,7 +41,7 @@ function addToCart(id) {
 
 
 function showCart() {
-    var books = "<h1></h1>";
+    var books = "<h1>Cart</h1>";
     ids = JSON.parse(getStoredArray());
     var arrayLength = ids.length;
     for (var i = 0; i < arrayLength; i++) {
