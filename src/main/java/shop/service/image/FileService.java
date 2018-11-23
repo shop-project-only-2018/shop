@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -24,16 +25,9 @@ public class FileService {
 
     private Path fileStorageLocation;
 
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
-
     @PostConstruct
     public void configureFileStorageLocation() {
-        this.fileStorageLocation = Paths.get(directory).toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get(directory).normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (IOException e) {
@@ -46,12 +40,12 @@ public class FileService {
         return String.format(pattern, identifier);
     }
 
-    public void saveImage(Integer id, MultipartFile image) throws Exception {
+    public void saveImage(Integer id, MultipartFile image) throws CheckedException {
         try {
             Files.copy(image.getInputStream(),
                     this.fileStorageLocation.resolve(getFilename(id)), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            throw new Exception(messages.get("reksoft.demo.Picture.couldNotStore.message"));
+            throw new CheckedException("error.couldNotSave.image");
         }
     }
 

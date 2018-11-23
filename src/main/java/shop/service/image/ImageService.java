@@ -10,25 +10,21 @@ import org.springframework.web.multipart.MultipartFile;
 import shop.model.product.Image;
 import shop.repository.product.ImageRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import javax.validation.constraints.NotNull;
+import java.net.MalformedURLException;
 
 @Component
 public class ImageService {
 
     private FileService fileService;
-    private Messages messages;
     @Autowired
     private ImageRepository imageRepository;
 
     @Autowired
     public void setFileService(FileService fileService) {
         this.fileService = fileService;
-    }
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
     }
 
     public void setImageRepository(ImageRepository imageRepository) {
@@ -39,9 +35,9 @@ public class ImageService {
         return imageRepository.findById(id).orElse(null);
     }
     @Transactional
-    public Integer save(@NotNull MultipartFile image) throws Exception {
+    public Integer save(@NotNull MultipartFile image) throws CheckedException {
         if (!image.getContentType().equals(MediaType.IMAGE_JPEG_VALUE)) {
-            throw new Exception(messages.get("error.couldNotSave.image.isNotJpeg"));
+            throw new CheckedException("error.couldNotSave.image.isNotJpeg");
         } else {
             Image imageEntity = new Image();
             imageRepository.saveAndFlush(imageEntity);
@@ -51,10 +47,10 @@ public class ImageService {
     }
 
     @Transactional(readOnly = true)
-    public Resource get(@NotNull Integer id) throws Exception {
+    public Resource get(@NotNull Integer id) throws CheckedException, MalformedURLException {
         Resource resource = new UrlResource((fileService.getImagePath(id)).toUri());
         if (resource.exists()) {
             return resource;
         } else {
-            throw new Exception(messages.get("error.notFound"));
+            throw new CheckedException("error.notFound");
         }}}

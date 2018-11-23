@@ -8,6 +8,7 @@ import shop.mappers.customer.PhoneMapper;
 import shop.model.customer.Phone;
 import shop.repository.customer.PhoneRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,10 @@ public class PhoneService {
         this.mapper = mapper;
     }
 
-    private Phone getById(Integer id) throws Exception {
+    private Phone getById(Integer id) throws CheckedException {
         Phone phone = repo.findById(id).orElse(null);
         if (phone == null) {
-            throw new Exception(messages.get("error.unknown"));
+            throw new CheckedException("error.unknown");
             // TODO: log id
         }
         return phone;

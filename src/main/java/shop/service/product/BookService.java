@@ -10,6 +10,7 @@ import shop.model.product.Book;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +44,10 @@ public class BookService {
     }
 
 
-    private Book getById(Integer id) throws Exception {
+    private Book getById(Integer id) throws CheckedException {
         Book product = productRepository.findById(id).orElse(null);
         if (product == null) {
-            throw new Exception(messages.get("error.notFound.book"));
+            throw new CheckedException("error.notFound.book");
         }
         return product;
     }

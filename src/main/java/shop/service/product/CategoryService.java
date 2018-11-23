@@ -8,6 +8,7 @@ import shop.mappers.product.CategoryMapper;
 import shop.model.product.Category;
 import shop.repository.product.CategoryRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +35,10 @@ public class CategoryService {
         this.mapper = mapper;
     }
 
-    private Category getById(Integer id) throws Exception {
+    private Category getById(Integer id) throws CheckedException {
         Category category = repo.findById(id).orElse(null);
         if (category == null) {
-            throw new Exception(messages.get("error.unknown"));
+            throw new CheckedException("error.unknown");
             // TODO: log id
         }
         return category;
@@ -65,13 +66,13 @@ public class CategoryService {
         return orderDto;
     }
 
-    public Integer create(CategoryDto categoryDto) throws Exception {
+    public Integer create(CategoryDto categoryDto) throws CheckedException {
         Category category = mapper.getEntity(categoryDto);
         Category parent = null;
         try {
             parent = getById(categoryDto.getParentCategoryId());
-        } catch (Exception e) {
-            throw new Exception("error.notFound.category.parent");
+        } catch (CheckedException e) {
+            throw new CheckedException("error.notFound.category.parent");
         }
         category.setParent(parent);
         repo.saveAndFlush(category);

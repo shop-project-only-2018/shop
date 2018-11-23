@@ -16,6 +16,7 @@ import shop.repository.customer.CustomerRepository;
 import shop.service.message.Messages;
 import shop.service.security.SecurityService;
 import shop.service.security.userdetails.IdentifiedUser;
+import shop.system.CheckedException;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -31,12 +32,6 @@ public class CustomerService {
     private CustomerMapper mapper;
 
     private SecurityService securityService;
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
 
     @Autowired
     public void setRepo(CustomerRepository repo) {
@@ -67,7 +62,8 @@ public class CustomerService {
     private Customer getById(Integer id) throws Exception {
         Customer customer = repo.findById(id).orElse(null);
         if (customer == null) {
-            throw new Exception(messages.get("error.unknown"));
+            throw new CheckedException("error.unknown");
+            // TODO: log id
         }
         return customer;
     }

@@ -8,6 +8,8 @@ import shop.mappers.customer.AddressMapper;
 import shop.model.customer.Address;
 import shop.repository.customer.AddressRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +19,6 @@ public class AddressService {
     private AddressRepository repo;
 
     private AddressMapper mapper;
-
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
 
     @Autowired
     public void setRepo(AddressRepository repo) {
@@ -35,10 +30,10 @@ public class AddressService {
         this.mapper = mapper;
     }
 
-    private Address getById(Integer id) throws Exception {
+    private Address getById(Integer id) throws CheckedException {
         Address address = repo.findById(id).orElse(null);
         if (address == null) {
-            throw new Exception(messages.get("error.unknown"));
+            throw new CheckedException("error.unknown");
             // TODO: log id
         }
         return address;

@@ -8,6 +8,7 @@ import shop.mappers.order.OrderMapper;
 import shop.model.order.Order;
 import shop.repository.order.OrderRepository;
 import shop.service.message.Messages;
+import shop.system.CheckedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,10 @@ public class OrderService {
         this.mapper = mapper;
     }
 
-    private Order getById(Integer id) throws Exception {
+    private Order getById(Integer id) throws CheckedException {
         Order order = repo.findById(id).orElse(null);
         if (order == null) {
-            throw new Exception(messages.get("error.unknown"));
+            throw new CheckedException("error.unknown");
             // TODO: log id
         }
         return order;
