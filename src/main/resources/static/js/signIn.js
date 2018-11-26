@@ -11,10 +11,23 @@ function validateForm() {
                 password: passwordF,
             }),
             success: function (result) {
-                $('#errorMessage').hide();
-                window.location = '/';
+                        const token = result.tokenType + ' ' + result.accessToken;
+                        const userURI = result.user.userURI;
+                        const userID = result.user.username;
+
+                        localStorage.setItem('token', token);
+                        localStorage.setItem('userURI', userURI);
+                        localStorage.setItem('username', userID);
+
+//                        l(localStorage.getItem('token', token));
+//                        l(localStorage.getItem('userURI', userURI));
+//                        l(localStorage.getItem('userID', userID));
+                     //   window.location = '/';
             },
             error: function (result) {
+                if(result.message != undefined) {
+                    $('#errorMessage').text(result.message);
+                }
                 $('#errorMessage').show(200);
             }
         });

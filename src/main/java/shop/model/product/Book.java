@@ -50,7 +50,9 @@ public class Book implements EntityWithIntegerId {
 
     public void setAuthor(Author author) {
         this.author = author;
-    } public Book() {
+    }
+
+    public Book() {
     }
 
     public Image getCover() {

@@ -31,4 +31,5 @@ public class MessageDto implements DTO {
 
     public void setMessage(String message) {
         this.message = message;
-    }}
+    }
+}

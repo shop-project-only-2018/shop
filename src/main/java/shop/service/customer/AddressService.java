@@ -7,7 +7,6 @@ import shop.dtos.customer.AddressDto;
 import shop.mappers.customer.AddressMapper;
 import shop.model.customer.Address;
 import shop.repository.customer.AddressRepository;
-import shop.service.message.Messages;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;

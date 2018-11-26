@@ -2,7 +2,10 @@ package shop.model.product;
 
 import shop.model.EntityWithIntegerId;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Image implements EntityWithIntegerId {
@@ -18,6 +21,7 @@ public class Image implements EntityWithIntegerId {
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
+
     @Override
     public Integer getId() {
         return imageId;
@@ -26,4 +30,5 @@ public class Image implements EntityWithIntegerId {
     @Override
     public void setId(Integer id) {
         this.imageId = id;
-    }}
+    }
+}

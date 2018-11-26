@@ -17,6 +17,7 @@ public class SecurityService {
     }
 
     private CustomerDetailsMapper customerDetailsMapper;
+
     @Autowired
     public void setCustomerDetailsMapper(CustomerDetailsMapper customerDetailsMapper) {
         this.customerDetailsMapper = customerDetailsMapper;
@@ -39,5 +40,9 @@ public class SecurityService {
 
     public IdentifiedUserDetails checkToken(String token) throws JwtException {
         return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token));
+    }
+
+    public String checkTokenGetUsername(String token) throws JwtException {
+        return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token)).getUsername();
     }
 }

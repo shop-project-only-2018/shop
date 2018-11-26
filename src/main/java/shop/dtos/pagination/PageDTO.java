@@ -10,7 +10,9 @@ public class PageDTO<T> implements DTO {
     private Integer pageNumber;
     private Integer numberOfPages;
 
-    public PageDTO() {items = new ArrayList<>();}
+    public PageDTO() {
+        items = new ArrayList<>();
+    }
 
     public List<T> getItems() {
         return items;

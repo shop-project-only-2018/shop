@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import shop.dtos.customer.CreateUpdateCustomerDto;
-import shop.dtos.security.TokenDTO;
-import shop.dtos.security.UsernamePasswordDTO;
 import shop.service.customer.CustomerService;
 
 @RestController

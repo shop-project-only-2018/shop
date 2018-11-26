@@ -1,10 +1,8 @@
 package shop.service.image;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import shop.service.message.Messages;
 import shop.system.CheckedException;
 
 import javax.annotation.PostConstruct;
@@ -49,7 +47,7 @@ public class FileService {
         }
     }
 
-    public Path getImagePath(Integer id){
+    public Path getImagePath(Integer id) {
         return this.fileStorageLocation.resolve(getFilename(id));
     }
 }

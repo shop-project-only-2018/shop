@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import shop.dtos.pagination.PageDTO;
-import shop.dtos.product.BookDto;
 import shop.dtos.product.CategoryDto;
 import shop.service.product.BookService;
 import shop.service.product.CategoryService;
@@ -36,4 +34,5 @@ public class IndexController {
         model.addAttribute("title", "main.title");
         model.addAttribute("categories", categories);
         return "index";
-    }}
+    }
+}

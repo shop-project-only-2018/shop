@@ -4,7 +4,7 @@ import shop.dtos.DTO;
 
 import java.math.BigDecimal;
 
-public class BookDto implements DTO {
+public class CartBookDto implements DTO {
 
     private Integer id;
 
@@ -56,7 +56,7 @@ public class BookDto implements DTO {
         this.quantity = quantity;
     }
 
-    public BookDto() {
+    public CartBookDto() {
     }
 
     public String getAuthor() {

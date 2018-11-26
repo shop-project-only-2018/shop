@@ -20,4 +20,5 @@ public class PhoneDto implements DTO {
 
     public void setNumber(String number) {
         this.number = number;
-    }}
+    }
+}

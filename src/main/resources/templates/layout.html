@@ -28,9 +28,11 @@
     <div id="innermenubar" class="main">
         <span class="topmenu" th:text="#{menu.Books}"></span><span class="topmenu" href="/" th:text="#{menu.Help}"></span><span class="topmenu" href="/"
                                                                                           th:text="#{menu.About}"></span>
-        <span  id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu" th:text="#{menu.Cart}"></span><a href="/sign-in" class="menuright topmenu"
-                                                                                       th:text="#{menu.SignIn}"></a><a
-            href="/sign-up" class="menuright topmenu" th:text="#{menu.SignUp}"></a>
+        <span id="menuRightLogout" onclick="logout();" class="menuright topmenu" th:text="#{menu.Logout}">
+        </span><span  id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu" th:text="#{menu.Cart}">
+        </span><a id="menuRightSignIn" href="/sign-in" class="menuright topmenu" th:text="#{menu.SignIn}">
+        </a><a id="menuRightSignUp" href="/sign-up" class="menuright topmenu" th:text="#{menu.SignUp}">
+        </a>
     </div>
 </div>
 <div id="container">

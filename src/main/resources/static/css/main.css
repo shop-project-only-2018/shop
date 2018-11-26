@@ -219,3 +219,7 @@ table {
 #menuRightCart:hover, .buttonBuy:hover {
     background-color: #67351c !important;
 }
+
+.bAddToCart {
+    display: none;
+}

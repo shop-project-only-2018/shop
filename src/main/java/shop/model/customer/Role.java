@@ -26,8 +26,10 @@ public class Role implements EntityWithIntegerId {
     public Integer getRoleId() {
         return roleId;
     }
+
     public void setRoleId(Integer roleId) {
-        this.roleId = roleId;}
+        this.roleId = roleId;
+    }
 
     @Override
     public Integer getId() {

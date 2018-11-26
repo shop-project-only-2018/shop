@@ -1,13 +1,8 @@
 package shop.model.product;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import shop.model.EntityWithIntegerId;
-import shop.model.customer.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 public class Author implements EntityWithIntegerId {

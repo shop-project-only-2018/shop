@@ -1,15 +1,9 @@
 package shop.dtos.customer;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import shop.dtos.DTO;
-import shop.model.EntityWithIntegerId;
-import shop.model.customer.Role;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 public class CreateUpdateCustomerDto implements DTO {

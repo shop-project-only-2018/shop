@@ -6,6 +6,8 @@ import shop.dtos.message.Message;
 @Component
 public interface Messages {
     String get(String id);
+
     Message getMessage(String id);
+
     Message getError(String id);
 }

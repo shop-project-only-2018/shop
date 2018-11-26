@@ -33,13 +33,14 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
             HttpServletResponse response
 
     ) throws AuthenticationException {
-
+        System.out.println(request);
+        System.out.println(response);
         final String token;
         final String credentials = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (credentials == null) {
-            throw new BadCredentialsException("");
+            throw new BadCredentialsException("error.security.badToken");
         } else if (!credentials.startsWith(tokenType)) {
-            throw new BadCredentialsException("");
+            throw new BadCredentialsException("error.security.badToken");
         } else {
             token = credentials.substring(tokenType.length()).trim();
         }

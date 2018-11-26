@@ -19,14 +19,17 @@ public class MessageService implements Messages {
 
     @Override
     public String get(String id) {
-        return messageSource.getMessage(id, null, Locale.getDefault());}
+        return messageSource.getMessage(id, null, Locale.getDefault());
+    }
 
     @Override
     public Message getMessage(String id) {
-        return new Message(messageSource.getMessage(id, null, Locale.getDefault()));}
+        return new Message(messageSource.getMessage(id, null, Locale.getDefault()));
+    }
 
     @Override
     public Message getError(String id) {
-        return new Message(true, messageSource.getMessage(id, null, Locale.getDefault()));}
+        return new Message(true, messageSource.getMessage(id, null, Locale.getDefault()));
+    }
 
 }

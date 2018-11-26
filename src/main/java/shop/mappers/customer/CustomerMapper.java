@@ -24,6 +24,7 @@ public interface CustomerMapper {
     CustomerDto getDto(Customer entity);
 
     @Mappings({
-    @Mapping(target = "username", source = "username"),
-    @Mapping(target = "userURI", source = "customerId")})
-    LoginDTO toAuthDTO(Customer customer);}
+            @Mapping(target = "username", source = "username"),
+            @Mapping(target = "userURI", source = "customerId")})
+    LoginDTO toAuthDTO(Customer customer);
+}

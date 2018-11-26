@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import shop.model.product.Image;
 import shop.repository.product.ImageRepository;
-import shop.service.message.Messages;
 import shop.system.CheckedException;
 
 import javax.validation.constraints.NotNull;
@@ -34,6 +33,7 @@ public class ImageService {
     private Image retrieve(Integer id) {
         return imageRepository.findById(id).orElse(null);
     }
+
     @Transactional
     public Integer save(@NotNull MultipartFile image) throws CheckedException {
         if (!image.getContentType().equals(MediaType.IMAGE_JPEG_VALUE)) {
@@ -53,4 +53,6 @@ public class ImageService {
             return resource;
         } else {
             throw new CheckedException("error.notFound");
-        }}}
+        }
+    }
+}

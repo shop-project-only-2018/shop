@@ -9,7 +9,6 @@ function buyButtonsComponent(id) {
     return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "addToCart")
          + buttonComponent("buttonBuy bBuyNow", buttonBuyNowText, id, "console.log");
 }
-
 function imageTdComponent(url) {
     return "<td class=\"book-table-img\" style=\"background-image: url('" + url + "') !important;\">";
 }

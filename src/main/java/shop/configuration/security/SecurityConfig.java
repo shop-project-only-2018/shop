@@ -16,11 +16,12 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import static shop.configuration.security.SecurityRouting.*;
 import shop.controller.AdviceController;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+
+import static shop.configuration.security.SecurityRouting.*;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,10 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
 
-                .authorizeRequests()
-                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
-                .requestMatchers(USER_API_URLS).hasRole("USER")
-                .and()
+//                .authorizeRequests()
+//                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
+//                .requestMatchers(USER_API_URLS).hasRole("USER")
+//                .and()
 
                 .httpBasic().disable()
                 .formLogin().disable()
@@ -56,10 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-
-    /**
-     * Disables Spring Boot automatic filter registration.
-     */
     @Bean
     public FilterRegistrationBean registrationBean(final TokenAuthenticationFilter authenticationFilter) {
         final FilterRegistrationBean<TokenAuthenticationFilter> bean = new FilterRegistrationBean<>();
@@ -89,11 +86,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return successHandler;
     }
 
-    /**
-     * AuthenticationFailureHandler configuration.
-     *
-     * @return failure handler bean
-     */
     @Bean
     public AuthenticationFailureHandler failureHandler() {
         return (request, response, ex) -> {
@@ -106,12 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-    /**
-     * AccessDeniedHandler configuration.
-     *
-     * @return handler bean
-     */
-    @Bean
+        @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return (request, response, ex) -> {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
@@ -123,12 +110,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-    /**
-     * BCryptPasswordEncoder configuration.
-     *
-     * @return password encoder bean
-     */
-    @Bean
+        @Bean
     public BCryptPasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(10);
     }

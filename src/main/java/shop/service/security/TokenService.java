@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -65,12 +64,6 @@ public class TokenService implements Clock {
                 .compact();
     }
 
-    /**
-     * Returns encoded and parsed JWT.
-     *
-     * @param token - encoded json
-     * @return map of token data
-     */
     public Map<String, Object> verify(final String token) throws JwtException {
         return Jwts
                 .parser()
@@ -79,7 +72,6 @@ public class TokenService implements Clock {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 
     @Override
     public Date now() {

@@ -13,7 +13,6 @@ import shop.dtos.security.TokenDTO;
 import shop.mappers.customer.CustomerMapper;
 import shop.model.customer.Customer;
 import shop.repository.customer.CustomerRepository;
-import shop.service.message.Messages;
 import shop.service.security.SecurityService;
 import shop.service.security.userdetails.IdentifiedUser;
 import shop.system.CheckedException;
@@ -56,7 +55,8 @@ public class CustomerService {
     private boolean exists(String username) {
         if (repo.findByUsername(username) == null) {
             return false;
-        }        return true;
+        }
+        return true;
     }
 
     private Customer getById(Integer id) throws Exception {

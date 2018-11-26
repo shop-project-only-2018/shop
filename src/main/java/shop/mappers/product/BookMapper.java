@@ -5,7 +5,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import shop.dtos.product.BookDto;
 import shop.dtos.product.ProductDto;
-import shop.mappers.util.CustomerURIMapper;
 import shop.model.product.Book;
 
 @Mapper(uses = {AuthorDtoMapper.class}, componentModel = "spring")
