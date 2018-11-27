@@ -119,7 +119,7 @@ create table orders
 	customer_id integer
 		constraint order_customer_customer_id_fk
 			references customer,
-	payment_method_id integer default 1 not null
+	payment_method_id integer default 1
 		constraint order_payment_method_payment_method_id_fk
 			references payment_method,
 	status_id integer default 1

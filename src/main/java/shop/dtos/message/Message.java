@@ -10,6 +10,7 @@ public class Message implements DTO {
     private String message;
 
     public Message() {
+        this.message = "";
     }
 
     public Message(String message) {

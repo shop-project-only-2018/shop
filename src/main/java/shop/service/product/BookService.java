@@ -9,7 +9,7 @@ import shop.mappers.product.BookMapper;
 import shop.model.product.Book;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
-import shop.service.message.Messages;
+import shop.service.message.MessageService;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;
@@ -21,12 +21,6 @@ public class BookService {
     private CategoryRepository categoryRepository;
     private BookRepository productRepository;
     private BookMapper mapper;
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
 
     @Autowired
     public void setMapper(BookMapper mapper) {
@@ -44,7 +38,12 @@ public class BookService {
     }
 
 
-    private Book getById(Integer id) throws CheckedException {
+    public boolean exists(Integer id) {
+        Book product = productRepository.findById(id).orElse(null);
+        return product != null;
+    }
+
+    public Book getById(Integer id) throws CheckedException {
         Book product = productRepository.findById(id).orElse(null);
         if (product == null) {
             throw new CheckedException("error.notFound.book");

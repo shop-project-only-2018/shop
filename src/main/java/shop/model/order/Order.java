@@ -8,6 +8,8 @@ import shop.model.customer.Customer;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -23,6 +25,9 @@ public class Order implements EntityWithIntegerId {
     @Column
     private Timestamp added;
 
+    @Column
+    private Boolean done = false;//TODO:REDO
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -36,12 +41,30 @@ public class Order implements EntityWithIntegerId {
     @JoinColumn(name = "payment_method_id")
     private PaymentMethod paymentMethod;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
+
     public Integer getOrderId() {
         return orderId;
     }
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        if(this.orderItems == null) {
+            this.orderItems = new ArrayList<>();
+        }
+        this.orderItems.add(orderItem);
     }
 
     public BigDecimal getPrice() {
@@ -74,6 +97,14 @@ public class Order implements EntityWithIntegerId {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 
     public PaymentMethod getPaymentMethod() {

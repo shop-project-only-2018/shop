@@ -7,7 +7,7 @@ import shop.dtos.product.CategoryDto;
 import shop.mappers.product.CategoryMapper;
 import shop.model.product.Category;
 import shop.repository.product.CategoryRepository;
-import shop.service.message.Messages;
+import shop.service.message.MessageService;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;
@@ -18,12 +18,6 @@ public class CategoryService {
 
     private CategoryRepository repo;
     private CategoryMapper mapper;
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
 
     @Autowired
     public void setRepo(CategoryRepository repo) {

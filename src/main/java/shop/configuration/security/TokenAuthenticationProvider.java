@@ -21,7 +21,6 @@ final class TokenAuthenticationProvider extends AbstractUserDetailsAuthenticatio
 
     @Override
     protected void additionalAuthenticationChecks(final UserDetails userDetails, final UsernamePasswordAuthenticationToken token) {
-        // Nothing to do
     }
 
     @Override

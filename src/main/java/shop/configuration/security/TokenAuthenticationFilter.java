@@ -31,10 +31,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
     public Authentication attemptAuthentication(
             HttpServletRequest request,
             HttpServletResponse response
-
     ) throws AuthenticationException {
-        System.out.println(request);
-        System.out.println(response);
         final String token;
         final String credentials = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (credentials == null) {
@@ -44,7 +41,6 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
         } else {
             token = credentials.substring(tokenType.length()).trim();
         }
-
         return getAuthenticationManager().authenticate(new UsernamePasswordAuthenticationToken(null, token));
     }
 
@@ -53,9 +49,7 @@ public class TokenAuthenticationFilter extends AbstractAuthenticationProcessingF
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain, Authentication authResult
-
     ) throws IOException, ServletException {
-
         super.successfulAuthentication(request, response, chain, authResult);
         chain.doFilter(request, response);
     }

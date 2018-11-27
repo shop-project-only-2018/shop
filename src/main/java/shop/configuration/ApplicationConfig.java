@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import shop.service.message.MessageServiceImpl;
 import shop.service.message.MessageService;
-import shop.service.message.Messages;
 
 @Configuration
 @PropertySource("classpath:paths.properties")
@@ -20,11 +20,6 @@ public class ApplicationConfig implements WebMvcConfigurer {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         return messageSource;
-    }
-
-    @Bean
-    public Messages messages() {
-        return new MessageService();
     }
 
     @Override

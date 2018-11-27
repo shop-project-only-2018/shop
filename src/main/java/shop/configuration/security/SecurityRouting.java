@@ -4,8 +4,7 @@ import org.springframework.security.web.util.matcher.*;
 
 public interface SecurityRouting {
     RequestMatcher UNAUTHORIZED_API_URLS = new OrRequestMatcher(
-//            new AntPathRequestMatcher("/api/cart", "GET"),
-            new AntPathRequestMatcher("/api/sign-in", "GET")
+            new AntPathRequestMatcher("/sign-in")
     );
 
     RequestMatcher AUTHORIZED_API_URLS = new AndRequestMatcher(
@@ -16,6 +15,7 @@ public interface SecurityRouting {
     );
 
     RequestMatcher USER_API_URLS = new OrRequestMatcher(
+            new AntPathRequestMatcher("/api/cart"),
             new AntPathRequestMatcher("/api/order")
     );
 

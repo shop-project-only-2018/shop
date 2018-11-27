@@ -7,7 +7,7 @@ import shop.dtos.customer.PhoneDto;
 import shop.mappers.customer.PhoneMapper;
 import shop.model.customer.Phone;
 import shop.repository.customer.PhoneRepository;
-import shop.service.message.Messages;
+import shop.service.message.MessageService;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;
@@ -19,12 +19,6 @@ public class PhoneService {
     private PhoneRepository repo;
 
     private PhoneMapper mapper;
-    private Messages messages;
-
-    @Autowired
-    public void setMessages(Messages messages) {
-        this.messages = messages;
-    }
 
     @Autowired
     public void setRepo(PhoneRepository repo) {

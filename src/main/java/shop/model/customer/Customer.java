@@ -3,6 +3,7 @@ package shop.model.customer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import shop.model.EntityWithIntegerId;
+import shop.model.order.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,6 +29,13 @@ public class Customer implements EntityWithIntegerId, UserDetails {
     @JoinColumn(name = "roles")
     private Role role;
 
+    /**
+     * Current order = current cart
+     */
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Order currentOrder;
+
     public Customer(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +56,14 @@ public class Customer implements EntityWithIntegerId, UserDetails {
 
     public Integer getCustomerId() {
         return customerId;
+    }
+
+    public Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
     }
 
     public void setCustomerId(Integer customerId) {

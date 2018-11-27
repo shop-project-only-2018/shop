@@ -20,17 +20,11 @@ public class TokenService implements Clock {
     private String issuer;
     private String sign;
 
-
-    /**
-     * Getting used token type.
-     *
-     * @return tokenType
-     */
     public String getTokenType() {
         return tokenType;
     }
 
-    @Value("${security.token-type}")
+    @Value("${security.tokenType}")
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }

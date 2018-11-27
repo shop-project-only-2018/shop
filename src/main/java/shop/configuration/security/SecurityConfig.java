@@ -26,13 +26,16 @@ import static shop.configuration.security.SecurityRouting.*;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AdviceController adviceController;
-    private final TokenAuthenticationProvider provider;
+    private AdviceController adviceController;
+    private TokenAuthenticationProvider provider;
 
     @Autowired
-    public SecurityConfig(TokenAuthenticationProvider provider, AdviceController adviseController) {
-        super();
-        this.adviceController = adviseController;
+    public void setAdviceController(AdviceController adviceController) {
+        this.adviceController = adviceController;
+    }
+
+    @Autowired
+    public void setProvider(TokenAuthenticationProvider provider) {
         this.provider = provider;
     }
 

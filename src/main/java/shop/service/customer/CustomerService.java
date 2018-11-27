@@ -52,14 +52,11 @@ public class CustomerService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    private boolean exists(String username) {
-        if (repo.findByUsername(username) == null) {
-            return false;
-        }
-        return true;
+    public boolean exists(String username) {
+        return repo.findByUsername(username) != null;
     }
 
-    private Customer getById(Integer id) throws Exception {
+    public Customer getById(Integer id) throws CheckedException {
         Customer customer = repo.findById(id).orElse(null);
         if (customer == null) {
             throw new CheckedException("error.unknown");
@@ -96,8 +93,7 @@ public class CustomerService {
         }
         Customer customer = mapper.getEntity(dto);
         customer.setPassword(passwordEncoder.encode(dto.getPassword()));
-        repo.saveAndFlush(customer);
-
+        save(customer);
         return customer.getId();
     }
 
@@ -130,4 +126,12 @@ public class CustomerService {
                 );
     }
 
+    @Transactional(readOnly = true)
+    public  Customer findByUsername(String username) {
+        return repo.findByUsername(username);
+    }
+
+    public void save(Customer customer) {
+        repo.saveAndFlush(customer);
+    }
 }
