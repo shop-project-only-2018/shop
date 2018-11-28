@@ -10,8 +10,8 @@ function requestNumberOfBooksInCart() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (data) {
-            if(data.message != '0'){
-            $('#menuRightCartNumber').html(' [' + data.message + ']');
+            if (data.message != '0') {
+                $('#menuRightCartNumber').html(' [' + data.message + ']');
             }
         },
         error: function () {
@@ -71,44 +71,70 @@ function removeFromCart(bookId) {
 }
 
 
+function removeAllFromCart() {
+    l('Entering: removeAllFromCart()');
+    var tokenF = localStorage.getItem('token');
+    var urlF = '/api/cart/remove/all';
+    $.ajax({
+        url: urlF,
+        type: 'GET',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data, textStatus, jqXHR) {
+            l(data);
+            requestNumberOfBooksInCart();
+            window.location = '/';
+        },
+        error: function (data, textStatus, jqXHR) {
+            l('ERROR: removeAllFromCart()');
+            l(data);
+            l(textStatus);
+            requestNumberOfBooksInCart();
+        }
+    });
+}
+
+
 function showCart() {
     var tokenF = localStorage.getItem('token');
-        $.ajax({
-            type: 'GET',
-            url: '/api/cart/',
+    $.ajax({
+        type: 'GET',
+        url: '/api/cart/',
         contentType: "application/json",
         beforeSend: function (jqXHR, settings) {
             l('Token: ' + tokenF);
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
-           success: function (data) {
-                       drawCart(data);
-                   }
-        });
+        success: function (data) {
+            drawCart(data);
+        }
+    });
 }
 
 function drawCart(data) {
-    var books = "<h1>Cart</h1>";
-        data.forEach(function (book) {
-            books += (cartBookComponent(book));
-        });
+    var books = "<h1>Cart  " + buttonRemoveAllComponent() + "</h1>";
+    data.forEach(function (book) {
+        books += (cartBookComponent(book));
+    });
     $('#container').html(books);
 }
 
 function showBook(bookId) {
     var tokenF = localStorage.getItem('token');
-            $.ajax({
-                type: 'GET',
-                url: '/api/books/' + bookId,
-            contentType: "application/json",
-            beforeSend: function (jqXHR, settings) {
-                l('Token: ' + tokenF);
-                jqXHR.setRequestHeader('Authorization', tokenF);
-            },
-               success: function (data) {
-                           drawBook(data);
-                       }
-            });
+    $.ajax({
+        type: 'GET',
+        url: '/api/books/' + bookId,
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data) {
+            drawBook(data);
+        }
+    });
 }
 
 function drawBook(book) {

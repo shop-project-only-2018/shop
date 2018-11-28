@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import shop.dtos.security.TokenDTO;
 import shop.dtos.security.UsernamePasswordDTO;
 import shop.service.customer.CustomerService;
+import shop.system.CheckedException;
 
 @RestController
 public class AuthenticationRestController {
@@ -22,7 +23,7 @@ public class AuthenticationRestController {
 
     @PostMapping(value = "/sign-in")
     public TokenDTO signIn(@RequestBody UsernamePasswordDTO authData)
-            throws JwtException {
+            throws JwtException, CheckedException {
         return customerService.signIn(authData.getUsername(), authData.getPassword());
     }
 

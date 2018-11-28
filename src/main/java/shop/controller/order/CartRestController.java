@@ -57,6 +57,12 @@ public class CartRestController {
         return new Message();
     }
 
+    @GetMapping(value = "remove/all")
+    public Message removeAll(HttpServletRequest request) throws CheckedException {
+        orderService.removeAllBooksFromCurrentCart(tokenParserService.getTokenFromHeader(request));
+        return new Message();
+    }
+
     @GetMapping("number-of-items")
     public Message getNumberOfItemsInCurrentCart(HttpServletRequest request) throws CheckedException {
         return new Message(

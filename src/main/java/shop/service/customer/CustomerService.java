@@ -98,14 +98,14 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public TokenDTO signIn(@NotNull String login, @NotNull String password) throws BadCredentialsException, JwtException {
+    public TokenDTO signIn(@NotNull String login, @NotNull String password) throws CheckedException, JwtException {
         Customer user;
 
         user = repo.findByUsername(login);
         if (user == null) {
-            throw new BadCredentialsException("Authentication error");
+            throw new CheckedException("signIn.error");
         } else if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new BadCredentialsException("Authentication error");
+            throw new CheckedException("signIn.error");
         }
 
         return new TokenDTO()

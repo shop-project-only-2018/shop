@@ -27,6 +27,7 @@ function loadBooks(u, elementId) {
         }
     });
 }
+
 function checkToken(securedURL, successEvent, errorHandler) {
     var token = localStorage.getItem('token');
     if ((token === null) || (securedURL === null)) {
@@ -93,5 +94,5 @@ function checkAccess(securedURL, successEvent) {
 
 function logout() {
     localStorage.clear();
-     window.location = '/';
+    window.location = '/';
 }

@@ -196,4 +196,12 @@ public class OrderService {
         orderItemRepository.flush();
         save(cart);
     }
+
+    @Transactional
+    @Modifying
+    public void removeAllBooksFromCurrentCart(String tokenFromHeader) throws CheckedException {
+        Order cart = getCurrentCart(tokenFromHeader);
+        orderRepository.deleteById(cart.getOrderId());
+        orderItemRepository.flush();
+    }
 }

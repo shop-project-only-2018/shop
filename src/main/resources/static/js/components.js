@@ -15,12 +15,13 @@ function divIdComponent(idName) {
 }
 
 function buyButtonsComponent(id) {
-                                           return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "addToCart")
-                                               + buttonComponent("buttonBuy bBuyNow", buttonBuyNowText, id, "console.log");
+    return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "addToCart")
+        + buttonComponent("buttonBuy bBuyNow", buttonBuyNowText, id, "console.log");
 }
-function removeButtonComponent(id){
+
+function removeButtonComponent(id) {
     return buttonComponent("buttonBuy bRemoveFromCart", "i18n Remove", id, "removeFromCart");
-                                       }
+}
 
 function imageTdComponent(url) {
     return "<td class=\"book-table-img\" style=\"background-image: url('" + url + "') !important;\">";
@@ -33,18 +34,24 @@ function bookComponent(book) {
         + "<td class=\"book-table-main\" valign=\"top\">"
         + divClassOnclickComponent("book-name", book.name, "showBook", book.id)
         + divClassComponent("book-author", book.author);
-        if(book.price!=undefined){
-        component+= divClassComponent("book-price", '$' + book.price);}
-        if(book.description!=undefined){
-        component+= divClassComponent("book-description", book.description);}
+    if (book.price != undefined) {
+        component += divClassComponent("book-price", '$' + book.price);
+    }
+    if (book.description != undefined) {
+        component += divClassComponent("book-description", book.description);
+    }
 //        + divIdComponent('book-bottom-' + book.id)
-component+= buyButtonsComponent(book.id)
+    component += buyButtonsComponent(book.id)
         + "</td></tr></table></div>";
-        return component;
+    return component;
 }
 
 function buttonMakeOrderComponent() {
-    buttonComponent("buttonBuy", "i18n Make order", id, f);
+    //   buttonComponent("buttonBuy", "i18n Make order", id, f);
+}
+
+function buttonRemoveAllComponent() {
+    return buttonComponent("buttonBuy", "i18n Remove all", "", "removeAllFromCart");
 }
 
 
@@ -55,11 +62,11 @@ function fullBookComponent(book) {
         + "<td class=\"book-table-main\" valign=\"top\">"
         + divClassOnclickComponent("book-name", book.name, "showBook", book.id)
         + divClassComponent("book-author", book.author);
-        component+= divClassComponent("book-price", '$' + book.price);
-        component+= divClassComponent("book-description", book.description);
-component+= buyButtonsComponent(book.id)
+    component += divClassComponent("book-price", '$' + book.price);
+    component += divClassComponent("book-description", book.description);
+    component += buyButtonsComponent(book.id)
         + "</td></tr></table></div>";
-        return component;
+    return component;
 }
 
 
@@ -70,13 +77,15 @@ function cartBookComponent(book) {
         + "<td class=\"book-table-main\" valign=\"top\">"
         + divClassOnclickComponent("book-name", book.name, "showBook", book.id)
         + divClassComponent("book-author", book.author);
-        if(book.price!=undefined){
-        component+= divClassComponent("book-price", '$' + book.price);}
-        if(book.description!=undefined){
-        component+= divClassComponent("book-description", book.description);}
+    if (book.price != undefined) {
+        component += divClassComponent("book-price", '$' + book.price);
+    }
+    if (book.description != undefined) {
+        component += divClassComponent("book-description", book.description);
+    }
 //        + divIdComponent('book-bottom-' + book.id)
-component+= buyButtonsComponent(book.id)
-+ removeButtonComponent(book.orderItemId)
+    component += buyButtonsComponent(book.id)
+        + removeButtonComponent(book.orderItemId)
         + "</td></tr></table></div>";
-        return component;
+    return component;
 }
