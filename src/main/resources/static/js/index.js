@@ -25,15 +25,11 @@ function renderPage() {
             $('#menuRightCart').hide();
             $('#menuRightLogout').hide();
             $('.bAddToCart').hide();
-//        $('#menuRightSignIn').show(200);
-//        $('#menuRightSignUp').show(200);
         } else {
             $('#menuRightSignIn').hide();
             $('#menuRightSignUp').hide();
             $('.bAddToCart').show();
             $('#menuRightCart').html($('#menuRightCart').html() + "<span id=\"menuRightCartNumber\"></span>");
-//        $('#menuRightCart').show(200);
-//        $('#menuRightLogout').show(200);
         }
     });
     //

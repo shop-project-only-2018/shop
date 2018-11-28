@@ -94,4 +94,5 @@ function checkAccess(securedURL, successEvent) {
 
 function logout() {
     localStorage.clear();
+     window.location = '/';
 }

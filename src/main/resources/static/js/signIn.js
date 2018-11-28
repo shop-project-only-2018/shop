@@ -18,11 +18,7 @@ function validateForm() {
                         localStorage.setItem('token', token);
                         localStorage.setItem('userURI', userURI);
                         localStorage.setItem('username', userID);
-
-//                        l(localStorage.getItem('token', token));
-//                        l(localStorage.getItem('userURI', userURI));
-//                        l(localStorage.getItem('userID', userID));
-                     //   window.location = '/';
+                        window.location = '/';
             },
             error: function (result) {
                 if(result.message != undefined) {
