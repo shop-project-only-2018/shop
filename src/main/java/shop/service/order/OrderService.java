@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dtos.order.OrderDto;
+import shop.dtos.product.CartBookDto;
 import shop.mappers.order.OrderMapper;
+import shop.mappers.product.BookMapper;
 import shop.model.customer.Customer;
 import shop.model.order.Order;
 import shop.model.order.OrderItem;
@@ -23,7 +25,10 @@ public class OrderService {
 
     private OrderRepository orderRepository;
 
-    private OrderMapper mapper;
+    private OrderMapper orderMapper;
+
+
+    private BookMapper bookMapper;
 
     private BookService bookService;
 
@@ -52,6 +57,10 @@ public class OrderService {
     public void setCustomerRepository(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+    @Autowired
+    public void setBookMapper(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
+    }
 
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) {
@@ -59,8 +68,8 @@ public class OrderService {
     }
 
     @Autowired
-    public void setMapper(OrderMapper mapper) {
-        this.mapper = mapper;
+    public void setOrderMapper(OrderMapper orderMapper) {
+        this.orderMapper = orderMapper;
     }
 
     @Transactional(readOnly = true)
@@ -82,7 +91,7 @@ public class OrderService {
         List<Order> list = orderRepository.findAll();
         List<OrderDto> dtoList = new ArrayList<>();
         for (Order order : list) {
-            OrderDto dto = mapper.getDto(order);
+            OrderDto dto = orderMapper.getDto(order);
             dtoList.add(dto);
         }
         return dtoList;
@@ -91,12 +100,12 @@ public class OrderService {
     @Transactional(readOnly = true)
     public OrderDto getDtoById(Integer id) throws Exception {
         Order order = getById(id);
-        return mapper.getDto(order);
+        return orderMapper.getDto(order);
     }
 
     @Transactional
     public Integer create(OrderDto orderDto) {
-        Order order = mapper.getEntity(orderDto);
+        Order order = orderMapper.getEntity(orderDto);
         orderRepository.saveAndFlush(order);
         return order.getId();
     }
@@ -124,12 +133,14 @@ public class OrderService {
     }
 
 
-    @Transactional(readOnly = true)
+    // TODO: @Transactional READONLY!
+    @Transactional
     public Integer getNumberOfItemsInCurrentCart(String token) throws CheckedException {
         return getCurrentCart(token).getNumberOfItems();
     }
 
-    @Transactional(readOnly = true)
+    // TODO: @Transactional READONLY!
+    @Transactional
     private Order getCurrentCart(String token) throws CheckedException {
 
         // TODO: MOVE TO AUTHENTICATION SERVICE?
@@ -137,15 +148,27 @@ public class OrderService {
         customer = customerRepository.findById(securityService.checkTokenGetId(token)).orElse(null);
         if (customer == null) {
             throw new CheckedException("error.security.authentication");
-        }
+        }// /TODO
 
         if (customer.getCurrentOrder() == null) {
             Order order = new Order();
             save(order);
             customer.setCurrentOrder(order);
+            // TODO: @Transactional READONLY!
             customerRepository.saveAndFlush(customer);
         }
 
         return customer.getCurrentOrder();
+    }
+
+    // TODO: @Transactional READONLY!
+    @Transactional
+    public List<CartBookDto> getBooksInCurrentCart(String token) throws CheckedException {
+        Order cart = getCurrentCart(token);
+        List<CartBookDto> result = new ArrayList<>();
+        for(OrderItem item : cart.getOrderItems()) {
+            result.add(bookMapper.getDto(item.getBook()));
+        }
+        return  result;
     }
 }

@@ -42,14 +42,11 @@ public class CartRestController {
     }
 
     @GetMapping
-    public List<CartBookDto> getCartBooks() {
-        List<CartBookDto> list = new ArrayList<>();
-        list.add(new CartBookDto());
-        //bookService.getBestsellers();
-        return list;
+    public List<CartBookDto> getCartBooks(HttpServletRequest request) throws CheckedException {
+        return orderService.getBooksInCurrentCart(tokenParserService.getTokenFromHeader(request));
     }
 
-    @GetMapping(value = "add/{id}") // TODO: REMOVE RequestBody
+    @GetMapping(value = "add/{id}")
     public Message addBook(@PathVariable Integer id, HttpServletRequest request) throws CheckedException {
         orderService.addBookToCurrentCart(tokenParserService.getTokenFromHeader(request), id);
         return new Message();

@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import shop.dtos.product.BookDto;
+import shop.dtos.product.CartBookDto;
 import shop.dtos.product.ProductDto;
 import shop.model.product.Book;
 
@@ -15,9 +16,13 @@ public interface BookMapper {
     Book getEntity(ProductDto personDto);
 
     @Mappings({
-            @Mapping(target = "categoryId", ignore = true)
+            @Mapping(target = "id", source = "bookId"),
+            @Mapping(target = "name", source = "name"),
+            @Mapping(target = "author", source = "author"),
+            @Mapping(target = "quantity", source = "quantity"),
+            @Mapping(target = "coverId", source = "cover.imageId")
     })
-    ProductDto getDto(Book book);
+    CartBookDto getDto(Book book);
 
     @Mappings({
             @Mapping(target = "id", source = "bookId"),

@@ -5,32 +5,13 @@ import shop.dtos.DTO;
 import java.math.BigDecimal;
 
 public class CartBookDto implements DTO {
-
     private Integer id;
 
 
     private String name;
     private String author;
-    private String description;
-    private BigDecimal price;
-    private int quantity;
     private Integer coverId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getCoverId() {
-        return coverId;
-    }
-
-    public void setCoverId(Integer coverId) {
-        this.coverId = coverId;
-    }
+    private int quantity = 1;
 
     public String getName() {
         return name;
@@ -38,14 +19,6 @@ public class CartBookDto implements DTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public int getQuantity() {
@@ -56,9 +29,6 @@ public class CartBookDto implements DTO {
         this.quantity = quantity;
     }
 
-    public CartBookDto() {
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -67,24 +37,21 @@ public class CartBookDto implements DTO {
         this.author = author;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getCoverId() {
+        return coverId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCoverId(Integer coverId) {
+        this.coverId = coverId;
     }
 
-    @Override
-    public String toString() {
-        return "BookDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", coverId=" + coverId +
-                '}';
+    public CartBookDto() {
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

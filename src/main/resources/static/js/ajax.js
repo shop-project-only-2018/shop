@@ -27,7 +27,6 @@ function loadBooks(u, elementId) {
         }
     });
 }
-
 function checkToken(securedURL, successEvent, errorHandler) {
     var token = localStorage.getItem('token');
     if ((token === null) || (securedURL === null)) {

@@ -11,13 +11,17 @@ function renderNewBooks(data, elementId) {
     var newBooksDiv = $(elementId).empty();
     data.forEach(function (book) {
         newBooksDiv.append(bookComponent(book));
+//        if(!book.added) {
+//
+//        }
     });
 }
 
 function renderPage() {
     loadBooks('api/books/new', '#newBooks');
     loadBooks('api/books/bestsellers', "#bestsellers");
-
+    requestNumberOfBooksInCart();
+  //TODO:  drawBuyButtons();
 
     //TODO:REDO
     checkAccess('cart', function (a) {

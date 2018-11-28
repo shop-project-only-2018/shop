@@ -13,6 +13,7 @@ public class TokenParserService {
 
     private String tokenType;
 
+    // TODO: REMOVE // IMPLEMENT SecurityContextHolder
     @Value("${security.tokenType}")
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;

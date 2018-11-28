@@ -10,9 +10,9 @@ function requestNumberOfBooksInCart() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (data) {
-            l('');
-            l(data);
-            $('#menuRightCartNumber').text(data.message);
+            if(data.message != '0'){
+            $('#menuRightCartNumber').html(' [' + data.message + ']');
+            }
         },
         error: function () {
             console.log("requestNumberOfBooksInCart() error");
@@ -47,18 +47,26 @@ function addToCart(bookId) {
 
 
 function showCart() {
-    var books = "<h1>Cart</h1>";
-    ids = JSON.parse(getStoredArray());
-    var arrayLength = ids.length;
-    for (var i = 0; i < arrayLength; i++) {
+    var tokenF = localStorage.getItem('token');
         $.ajax({
             type: 'GET',
-            url: '/api/books/' + ids[i],
-            dataType: "json",
-            success: function (data) {
-                books += bookComponent(data);
-                $('#container').html(books);
-            }
+            url: '/api/cart/',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+           success: function (data) {
+                       drawCart(data);
+                   }
         });
-    }
 }
+
+function drawCart(data) {
+    var books = "<h1>Cart</h1>";
+        data.forEach(function (book) {
+            books += (bookComponent(book));
+        });
+    $('#container').html(books);
+}
+
