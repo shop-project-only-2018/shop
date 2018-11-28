@@ -8,8 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import shop.service.message.MessageServiceImpl;
-import shop.service.message.MessageService;
 
 @Configuration
 @PropertySource("classpath:paths.properties")

@@ -4,12 +4,13 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import shop.model.EntityWithIntegerId;
 import shop.model.customer.Customer;
+import shop.model.product.Book;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -42,7 +43,7 @@ public class Order implements EntityWithIntegerId {
     private PaymentMethod paymentMethod;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private Set<OrderItem> orderItems;
 
     public Integer getOrderId() {
         return orderId;
@@ -52,18 +53,22 @@ public class Order implements EntityWithIntegerId {
         this.orderId = orderId;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public Set<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
+    public void setOrderItems(Set<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 
-    public void addOrderItem(OrderItem orderItem) {
-        if(this.orderItems == null) {
-            this.orderItems = new ArrayList<>();
+    public void unNullOrderItems() {
+        if (this.orderItems == null) {
+            this.orderItems = new HashSet<>();
         }
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        unNullOrderItems();
         this.orderItems.add(orderItem);
     }
 
@@ -127,5 +132,12 @@ public class Order implements EntityWithIntegerId {
     @Override
     public void setId(Integer id) {
         this.orderId = id;
+    }
+
+    public boolean contains(Book book) {
+        unNullOrderItems();
+        for(OrderItem item : this.orderItems){if(item.getBook() == book){
+            return true;}}
+        return false;
     }
 }

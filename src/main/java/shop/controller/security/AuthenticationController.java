@@ -22,6 +22,6 @@ public class AuthenticationController {
     public String getLoginForm(Model model) {
         model.addAttribute("authData", new UsernamePasswordDTO());
         model.addAttribute("title", "signIn.title");
-                return "customers/signInForm";
+        return "customers/signInForm";
     }
 }

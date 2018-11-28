@@ -78,14 +78,14 @@ public class OrderItemRepositoryTest {
         OrderItem orderItem1 = new OrderItem();
         orderItem1.setOrder(o1);
         orderItem1.setPrice(new BigDecimal(10));
-        orderItem1.setProduct(product1);
+        orderItem1.setBook(product1);
         orderItem1.setQuantity(1);
         orderItemRepository.save(orderItem1);
 
         OrderItem orderItem2 = new OrderItem();
         orderItem2.setOrder(o1);
         orderItem2.setPrice(new BigDecimal(10));
-        orderItem2.setProduct(product2);
+        orderItem2.setBook(product2);
         orderItem2.setQuantity(1);
         orderItemRepository.save(orderItem2);
 

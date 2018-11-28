@@ -127,7 +127,7 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public  Customer findByUsername(String username) {
+    public Customer findByUsername(String username) {
         return repo.findByUsername(username);
     }
 

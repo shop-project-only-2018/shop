@@ -21,7 +21,7 @@ import shop.controller.AdviceController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import static shop.configuration.security.SecurityRouting.*;
+import static shop.configuration.security.SecurityRouting.PROTECTED_URLS;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -101,7 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-        @Bean
+    @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return (request, response, ex) -> {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
@@ -113,7 +113,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
-        @Bean
+    @Bean
     public BCryptPasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(10);
     }

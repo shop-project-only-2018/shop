@@ -19,7 +19,7 @@ public class OrderItem implements EntityWithIntegerId {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Book product;
+    private Book book;
 
     @Column
     private BigDecimal price;
@@ -43,12 +43,12 @@ public class OrderItem implements EntityWithIntegerId {
         this.order = order;
     }
 
-    public Book getProduct() {
-        return product;
+    public Book getBook() {
+        return book;
     }
 
-    public void setProduct(Book product) {
-        this.product = product;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public BigDecimal getPrice() {

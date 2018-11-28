@@ -6,8 +6,5 @@ import shop.dtos.message.Message;
 @Component
 public interface MessageService {
     String get(String id);
-
     Message getMessage(String id);
-
-    Message getError(String id);
-}
+    Message getError(String id);}

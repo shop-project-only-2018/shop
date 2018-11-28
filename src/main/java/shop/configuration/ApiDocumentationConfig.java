@@ -13,4 +13,5 @@ import io.swagger.annotations.SwaggerDefinition;
         schemes = {SwaggerDefinition.Scheme.HTTP, SwaggerDefinition.Scheme.HTTPS}
 )
 
-public interface ApiDocumentationConfig {}
+public interface ApiDocumentationConfig {
+}

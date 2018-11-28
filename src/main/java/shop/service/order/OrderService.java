@@ -105,13 +105,13 @@ public class OrderService {
         Book book = bookService.getById(id);
         Customer customer;
 
-        if(securityService.checkTokenGetUsername(usernameTokenDTO.getToken()).equals(usernameTokenDTO.getUsername())) {
+        if (securityService.checkTokenGetUsername(usernameTokenDTO.getToken()).equals(usernameTokenDTO.getUsername())) {
             customer = customerService.findByUsername(usernameTokenDTO.getUsername());
         } else {
             throw new CheckedException("error.security.authentication");
         }
 
-        if(customer.getCurrentOrder() == null) {
+        if (customer.getCurrentOrder() == null) {
             Order order = new Order();
             save(order);
             customer.setCurrentOrder(order);
@@ -119,18 +119,19 @@ public class OrderService {
         }
 
         Order cart = customer.getCurrentOrder();
-
+        if (!cart.contains(book)){
         OrderItem orderItem = new OrderItem();
         orderItem.setOrder(cart);
         orderItem.setPrice(book.getPrice());
-        orderItem.setProduct(book);
+        orderItem.setBook(book);
         orderItem.setQuantity(1);
         orderItemService.save(orderItem);
 
-        cart.addOrderItem(orderItem);
+        cart.addOrderItem(orderItem);}
         save(cart);
     }
 
     public void save(Order order) {
-        orderRepository.saveAndFlush(order);}
+        orderRepository.saveAndFlush(order);
+    }
 }

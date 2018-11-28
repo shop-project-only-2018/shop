@@ -2,11 +2,9 @@ package shop.service.security;
 
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import shop.mappers.customer.CustomerDetailsMapper;
 import shop.service.security.userdetails.IdentifiedUserDetails;
-import shop.system.CheckedException;
 
 @Service
 public class SecurityService {

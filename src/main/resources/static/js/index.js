@@ -1,5 +1,3 @@
-var LOGGED_IN = false;
-
 function log(message) {
     console.log(message);
 }

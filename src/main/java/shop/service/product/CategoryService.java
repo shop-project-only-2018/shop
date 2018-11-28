@@ -7,7 +7,6 @@ import shop.dtos.product.CategoryDto;
 import shop.mappers.product.CategoryMapper;
 import shop.model.product.Category;
 import shop.repository.product.CategoryRepository;
-import shop.service.message.MessageService;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;

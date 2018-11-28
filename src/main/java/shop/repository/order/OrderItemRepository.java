@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 import shop.model.order.OrderItem;
 
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {}
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
+}
