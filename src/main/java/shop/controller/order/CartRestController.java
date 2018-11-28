@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import shop.dtos.message.Message;
-import shop.dtos.product.CartBookDto;
+import shop.dtos.product.OrderItemBookDto;
 import shop.service.customer.AuthorizationService;
 import shop.service.order.OrderService;
 import shop.service.security.TokenParserService;
 import shop.system.CheckedException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,13 +41,19 @@ public class CartRestController {
     }
 
     @GetMapping
-    public List<CartBookDto> getCartBooks(HttpServletRequest request) throws CheckedException {
+    public List<OrderItemBookDto> getCartBooks(HttpServletRequest request) throws CheckedException {
         return orderService.getBooksInCurrentCart(tokenParserService.getTokenFromHeader(request));
     }
 
     @GetMapping(value = "add/{id}")
     public Message addBook(@PathVariable Integer id, HttpServletRequest request) throws CheckedException {
         orderService.addBookToCurrentCart(tokenParserService.getTokenFromHeader(request), id);
+        return new Message();
+    }
+
+    @GetMapping(value = "remove/{id}")
+    public Message removeBook(@PathVariable Integer id, HttpServletRequest request) throws CheckedException {
+        orderService.removeBookFromCurrentCart(tokenParserService.getTokenFromHeader(request), id);
         return new Message();
     }
 

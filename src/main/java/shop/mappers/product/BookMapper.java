@@ -3,43 +3,43 @@ package shop.mappers.product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import shop.dtos.product.BookDto;
-import shop.dtos.product.CartBookDto;
-import shop.dtos.product.ProductDto;
+import shop.dtos.product.BasicBookDto;
+import shop.dtos.product.FullBookDto;
+import shop.dtos.product.OrderItemBookDto;
 import shop.model.product.Book;
 
 @Mapper(uses = {AuthorDtoMapper.class}, componentModel = "spring")
 public interface BookMapper {
 
     @Mappings({
-            @Mapping(target = "bookId", ignore = true)})
-    Book getEntity(ProductDto personDto);
+            @Mapping(target = "id", source = "bookId"),
+            @Mapping(target = "name", source = "name"),
+            @Mapping(target = "author", source = "author"),
+            @Mapping(target = "price", source = "price"),
+            @Mapping(target = "coverId", source = "cover.imageId"),
+
+            @Mapping(target = "quantity", source = "quantity")
+    })
+    OrderItemBookDto getDto(Book book);
 
     @Mappings({
             @Mapping(target = "id", source = "bookId"),
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "author", source = "author"),
-            @Mapping(target = "quantity", source = "quantity"),
-            @Mapping(target = "coverId", source = "cover.imageId")
+            @Mapping(target = "price", source = "price"),
+            @Mapping(target = "coverId", source = "cover.imageId"),
+
+            @Mapping(target = "description", source = "description")
     })
-    CartBookDto getDto(Book book);
+    FullBookDto getFullDto(Book book);
 
     @Mappings({
             @Mapping(target = "id", source = "bookId"),
             @Mapping(target = "name", source = "name"),
-            @Mapping(target = "description", source = "description"),
             @Mapping(target = "author", source = "author"),
-            @Mapping(target = "quantity", source = "quantity"),
+            @Mapping(target = "price", source = "price"),
             @Mapping(target = "coverId", source = "cover.imageId")
     })
-    BookDto getIndexDto(Book book);
-
-    default Book merge(Book recipient, Book source) {
-        recipient.setName(source.getName());
-        recipient.setPrice(source.getPrice());
-        recipient.setQuantity(source.getQuantity());
-        recipient.setCategory(source.getCategory());
-        return recipient;
-    }
+    BasicBookDto getBasicDto(Book book);
 
 }

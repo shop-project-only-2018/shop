@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import shop.dtos.product.BookDto;
+import shop.dtos.product.BasicBookDto;
+import shop.dtos.product.FullBookDto;
 import shop.service.product.BookService;
 import shop.service.product.CategoryService;
 import shop.system.CheckedException;
@@ -32,19 +33,19 @@ public class BookRestController {
     }
 
     @GetMapping("/{id}")
-    public BookDto getNewBooks(@PathVariable Integer id) throws CheckedException {
+    public FullBookDto getById(@PathVariable Integer id) throws CheckedException {
         return bookService.getDtoById(id);
     }
 
     @GetMapping(value = {"/new"})
-    public List<BookDto> getNewBooks() {
-        List<BookDto> list = bookService.getNewBooks();
+    public List<BasicBookDto> getNewBooks() {
+        List<BasicBookDto> list = bookService.getNewBooks();
         return list;
     }
 
     @GetMapping(value = {"/bestsellers"})
-    public List<BookDto> getBestsellers() {
-        List<BookDto> list = bookService.getBestsellers();
+    public List<BasicBookDto> getBestsellers() {
+        List<BasicBookDto> list = bookService.getBestsellers();
         return list;
     }
 }

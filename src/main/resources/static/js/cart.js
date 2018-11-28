@@ -21,7 +21,7 @@ function requestNumberOfBooksInCart() {
 }
 
 function addToCart(bookId) {
-    l('Entering: addBook(' + bookId + ')');
+    l('Entering: addToCart(' + bookId + ')');
     var tokenF = localStorage.getItem('token');
     var urlF = '/api/cart/add/' + bookId;
     $.ajax({
@@ -38,6 +38,31 @@ function addToCart(bookId) {
         },
         error: function (data, textStatus, jqXHR) {
             l('ERROR: addBook(bookId)');
+            l(data);
+            l(textStatus);
+            requestNumberOfBooksInCart();
+        }
+    });
+}
+
+function removeFromCart(bookId) {
+    l('Entering: removeFromCart(' + bookId + ')');
+    var tokenF = localStorage.getItem('token');
+    var urlF = '/api/cart/remove/' + bookId;
+    $.ajax({
+        url: urlF,
+        type: 'GET',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data, textStatus, jqXHR) {
+            l(data);
+            requestNumberOfBooksInCart();
+            showCart();
+        },
+        error: function (data, textStatus, jqXHR) {
+            l('ERROR: removeFromCart(bookId)');
             l(data);
             l(textStatus);
             requestNumberOfBooksInCart();
@@ -65,8 +90,27 @@ function showCart() {
 function drawCart(data) {
     var books = "<h1>Cart</h1>";
         data.forEach(function (book) {
-            books += (bookComponent(book));
+            books += (cartBookComponent(book));
         });
     $('#container').html(books);
 }
 
+function showBook(bookId) {
+    var tokenF = localStorage.getItem('token');
+            $.ajax({
+                type: 'GET',
+                url: '/api/books/' + bookId,
+            contentType: "application/json",
+            beforeSend: function (jqXHR, settings) {
+                l('Token: ' + tokenF);
+                jqXHR.setRequestHeader('Authorization', tokenF);
+            },
+               success: function (data) {
+                           drawBook(data);
+                       }
+            });
+}
+
+function drawBook(book) {
+    $('#container').html(fullBookComponent(book));
+}

@@ -3,7 +3,8 @@ package shop.service.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shop.dtos.product.BookDto;
+import shop.dtos.product.BasicBookDto;
+import shop.dtos.product.FullBookDto;
 import shop.dtos.product.ProductDto;
 import shop.mappers.product.BookMapper;
 import shop.model.product.Book;
@@ -67,19 +68,19 @@ public class BookService {
 
     // TODO: IMPLEMENT
     @Transactional(readOnly = true)
-    public List<BookDto> getNewBooks() {
+    public List<BasicBookDto> getNewBooks() {
 
         // TODO: REDO
-        List<BookDto> dtoList = new ArrayList<>();
+        List<BasicBookDto> dtoList = new ArrayList<>();
         productRepository.findAll().forEach(book -> {
-            BookDto dto = mapper.getIndexDto(book);
+            BasicBookDto dto = mapper.getBasicDto(book);
             dtoList.add(dto);
         });
 
         // TODO: REMOVE
-        List<BookDto> list = new ArrayList<>();
+        List<BasicBookDto> list = new ArrayList<>();
         int i = 0;
-        for (BookDto dto : dtoList) {
+        for (BasicBookDto dto : dtoList) {
             list.add(dto);
             if (i > 1) break;
             i++;
@@ -91,12 +92,12 @@ public class BookService {
 
     // TODO: IMPLEMENT
     @Transactional(readOnly = true)
-    public List<BookDto> getBestsellers() {
+    public List<BasicBookDto> getBestsellers() {
 
         // TODO: REDO
-        List<BookDto> dtoList = new ArrayList<>();
+        List<BasicBookDto> dtoList = new ArrayList<>();
         productRepository.findAll().forEach(book -> {
-            BookDto dto = mapper.getIndexDto(book);
+            BasicBookDto dto = mapper.getBasicDto(book);
             dtoList.add(dto);
         });
 
@@ -104,23 +105,11 @@ public class BookService {
     }
 
     @Transactional(readOnly = true)
-    public BookDto getDtoById(Integer id) throws CheckedException {
+    public FullBookDto getDtoById(Integer id) throws CheckedException {
         Book book = getById(id);
-        BookDto dto = mapper.getIndexDto(book);
+        FullBookDto dto = mapper.getFullDto(book);
         return dto;
     }
 
-    public Integer create(ProductDto productDto) {
-        Book product = mapper.getEntity(productDto);
-        productRepository.save(product);
-        return product.getId();
-    }
-
-    public void update(ProductDto dto) throws Exception {
-        Book product = getById(dto.getProductId());
-        Book updProduct = mapper.getEntity(dto);
-        product = mapper.merge(product, updProduct);
-        productRepository.save(product);
-    }
 
 }

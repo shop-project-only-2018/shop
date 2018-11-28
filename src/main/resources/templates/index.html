@@ -4,21 +4,15 @@
 <head>
 </head>
 <body>
-<!--
-    <tr th:each="">
-      <td th:text="${prod.name}">Oranges</td>
-      <td th:text="${#numbers.formatDecimal(prod.price, 1, 2)}">0.99</td>
-    <span class="bookprice" th:text="${#numbers.formatDecimal(prod.price, 1, 2)}"></span>
-    </tr>
-    -->
 <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
 <table id="maintable" border="0">
     <tr>
-        <td id="menuleft" valign="top">
+       <!-- TODO: Categories
+       <td id="menuleft" valign="top">
             <div th:each="c: ${categories}">
                 <a th:text="${c.name}"></a>
             </div>
-        </td>
+        </td>-->
         <td id="tdcontent" valign="top">
             <div id="content">
                 <h1 th:text="#{h1.newBooks}"></h1>

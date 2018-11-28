@@ -4,14 +4,13 @@ import shop.dtos.DTO;
 
 import java.math.BigDecimal;
 
-public class CartBookDto implements DTO {
+public class BasicBookDto implements DTO {
+
     private Integer id;
-
-
     private String name;
     private String author;
     private Integer coverId;
-    private int quantity = 1;
+    private BigDecimal price;
 
     public String getName() {
         return name;
@@ -19,14 +18,6 @@ public class CartBookDto implements DTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getAuthor() {
@@ -45,8 +36,14 @@ public class CartBookDto implements DTO {
         this.coverId = coverId;
     }
 
-    public CartBookDto() {
+    public BigDecimal getPrice() {
+        return price;
     }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public Integer getId() {
         return id;
     }

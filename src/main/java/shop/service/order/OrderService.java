@@ -1,10 +1,11 @@
 package shop.service.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dtos.order.OrderDto;
-import shop.dtos.product.CartBookDto;
+import shop.dtos.product.OrderItemBookDto;
 import shop.mappers.order.OrderMapper;
 import shop.mappers.product.BookMapper;
 import shop.model.customer.Customer;
@@ -12,6 +13,7 @@ import shop.model.order.Order;
 import shop.model.order.OrderItem;
 import shop.model.product.Book;
 import shop.repository.customer.CustomerRepository;
+import shop.repository.order.OrderItemRepository;
 import shop.repository.order.OrderRepository;
 import shop.service.product.BookService;
 import shop.service.security.SecurityService;
@@ -27,6 +29,7 @@ public class OrderService {
 
     private OrderMapper orderMapper;
 
+    private OrderItemRepository orderItemRepository;
 
     private BookMapper bookMapper;
 
@@ -49,6 +52,11 @@ public class OrderService {
     }
 
     @Autowired
+    public void setOrderItemRepository(OrderItemRepository orderItemRepository) {
+        this.orderItemRepository = orderItemRepository;
+    }
+
+    @Autowired
     public void setOrderItemService(OrderItemService orderItemService) {
         this.orderItemService = orderItemService;
     }
@@ -57,6 +65,7 @@ public class OrderService {
     public void setCustomerRepository(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
     @Autowired
     public void setBookMapper(BookMapper bookMapper) {
         this.bookMapper = bookMapper;
@@ -163,12 +172,28 @@ public class OrderService {
 
     // TODO: @Transactional READONLY!
     @Transactional
-    public List<CartBookDto> getBooksInCurrentCart(String token) throws CheckedException {
+    public List<OrderItemBookDto> getBooksInCurrentCart(String token) throws CheckedException {
         Order cart = getCurrentCart(token);
-        List<CartBookDto> result = new ArrayList<>();
-        for(OrderItem item : cart.getOrderItems()) {
-            result.add(bookMapper.getDto(item.getBook()));
+        List<OrderItemBookDto> result = new ArrayList<>();
+        for (OrderItem item : cart.getOrderItems()) {
+            OrderItemBookDto dto = bookMapper.getDto(item.getBook());
+            dto.setOrderItemId(item.getOrderItemId());
+            result.add(dto);
         }
-        return  result;
+        return result;
+    }
+
+    @Transactional
+    @Modifying
+    public void removeBookFromCurrentCart(String tokenFromHeader, Integer orderItemId) throws CheckedException {
+        OrderItem item = orderItemRepository.findById(orderItemId).orElse(null);
+        if (item == null) throw new CheckedException("error.notFound");
+
+        Order cart = getCurrentCart(tokenFromHeader);
+        cart.getOrderItems().remove(item);
+        orderRepository.save(cart);
+        orderItemRepository.deleteById(orderItemId);
+        orderItemRepository.flush();
+        save(cart);
     }
 }
