@@ -24,7 +24,6 @@
     margin: 0 auto;
     min-width: 1000px;
     width: 80%;
-    box-shadow: 5px #000;
 }
 
 #content {
@@ -220,8 +219,4 @@ table {
 
 #menuRightCart:hover, .buttonBuy:hover {
     background-color: #67351c !important;
-}
-
-.bAddToCart {
-    display: none;
 }
