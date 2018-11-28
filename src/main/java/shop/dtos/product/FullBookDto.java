@@ -1,9 +1,5 @@
 package shop.dtos.product;
 
-import shop.dtos.DTO;
-
-import java.math.BigDecimal;
-
 public class FullBookDto extends BasicBookDto {
     private String description;
 

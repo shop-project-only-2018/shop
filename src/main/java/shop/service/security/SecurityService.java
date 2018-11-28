@@ -39,7 +39,8 @@ public class SecurityService {
     public String checkTokenGetUsername(String token) throws JwtException {
         return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token)).getUsername();
     }
-    public Integer    checkTokenGetId(String token) throws JwtException {
+
+    public Integer checkTokenGetId(String token) throws JwtException {
         return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token)).getId();
     }
 //    public Integer getCurrentCustomerId() throws CheckedException {

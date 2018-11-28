@@ -136,8 +136,11 @@ public class Order implements EntityWithIntegerId {
 
     public boolean contains(Book book) {
         unNullOrderItems();
-        for(OrderItem item : this.orderItems){if(item.getBook() == book){
-            return true;}}
+        for (OrderItem item : this.orderItems) {
+            if (item.getBook() == book) {
+                return true;
+            }
+        }
         return false;
     }
 

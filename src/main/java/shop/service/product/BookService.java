@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
-import shop.dtos.product.ProductDto;
 import shop.mappers.product.BookMapper;
 import shop.model.product.Book;
 import shop.repository.product.BookRepository;

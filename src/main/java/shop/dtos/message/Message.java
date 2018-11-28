@@ -16,6 +16,7 @@ public class Message implements DTO {
     public Message(String message) {
         this.message = message;
     }
+
     public Message(Integer message) {
         this.message = message.toString();
     }

@@ -1,9 +1,5 @@
 package shop.dtos.product;
 
-import shop.dtos.DTO;
-
-import java.math.BigDecimal;
-
 public class OrderItemBookDto extends BasicBookDto {
     private int quantity = 1;
     private Integer orderItemId;
