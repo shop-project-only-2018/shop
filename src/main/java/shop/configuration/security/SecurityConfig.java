@@ -91,24 +91,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationFailureHandler failureHandler() {
+        // TODO: REDO
         return (request, response, ex) -> {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
             ServletOutputStream out = response.getOutputStream();
-            new ObjectMapper().writeValue(out, adviceController.getWarningDto(ex, "Unauthorized Access Attempt."));
             out.flush();
         };
     }
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
+        // TODO: REDO
         return (request, response, ex) -> {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
             ServletOutputStream out = response.getOutputStream();
-            new ObjectMapper().writeValue(out, adviceController.getWarningDto(ex, "Forbidden Access Attempt."));
             out.flush();
         };
     }

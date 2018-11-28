@@ -16,6 +16,9 @@ public class Message implements DTO {
     public Message(String message) {
         this.message = message;
     }
+    public Message(Integer message) {
+        this.message = message.toString();
+    }
 
     public Message(Boolean error, String message) {
         this.error = error;
@@ -30,6 +33,10 @@ public class Message implements DTO {
         this.message = message;
     }
 
+    public void setMessage(Integer message) {
+        this.message = message.toString();
+    }
+
     public Boolean getError() {
         return error;
     }
@@ -37,4 +44,5 @@ public class Message implements DTO {
     public void setError(Boolean error) {
         this.error = error;
     }
+
 }

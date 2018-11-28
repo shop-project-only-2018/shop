@@ -140,4 +140,9 @@ public class Order implements EntityWithIntegerId {
             return true;}}
         return false;
     }
+
+    public Integer getNumberOfItems() {
+        unNullOrderItems();
+        return this.orderItems.size();
+    }
 }

@@ -1,41 +1,48 @@
-function increaseDisplayedNumber() {
-    var numberContainer = $('#menuRightCartNumber');
-    if (numberContainer.html() == "") {
-        numberContainer.html("1");
-    } else {
-        numberContainer.html(parseInt(numberContainer.html()) + 1);
-    }
-}
-
-function addBook(bookId) {
+function requestNumberOfBooksInCart() {
     var tokenF = localStorage.getItem('token');
-    var usernameF = localStorage.getItem('username');
-    var urlF = '/api/cart/add/' + bookId;
+    l('requestNumberOfBooksInCart()');
     $.ajax({
-        url: urlF,
-        type: 'POST',
-        dataType: "xml/html/script/json",
+        type: 'GET',
+        url: '/api/cart/number-of-items',
         contentType: "application/json",
-        data: JSON.stringify({
-            username: usernameF,
-            token: tokenF
-        }),
-        beforeSend: function (jqXHR, settings) {
-            console.log('Setting the Authorization Header:', tokenF);
+        beforeSend: function (jqXHR) {
+            l('Token: ' + tokenF);
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (data) {
+            l('');
             l(data);
+            $('#menuRightCartNumber').text(data.message);
         },
         error: function () {
-            l('error');
+            console.log("requestNumberOfBooksInCart() error");
         }
-    })
-    increaseDisplayedNumber();
+    });
 }
 
-function addToCart(id) {
-    addBook(id);
+function addToCart(bookId) {
+    l('Entering: addBook(' + bookId + ')');
+    var tokenF = localStorage.getItem('token');
+    var urlF = '/api/cart/add/' + bookId;
+    $.ajax({
+        url: urlF,
+        type: 'GET',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data, textStatus, jqXHR) {
+            l(data);
+            requestNumberOfBooksInCart();
+        },
+        error: function (data, textStatus, jqXHR) {
+            l('ERROR: addBook(bookId)');
+            l(data);
+            l(textStatus);
+            requestNumberOfBooksInCart();
+        }
+    });
 }
 
 

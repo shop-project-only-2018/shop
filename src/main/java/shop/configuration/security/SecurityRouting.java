@@ -15,7 +15,7 @@ public interface SecurityRouting {
     );
 
     RequestMatcher USER_API_URLS = new OrRequestMatcher(
-            new AntPathRequestMatcher("/api/cart"),
+            new AntPathRequestMatcher("/api/cart/**"),
             new AntPathRequestMatcher("/api/order")
     );
 

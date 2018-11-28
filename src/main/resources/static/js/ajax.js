@@ -1,18 +1,18 @@
-function requestBook(id) {
-    $.ajax({
-        type: 'GET',
-        url: '/api/books/' + id,
-        dataType: "json",
-        success: function (data) {
-            l(data);
-            return bookComponent(data);
-        },
-        error: function () {
-            console.log("getBook(id) id = " + id);
-            return "";
-        }
-    });
-}
+//function requestBook(id) {
+//    $.ajax({
+//        type: 'GET',
+//        url: '/api/books/' + id,
+//        dataType: "json",
+//        success: function (data) {
+//            l(data);
+//            return bookComponent(data);
+//        },
+//        error: function () {
+//            console.log("getBook(id) id = " + id);
+//            return "";
+//        }
+//    });
+//}
 
 function loadBooks(u, elementId) {
     $.ajax({

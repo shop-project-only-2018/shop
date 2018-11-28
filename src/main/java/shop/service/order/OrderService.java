@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dtos.order.OrderDto;
-import shop.dtos.security.UsernameTokenDTO;
 import shop.mappers.order.OrderMapper;
 import shop.model.customer.Customer;
 import shop.model.order.Order;
 import shop.model.order.OrderItem;
 import shop.model.product.Book;
+import shop.repository.customer.CustomerRepository;
 import shop.repository.order.OrderRepository;
-import shop.service.customer.CustomerService;
 import shop.service.product.BookService;
 import shop.service.security.SecurityService;
 import shop.system.CheckedException;
@@ -30,7 +29,7 @@ public class OrderService {
 
     private SecurityService securityService;
 
-    private CustomerService customerService;
+    private CustomerRepository customerRepository;
 
     private OrderItemService orderItemService;
 
@@ -50,8 +49,8 @@ public class OrderService {
     }
 
     @Autowired
-    public void setCustomerService(CustomerService customerService) {
-        this.customerService = customerService;
+    public void setCustomerRepository(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     @Autowired
@@ -64,6 +63,7 @@ public class OrderService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     private Order getById(Integer id) throws CheckedException {
         Order order = orderRepository.findById(id).orElse(null);
         if (order == null) {
@@ -94,20 +94,48 @@ public class OrderService {
         return mapper.getDto(order);
     }
 
+    @Transactional
     public Integer create(OrderDto orderDto) {
         Order order = mapper.getEntity(orderDto);
         orderRepository.saveAndFlush(order);
         return order.getId();
     }
 
-    public void addBookToCurrentCart(UsernameTokenDTO usernameTokenDTO, Integer id) throws CheckedException {
-
+    @Transactional
+    public void addBookToCurrentCart(String token, Integer id) throws CheckedException {
         Book book = bookService.getById(id);
-        Customer customer;
+        Order cart = getCurrentCart(token);
 
-        if (securityService.checkTokenGetUsername(usernameTokenDTO.getToken()).equals(usernameTokenDTO.getUsername())) {
-            customer = customerService.findByUsername(usernameTokenDTO.getUsername());
-        } else {
+        if (!cart.contains(book)) {
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(cart);
+            orderItem.setPrice(book.getPrice());
+            orderItem.setBook(book);
+            orderItem.setQuantity(1);
+            orderItemService.save(orderItem);
+            cart.addOrderItem(orderItem);
+        }
+        save(cart);
+    }
+
+    @Transactional
+    public void save(Order order) {
+        orderRepository.saveAndFlush(order);
+    }
+
+
+    @Transactional(readOnly = true)
+    public Integer getNumberOfItemsInCurrentCart(String token) throws CheckedException {
+        return getCurrentCart(token).getNumberOfItems();
+    }
+
+    @Transactional(readOnly = true)
+    private Order getCurrentCart(String token) throws CheckedException {
+
+        // TODO: MOVE TO AUTHENTICATION SERVICE?
+        Customer customer;
+        customer = customerRepository.findById(securityService.checkTokenGetId(token)).orElse(null);
+        if (customer == null) {
             throw new CheckedException("error.security.authentication");
         }
 
@@ -115,23 +143,9 @@ public class OrderService {
             Order order = new Order();
             save(order);
             customer.setCurrentOrder(order);
-            customerService.save(customer);
+            customerRepository.saveAndFlush(customer);
         }
 
-        Order cart = customer.getCurrentOrder();
-        if (!cart.contains(book)){
-        OrderItem orderItem = new OrderItem();
-        orderItem.setOrder(cart);
-        orderItem.setPrice(book.getPrice());
-        orderItem.setBook(book);
-        orderItem.setQuantity(1);
-        orderItemService.save(orderItem);
-
-        cart.addOrderItem(orderItem);}
-        save(cart);
-    }
-
-    public void save(Order order) {
-        orderRepository.saveAndFlush(order);
+        return customer.getCurrentOrder();
     }
 }
