@@ -19,8 +19,10 @@ import shop.service.product.BookService;
 import shop.service.security.SecurityService;
 import shop.system.CheckedException;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -202,6 +204,42 @@ public class OrderService {
     public void removeAllBooksFromCurrentCart(String tokenFromHeader) throws CheckedException {
         Order cart = getCurrentCart(tokenFromHeader);
         orderRepository.deleteById(cart.getOrderId());
+        orderItemRepository.flush();
+    }
+
+    @Transactional
+    @Modifying
+    public void makeOrderFromCurrentCart(String tokenFromHeader, String address) throws CheckedException {
+        Order cart = getCurrentCart(tokenFromHeader);
+        cart.setDone(true);
+        // TODO: ADDRESS
+        System.out.println(address);
+        cart.setAddress(address);
+        cart.setAdded(new Timestamp(System.currentTimeMillis()));
+        cart.calculateTotalPrice();
+        orderRepository.saveAndFlush(cart);
+        Customer customer;
+        customer = customerRepository.findById(securityService.checkTokenGetId(tokenFromHeader)).orElse(null);
+        if (customer == null) {
+            throw new CheckedException("error.security.authentication");
+        }
+        customer.setCurrentOrder(null);
+        customerRepository.saveAndFlush(customer);
+
+    }
+
+    @Transactional
+    @Modifying
+    public void setItemsQuantity(String tokenFromHeader, Map<Integer, Integer> items) throws CheckedException {
+        Order cart = getCurrentCart(tokenFromHeader);
+        for (OrderItem item : cart.getOrderItems()) {
+            if (items.get(item.getId()) < 0) {
+                throw new CheckedException("error.unknown");
+            } else {
+                item.setQuantity(items.get(item.getId()));
+                orderItemRepository.save(item);
+            }
+        }
         orderItemRepository.flush();
     }
 }

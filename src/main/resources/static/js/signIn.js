@@ -8,20 +8,20 @@ function validateForm() {
             contentType: 'application/json',
             data: JSON.stringify({
                 username: usernameF,
-                password: passwordF,
+                password: passwordF
             }),
             success: function (result) {
-                        const token = result.tokenType + ' ' + result.accessToken;
-                        const userURI = result.user.userURI;
-                        const userID = result.user.username;
+                const token = result.tokenType + ' ' + result.accessToken;
+                const userURI = result.user.userURI;
+                const userID = result.user.username;
 
-                        localStorage.setItem('token', token);
-                        localStorage.setItem('userURI', userURI);
-                        localStorage.setItem('username', userID);
-                        window.location = '/';
+                localStorage.setItem('token', token);
+                localStorage.setItem('userURI', userURI);
+                localStorage.setItem('username', userID);
+                window.location = '/';
             },
             error: function (result) {
-                if(result.message != undefined) {
+                if (result.message != undefined) {
                     $('#errorMessage').text(result.message);
                 }
                 $('#errorMessage').show(200);

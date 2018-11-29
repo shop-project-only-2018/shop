@@ -26,6 +26,17 @@ public class Order implements EntityWithIntegerId {
     @Column
     private Timestamp added;
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Column
+    private String address;
+
     @Column
     private Boolean done = false;//TODO:REDO
 
@@ -147,5 +158,13 @@ public class Order implements EntityWithIntegerId {
     public Integer getNumberOfItems() {
         unNullOrderItems();
         return this.orderItems.size();
+    }
+
+    public void calculateTotalPrice() {
+        unNullOrderItems();
+        this.price = BigDecimal.valueOf(0);
+        for (OrderItem item : this.orderItems) {
+            this.price = this.price.add(item.getPrice());
+        }
     }
 }

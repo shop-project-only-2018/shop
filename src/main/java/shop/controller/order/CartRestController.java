@@ -2,10 +2,8 @@ package shop.controller.order;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import shop.dtos.customer.AddressDto;
 import shop.dtos.message.Message;
 import shop.dtos.product.OrderItemBookDto;
 import shop.service.customer.AuthorizationService;
@@ -49,6 +47,13 @@ public class CartRestController {
     public Message addBook(@PathVariable Integer id, HttpServletRequest request) throws CheckedException {
         orderService.addBookToCurrentCart(tokenParserService.getTokenFromHeader(request), id);
         return new Message();
+    }
+
+    @PostMapping(value = "make-order")
+    public Message makeOrder(@RequestBody AddressDto addressDto,
+            HttpServletRequest request) throws CheckedException {
+        orderService.makeOrderFromCurrentCart(tokenParserService.getTokenFromHeader(request), addressDto.getAddress());
+        return new Message("i18n MADE");
     }
 
     @GetMapping(value = "remove/{id}")

@@ -221,7 +221,7 @@ table {
     background-color: #67351c !important;
 }
 
-.noselect {
+.number-of-items-block {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */

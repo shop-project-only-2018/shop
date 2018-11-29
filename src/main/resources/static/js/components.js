@@ -15,11 +15,11 @@ function divIdComponent(idName) {
 }
 
 function spanIdComponent(idName, contents) {
-    return "<span id=\"" + idName + "\">"+contents+"</span>";
+    return "<span id=\"" + idName + "\">" + contents + "</span>";
 }
 
 function spanClassIdComponent(className, idName, contents) {
-    return "<span class=\"" + className + "\" id=\"" + idName + "\">"+contents+"</span>";
+    return "<span class=\"" + className + "\" id=\"" + idName + "\">" + contents + "</span>";
 }
 
 function bBuyNow(id) {
@@ -58,7 +58,7 @@ function bookComponent(book) {
 }
 
 function buttonMakeOrderComponent() {
-   return buttonComponent("buttonBuy", "i18n Make order", "", "makeOrder");
+    return buttonComponent("buttonBuy", "i18n Make order", "", "makeOrder");
 }
 
 function buttonRemoveAllComponent() {
@@ -82,21 +82,21 @@ function fullBookComponent(book) {
 
 
 function numberEditComponent(id) {
-    return divClassComponent("noselect",
+    return divClassComponent("number-of-items-block",
 
-    buttonComponent("buttonBuy", "-", id, "decreaseNumberOfItems") +
-    spanClassIdComponent("number-of-items", "number-of-items-" + id, 1) +
-    buttonComponent("buttonBuy", "+", id, "increaseNumberOfItems")
-
+        buttonComponent("buttonBuy", "-", id, "decreaseNumberOfItems") +
+        spanClassIdComponent("number-of-items", "number-of-items-" + id, 1) +
+        buttonComponent("buttonBuy", "+", id, "increaseNumberOfItems")
     );
 }
 
 function cartInfoComponent() {
-    return "<div>" +
-    divIdComponent("cart-statistics") +
-    buttonRemoveAllComponent() +
-    buttonMakeOrderComponent()  + "</div>";
+    return "<div id=\"cartInfo\">" +
+        divIdComponent("cart-statistics") +
+        buttonRemoveAllComponent() +
+        buttonMakeOrderComponent() + "</div>";
 }
+
 function cartBookComponent(book) {
 
     component = "<div class=\"book\"><table border=\"0\" class=\"book-table\"><tr>"
@@ -114,4 +114,13 @@ function cartBookComponent(book) {
     component += removeButtonComponent(book.orderItemId)
         + "</td></tr></table></div>";
     return component;
+}
+
+function textComponent(id) {
+    return "<input type=\"text\" id=\"" + id + "\" />";
+}
+
+function makeOrderComponent() {
+    return textComponent("addressInput") +
+        buttonComponent("buttonBuy", "i18n Make order", '', "completeOrder");
 }

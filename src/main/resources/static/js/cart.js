@@ -11,7 +11,7 @@ function requestNumberOfBooksInCart() {
         },
         success: function (data) {
 //            if (data.message != '0') {
-                $('#menuRightCartNumber').html(' [' + data.message + ']');
+            $('#menuRightCartNumber').html(' [' + data.message + ']');
 //            }
         },
         error: function () {
@@ -144,25 +144,52 @@ function drawBook(book) {
 }
 
 function increaseNumberOfItems(id) {
-    $("#number-of-items-" + id).text(parseFloat($("#number-of-items-" + id).text(),10)+1);
+    $("#number-of-items-" + id).text(parseInt($("#number-of-items-" + id).text(), 10) + 1);
     showTotalPrice();
 }
+
 function decreaseNumberOfItems(id) {
-    if($("#number-of-items-" + id).text()>1) {
-        $("#number-of-items-" + id).text($("#number-of-items-" + id).text()-1)
+    if ($("#number-of-items-" + id).text() > 1) {
+        $("#number-of-items-" + id).text($("#number-of-items-" + id).text() - 1)
     }
     showTotalPrice();
 }
 
 function makeOrder() {
+    $('.book .buttonBuy').hide();
+    $('#cartInfo').empty();
+    $('#cartInfo').html(makeOrderComponent());
+}
 
+function completeOrder() {
+// TODO:!!!
+    //postQuantities();
+    var addressF = $('#addressInput').value;
+    if (addressF != '') {
+        var tokenF = localStorage.getItem('token');
+        $.ajax({
+            type: 'POST',
+            url: '/api/cart/make-order',
+            data: JSON.stringify({
+                address: addressF
+            }),
+            contentType: "application/json",
+            beforeSend: function (jqXHR, settings) {
+                l('Token: ' + tokenF);
+                jqXHR.setRequestHeader('Authorization', tokenF);
+            },
+            success: function (data) {
+                alert(data.message);
+            }
+        });
+    }
 }
 
 function drawTotalPrice(data) {
-    totalPrice=0;
-        data.forEach(function (book) {
-            totalPrice += parseInt($("#number-of-items-" + book.orderItemId).text(), 10) * book.price;
-        });
+    totalPrice = 0;
+    data.forEach(function (book) {
+        totalPrice += parseInt($("#number-of-items-" + book.orderItemId).text(), 10) * book.price;
+    });
     $("#cart-statistics").text("i18n Total price: " + totalPrice);
 }
 
@@ -178,6 +205,52 @@ function showTotalPrice() {
         },
         success: function (data) {
             drawTotalPrice(data);
+        }
+    });
+}
+
+function sendQuantities(data) {
+    l(data);
+    l($("#number-of-items-" + data[0].id).text());
+    ids = [];
+    for (i = 0; i < data.length; i++) {
+        ids.push(data[i].id);
+    }
+    var map = ids.map(id = > $("#number-of-items-" + id).text()
+)
+    ;
+    l(map);
+    var addressF = $('#addressInput').value;
+    if (addressF != '') {
+        var tokenF = localStorage.getItem('token');
+        $.ajax({
+            type: 'POST',
+            url: '/api/cart/items/set-quantity',
+            data: JSON.stringify(map),
+            contentType: "application/json",
+            beforeSend: function (jqXHR, settings) {
+                l('Token: ' + tokenF);
+                jqXHR.setRequestHeader('Authorization', tokenF);
+            },
+            success: function (data) {
+                alert(data.message);
+            }
+        });
+    }
+}
+
+function postQuantities() {
+    var tokenF = localStorage.getItem('token');
+    $.ajax({
+        type: 'GET',
+        url: '/api/cart/',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data) {
+            sendQuantities(data);
         }
     });
 }
