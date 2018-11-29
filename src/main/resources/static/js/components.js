@@ -15,7 +15,7 @@ function divIdComponent(idName) {
 }
 
 function buyButtonsComponent(id) {
-    return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "addToCart")
+    return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "$(this).text('i18n Added');addToCart")
         + buttonComponent("buttonBuy bBuyNow", buttonBuyNowText, id, "console.log");
 }
 
