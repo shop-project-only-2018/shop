@@ -10,9 +10,9 @@ function requestNumberOfBooksInCart() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (data) {
-            if (data.message != '0') {
+//            if (data.message != '0') {
                 $('#menuRightCartNumber').html(' [' + data.message + ']');
-            }
+//            }
         },
         error: function () {
             console.log("requestNumberOfBooksInCart() error");
