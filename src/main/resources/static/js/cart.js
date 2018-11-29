@@ -114,11 +114,13 @@ function showCart() {
 }
 
 function drawCart(data) {
-    var books = "<h1>Cart  " + buttonRemoveAllComponent() + "</h1>";
+    var books = "<h1>i18n Cart</h1>";
+    books += cartInfoComponent();
     data.forEach(function (book) {
         books += (cartBookComponent(book));
     });
     $('#container').html(books);
+    showTotalPrice();
 }
 
 function showBook(bookId) {
@@ -139,4 +141,43 @@ function showBook(bookId) {
 
 function drawBook(book) {
     $('#container').html(fullBookComponent(book));
+}
+
+function increaseNumberOfItems(id) {
+    $("#number-of-items-" + id).text(parseFloat($("#number-of-items-" + id).text(),10)+1);
+    showTotalPrice();
+}
+function decreaseNumberOfItems(id) {
+    if($("#number-of-items-" + id).text()>1) {
+        $("#number-of-items-" + id).text($("#number-of-items-" + id).text()-1)
+    }
+    showTotalPrice();
+}
+
+function makeOrder() {
+
+}
+
+function drawTotalPrice(data) {
+    totalPrice=0;
+        data.forEach(function (book) {
+            totalPrice += parseInt($("#number-of-items-" + book.orderItemId).text(), 10) * book.price;
+        });
+    $("#cart-statistics").text("i18n Total price: " + totalPrice);
+}
+
+function showTotalPrice() {
+    var tokenF = localStorage.getItem('token');
+    $.ajax({
+        type: 'GET',
+        url: '/api/cart/',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data) {
+            drawTotalPrice(data);
+        }
+    });
 }
