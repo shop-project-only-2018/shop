@@ -3,6 +3,7 @@ package shop.mappers.product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import shop.dtos.product.AddingBookDto;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
 import shop.dtos.product.OrderItemBookDto;
@@ -42,4 +43,11 @@ public interface BookMapper {
     })
     BasicBookDto getBasicDto(Book book);
 
+    @Mappings({
+            @Mapping(target = "name", source = "title"),
+            @Mapping(target = "price", source = "price"),
+            @Mapping(target = "description", source = "description"),
+            @Mapping(target = "quantity", source = "quantity")
+    })
+    Book getEntity(AddingBookDto dto);
 }

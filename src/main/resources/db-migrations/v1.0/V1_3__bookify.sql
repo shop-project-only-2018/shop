@@ -18,3 +18,6 @@ ADD CONSTRAINT book_author_author_id_fk
 FOREIGN KEY (author_id) REFERENCES public.author (author_id);
 
 ALTER TABLE public.book ADD description varchar NULL;
+
+alter sequence product_product_id_seq rename to book_book_id_seq
+;

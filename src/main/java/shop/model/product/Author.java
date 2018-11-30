@@ -50,4 +50,12 @@ public class Author implements EntityWithIntegerId {
     public void setId(Integer id) {
         setAuthorId(id);
     }
+
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Author() {
+    }
 }
