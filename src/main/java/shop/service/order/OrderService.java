@@ -84,7 +84,7 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    private Order getById(Integer id) throws CheckedException {
+    public Order getById(Integer id) throws CheckedException {
         Order order = orderRepository.findById(id).orElse(null);
         if (order == null) {
             throw new CheckedException("error.unknown");
@@ -152,7 +152,7 @@ public class OrderService {
 
     // TODO: @Transactional READONLY!
     @Transactional
-    private Order getCurrentCart(String token) throws CheckedException {
+    public Order getCurrentCart(String token) throws CheckedException {
 
         // TODO: MOVE TO AUTHENTICATION SERVICE?
         Customer customer;
@@ -209,13 +209,24 @@ public class OrderService {
 
     @Transactional
     @Modifying
-    public void makeOrderFromCurrentCart(String tokenFromHeader, String address) throws CheckedException {
+    public void makeOrderFromCurrentCart(String tokenFromHeader, OrderDto orderDto) throws CheckedException {
         Order cart = getCurrentCart(tokenFromHeader);
         cart.setDone(true);
-        // TODO: ADDRESS
-        System.out.println(address);
-        cart.setAddress(address);
+        cart.setAddress(orderDto.getAddress());
         cart.setAdded(new Timestamp(System.currentTimeMillis()));
+        // TODO: REDO
+        cart.setCustomer(customerRepository.findById(securityService.checkTokenGetId(tokenFromHeader)).orElse(null));
+        Map<Integer, Integer> map = orderDto.getMap();
+        for (OrderItem item : cart.getOrderItems()) {
+            Integer q = map.get(item.getOrderItemId());
+            if(q == null || q < 1) {
+                throw new CheckedException("error.cart.numberOfItems");
+            } else {
+                item.setQuantity(map.get(item.getId()));
+                orderItemRepository.save(item);
+            }
+        }
+        orderItemRepository.flush();
         cart.calculateTotalPrice();
         orderRepository.saveAndFlush(cart);
         Customer customer;
@@ -226,20 +237,5 @@ public class OrderService {
         customer.setCurrentOrder(null);
         customerRepository.saveAndFlush(customer);
 
-    }
-
-    @Transactional
-    @Modifying
-    public void setItemsQuantity(String tokenFromHeader, Map<Integer, Integer> items) throws CheckedException {
-        Order cart = getCurrentCart(tokenFromHeader);
-        for (OrderItem item : cart.getOrderItems()) {
-            if (items.get(item.getId()) < 0) {
-                throw new CheckedException("error.unknown");
-            } else {
-                item.setQuantity(items.get(item.getId()));
-                orderItemRepository.save(item);
-            }
-        }
-        orderItemRepository.flush();
     }
 }

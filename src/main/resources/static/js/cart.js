@@ -162,29 +162,50 @@ function makeOrder() {
 }
 
 function completeOrder() {
-// TODO:!!!
-    //postQuantities();
-    var addressF = $('#addressInput').value;
-    if (addressF != '') {
-        var tokenF = localStorage.getItem('token');
-        $.ajax({
-            type: 'POST',
-            url: '/api/cart/make-order',
-            data: JSON.stringify({
-                address: addressF
-            }),
-            contentType: "application/json",
-            beforeSend: function (jqXHR, settings) {
-                l('Token: ' + tokenF);
-                jqXHR.setRequestHeader('Authorization', tokenF);
-            },
-            success: function (data) {
-                alert(data.message);
-            }
-        });
-    }
+    var tokenF = localStorage.getItem('token');
+    $.ajax({
+        type: 'GET',
+        url: '/api/cart/',
+        contentType: "application/json",
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data) {
+            sendOrderInfo(data);
+        }
+    });
 }
 
+function sendOrderInfo(data) {
+        var qs = [];
+        for (i = 0; i < data.length; i++) {
+        a = new Object;
+        a.id = data[i].orderItemId;
+        a.quantity = $("#number-of-items-" + data[i].orderItemId).text();
+            qs.push(a);
+        }
+        var addressF = $('#addressInput').val();
+        if (addressF != '') {
+            var tokenF = localStorage.getItem('token');
+            $.ajax({
+                type: 'POST',
+                url: '/api/cart/make-order',
+                data: JSON.stringify({
+                    address: addressF,
+                    quantities: qs
+                }),
+                contentType: "application/json",
+                beforeSend: function (jqXHR, settings) {
+                    l('Token: ' + tokenF);
+                    jqXHR.setRequestHeader('Authorization', tokenF);
+                },
+                success: function (data) {
+                    alert(data.message);
+                }
+            });
+        }
+}
 function drawTotalPrice(data) {
     totalPrice = 0;
     data.forEach(function (book) {
@@ -205,52 +226,6 @@ function showTotalPrice() {
         },
         success: function (data) {
             drawTotalPrice(data);
-        }
-    });
-}
-
-function sendQuantities(data) {
-    l(data);
-    l($("#number-of-items-" + data[0].id).text());
-    ids = [];
-    for (i = 0; i < data.length; i++) {
-        ids.push(data[i].id);
-    }
-    var map = ids.map(id = > $("#number-of-items-" + id).text()
-)
-    ;
-    l(map);
-    var addressF = $('#addressInput').value;
-    if (addressF != '') {
-        var tokenF = localStorage.getItem('token');
-        $.ajax({
-            type: 'POST',
-            url: '/api/cart/items/set-quantity',
-            data: JSON.stringify(map),
-            contentType: "application/json",
-            beforeSend: function (jqXHR, settings) {
-                l('Token: ' + tokenF);
-                jqXHR.setRequestHeader('Authorization', tokenF);
-            },
-            success: function (data) {
-                alert(data.message);
-            }
-        });
-    }
-}
-
-function postQuantities() {
-    var tokenF = localStorage.getItem('token');
-    $.ajax({
-        type: 'GET',
-        url: '/api/cart/',
-        contentType: "application/json",
-        beforeSend: function (jqXHR, settings) {
-            l('Token: ' + tokenF);
-            jqXHR.setRequestHeader('Authorization', tokenF);
-        },
-        success: function (data) {
-            sendQuantities(data);
         }
     });
 }

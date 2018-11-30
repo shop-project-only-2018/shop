@@ -164,7 +164,7 @@ public class Order implements EntityWithIntegerId {
         unNullOrderItems();
         this.price = BigDecimal.valueOf(0);
         for (OrderItem item : this.orderItems) {
-            this.price = this.price.add(item.getPrice());
+            this.price = this.price.add(item.getPrice().multiply(new BigDecimal(item.getQuantity())));
         }
     }
 }

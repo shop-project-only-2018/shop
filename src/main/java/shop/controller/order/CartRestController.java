@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import shop.dtos.customer.AddressDto;
 import shop.dtos.message.Message;
+import shop.dtos.order.OrderDto;
 import shop.dtos.product.OrderItemBookDto;
 import shop.service.customer.AuthorizationService;
 import shop.service.order.OrderService;
@@ -12,6 +13,7 @@ import shop.service.security.TokenParserService;
 import shop.system.CheckedException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -50,9 +52,9 @@ public class CartRestController {
     }
 
     @PostMapping(value = "make-order")
-    public Message makeOrder(@RequestBody AddressDto addressDto,
+    public Message makeOrder(@Valid @RequestBody OrderDto orderDto,
             HttpServletRequest request) throws CheckedException {
-        orderService.makeOrderFromCurrentCart(tokenParserService.getTokenFromHeader(request), addressDto.getAddress());
+        orderService.makeOrderFromCurrentCart(tokenParserService.getTokenFromHeader(request), orderDto);
         return new Message("i18n MADE");
     }
 

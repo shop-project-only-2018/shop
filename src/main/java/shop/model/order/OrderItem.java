@@ -25,7 +25,7 @@ public class OrderItem implements EntityWithIntegerId {
     private BigDecimal price;
 
     @Column
-    private int quantity;
+    private Integer quantity;
 
     public Integer getOrderItemId() {
         return orderItemId;
@@ -59,11 +59,11 @@ public class OrderItem implements EntityWithIntegerId {
         this.price = price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
