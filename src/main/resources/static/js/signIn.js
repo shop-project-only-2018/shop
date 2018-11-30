@@ -1,6 +1,6 @@
 function validateForm() {
-    const usernameF = document.forms["authenticationForm"]["inputUsername"].value;
-    const passwordF = document.forms["authenticationForm"]["inputPassword"].value;
+    var usernameF = document.forms["authenticationForm"]["inputUsername"].value;
+    var passwordF = document.forms["authenticationForm"]["inputPassword"].value;
     if (usernameF != "" && passwordF != "") {
         $.ajax({
             url: '/sign-in',
@@ -11,9 +11,9 @@ function validateForm() {
                 password: passwordF
             }),
             success: function (result) {
-                const token = result.tokenType + ' ' + result.accessToken;
-                const userURI = result.user.userURI;
-                const userID = result.user.username;
+                var token = result.tokenType + ' ' + result.accessToken;
+                var userURI = result.user.userURI;
+                var userID = result.user.username;
 
                 localStorage.setItem('token', token);
                 localStorage.setItem('userURI', userURI);

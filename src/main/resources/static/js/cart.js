@@ -10,9 +10,7 @@ function requestNumberOfBooksInCart() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (data) {
-//            if (data.message != '0') {
             $('#menuRightCartNumber').html(' [' + data.message + ']');
-//            }
         },
         error: function () {
             console.log("requestNumberOfBooksInCart() error");
@@ -178,37 +176,41 @@ function completeOrder() {
 }
 
 function sendOrderInfo(data) {
-        var qs = [];
-        for (i = 0; i < data.length; i++) {
+    var qs = [];
+    for (i = 0; i < data.length; i++) {
         a = new Object;
         a.id = data[i].orderItemId;
         a.quantity = $("#number-of-items-" + data[i].orderItemId).text();
-            qs.push(a);
-        }
-        var addressF = $('#addressInput').val();
-        if (addressF != '') {
-            var tokenF = localStorage.getItem('token');
-            $.ajax({
-                type: 'POST',
-                url: '/api/cart/make-order',
-                data: JSON.stringify({
-                    address: addressF,
-                    quantities: qs
-                }),
-                contentType: "application/json",
-                beforeSend: function (jqXHR, settings) {
-                    l('Token: ' + tokenF);
-                    jqXHR.setRequestHeader('Authorization', tokenF);
-                },
-                                 success: function (data) {
-                                    if(data.error){
-                                     alert(data.message);}else{ window.location = '/';}
-                                 }
-            });
-        }
+        qs.push(a);
+    }
+    var addressF = $('#addressInput').val();
+    if (addressF != '') {
+        var tokenF = localStorage.getItem('token');
+        $.ajax({
+            type: 'POST',
+            url: '/api/cart/make-order',
+            data: JSON.stringify({
+                address: addressF,
+                quantities: qs
+            }),
+            contentType: "application/json",
+            beforeSend: function (jqXHR, settings) {
+                l('Token: ' + tokenF);
+                jqXHR.setRequestHeader('Authorization', tokenF);
+            },
+            success: function (data) {
+                if (data.error) {
+                    alert(data.message);
+                } else {
+                    window.location = '/';
+                }
+            }
+        });
+    }
 }
+
 function drawTotalPrice(data) {
-    totalPrice = 0;
+    var totalPrice = 0;
     data.forEach(function (book) {
         totalPrice += parseInt($("#number-of-items-" + book.orderItemId).text(), 10) * book.price;
     });

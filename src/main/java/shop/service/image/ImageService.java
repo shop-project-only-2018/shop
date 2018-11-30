@@ -35,7 +35,11 @@ public class ImageService {
     }
 
     @Transactional
-    public Integer save(@NotNull MultipartFile image) throws CheckedException {
+    public Integer save(MultipartFile image) throws CheckedException {
+        System.out.println(image.getSize());
+        // TODO @NotNull
+        if(image == null)
+            throw new CheckedException("error.couldNotSave.image.isNotJpeg");
         if (!image.getContentType().equals(MediaType.IMAGE_JPEG_VALUE)) {
             throw new CheckedException("error.couldNotSave.image.isNotJpeg");
         } else {

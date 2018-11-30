@@ -1,8 +1,8 @@
 function validateForm() {
-    const u = document.forms["registrationForm"]["inputUsername"].value;
-    const p = document.forms["registrationForm"]["inputPassword"].value;
-    const f = document.forms["registrationForm"]["inputFirstName"].value;
-    const l = document.forms["registrationForm"]["inputLastName"].value;
+    var u = document.forms["registrationForm"]["inputUsername"].value;
+    var p = document.forms["registrationForm"]["inputPassword"].value;
+    var f = document.forms["registrationForm"]["inputFirstName"].value;
+    var l = document.forms["registrationForm"]["inputLastName"].value;
     if (u != "" && p != "" && l != "" && f != "") {
         $.ajax({
             url: '/sign-up',

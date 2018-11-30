@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import shop.service.image.ImageService;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @RequestMapping("api/images")
 public class ImageRestController {
@@ -19,7 +21,7 @@ public class ImageRestController {
     }
 
     @PostMapping(value = "")
-    public Integer saveImage(@RequestBody MultipartFile data)
+    public Integer saveImage(@RequestParam("image") @NotNull MultipartFile data)
             throws Exception {
         return imageService.save(data);
     }

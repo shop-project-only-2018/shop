@@ -35,7 +35,10 @@
     </div>
     <!-- / TODO: REMOVE -->
 
-
+    <form name="addCoverForm" id="addCoverForm" method="POST" action="/upload" enctype="multipart/form-data" onsubmit="uploadImage();return false">
+        <input type="file" name="image" /><br/>
+        <button type="submit" th:text="#{addBook.button}"></button>
+    </form>
     <form name="addBookForm" th:action="@{/books}" method="post" onsubmit="validateForm();return false">
         <div class="form-fields">
             <div class="form-group">
