@@ -7,12 +7,16 @@ INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "pas
 INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "password") VALUES(101, 1, 'User', 'User', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
 
 -- COVERS C:\images\*.jpg
-INSERT INTO image(image_id) VALUES(1);
-INSERT INTO image(image_id) VALUES(2);
-INSERT INTO image(image_id) VALUES(3);
-INSERT INTO image(image_id) VALUES(4);
-INSERT INTO image(image_id) VALUES(5);
-INSERT INTO image(image_id) VALUES(6);
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+INSERT INTO image(image_id) VALUES(nextval('image_image_id_seq'::regclass));
+--INSERT INTO image(image_id) VALUES(null);
+--INSERT INTO image(image_id) VALUES(null);
+--INSERT INTO image(image_id) VALUES(null);
+--INSERT INTO image(image_id) VALUES(null);
 
 -- AUTHORS
 INSERT INTO author(author_id, first_name, last_name) VALUES(2000, 'Charles', 'Darwin');

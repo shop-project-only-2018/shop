@@ -43,28 +43,24 @@ function validateForm() {
 }
 
 function uploadImage() {
-    var cover = document.forms["addCoverForm"]["file"].value;
-    var form = $('#addCoverForm')[0];
-    var dataF = new FormData(cover);
+    var dataF = new FormData($('#addCoverForm'));
     l(dataF);
-    if (cover != "") {
-        var tokenF = localStorage.getItem('token');
-        $.ajax({
-            url: '/api/images',
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            cache: false,
-            data: dataF,
-            beforeSend: function (jqXHR, settings) {
-                l('Token: ' + tokenF);
-                jqXHR.setRequestHeader('Authorization', tokenF);
-            },
-            success: function (result) {
-                alert(result.message);
-            },
-            error: function (result) {
-            }
-        });
-    }
+    var tokenF = localStorage.getItem('token');
+    $.ajax({
+        url: '/api/images',
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        cache: false,
+        data: dataF,
+        beforeSend: function (jqXHR, settings) {
+            l('Token: ' + tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (result) {
+            alert(result.message);
+        },
+        error: function (result) {
+        }
+    });
 }
