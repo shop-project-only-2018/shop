@@ -200,9 +200,10 @@ function sendOrderInfo(data) {
                     l('Token: ' + tokenF);
                     jqXHR.setRequestHeader('Authorization', tokenF);
                 },
-                success: function (data) {
-                    alert(data.message);
-                }
+                                 success: function (data) {
+                                    if(data.error){
+                                     alert(data.message);}else{ window.location = '/';}
+                                 }
             });
         }
 }

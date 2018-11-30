@@ -1,8 +1,12 @@
--- USERS
-INSERT INTO customer(customer_id, first_name, last_name, username, "password") VALUES(100, 'Admin', 'Admin', 'admin', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
-INSERT INTO customer(customer_id, first_name, last_name, username, "password") VALUES(101, 'User', 'User', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
+-- ROLES
+INSERT INTO roles(role_id, description) VALUES(1, 'USER');
+INSERT INTO roles(role_id, description) VALUES(2, 'ADMIN');
 
--- COVERS
+-- USERS
+INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "password") VALUES(100, 2, 'Admin', 'Admin', 'admin', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
+INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "password") VALUES(101, 1, 'User', 'User', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
+
+-- COVERS C:\images\*.jpg
 INSERT INTO image(image_id) VALUES(1);
 INSERT INTO image(image_id) VALUES(2);
 INSERT INTO image(image_id) VALUES(3);

@@ -21,12 +21,15 @@ public class Customer implements EntityWithIntegerId, UserDetails {
 
     @Column
     private String lastName;
+
     @Column
     private String username;
+
     @Column
     private String password;
+
     @ManyToOne
-    @JoinColumn(name = "roles")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     /**
