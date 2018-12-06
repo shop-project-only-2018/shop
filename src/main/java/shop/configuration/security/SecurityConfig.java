@@ -20,6 +20,7 @@ import shop.controller.AdviceController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import static shop.configuration.security.SecurityRouting.ADMIN_API_URLS;
 import static shop.configuration.security.SecurityRouting.PROTECTED_URLS;
 
 @Configuration
@@ -48,10 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
 
-//                .authorizeRequests()
-//                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
+                .authorizeRequests()
+                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
 //                .requestMatchers(USER_API_URLS).hasRole("USER")
-//                .and()
+                .and()
 
                 .httpBasic().disable()
                 .formLogin().disable()

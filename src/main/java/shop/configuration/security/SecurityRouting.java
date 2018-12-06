@@ -21,14 +21,8 @@ public interface SecurityRouting {
 
     RequestMatcher ADMIN_API_URLS = new AndRequestMatcher(
 //            new NegatedRequestMatcher(USER_API_URLS),
-//            new OrRequestMatcher(
-//                    new AntPathRequestMatcher("/api/*", "POST"),
-//                    new AntPathRequestMatcher("/api/*/*", "PUT"),
-//                    new AntPathRequestMatcher("/api/*/*", "DELETE"),
-//                    new AntPathRequestMatcher("/api/order/*")
-//            )
             new OrRequestMatcher(
-                    new AntPathRequestMatcher("/abc/*/*", "DELETE")
+                    new AntPathRequestMatcher("/admin/**", "POST")
             )
     );
 

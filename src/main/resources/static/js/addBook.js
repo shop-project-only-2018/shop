@@ -16,7 +16,7 @@ function validateForm() {
             quantity: q,
         }));
         $.ajax({
-            url: '/api/books/add',
+            url: '/admin/books/add',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({

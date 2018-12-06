@@ -19,7 +19,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/books")
 public class BookRestController {
 
     private BookService bookService;
@@ -56,13 +55,13 @@ public class BookRestController {
         return bookService.getDtoById(id);
     }
 
-    @GetMapping(value = {"/bestsellers"})
+    @GetMapping(value = {"api/books/bestsellers"})
     public List<BasicBookDto> getBestsellers() {
         List<BasicBookDto> list = bookService.getBestsellers();
         return list;
     }
 
-    @PostMapping(value = "add")
+    @PostMapping(value = "admin/books/add")
     public Message makeOrder(@Valid @RequestBody AddingBookDto addingBookDto,
                              HttpServletRequest request) throws CheckedException {
         bookService.addBook(tokenParserService.getTokenFromHeader(request), addingBookDto);

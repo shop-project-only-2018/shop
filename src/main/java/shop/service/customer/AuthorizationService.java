@@ -16,7 +16,6 @@ public class AuthorizationService {
     }
 
     public Boolean isAuthenticated(UsernameTokenDTO usernameTokenDTO) {
-        return usernameTokenDTO.getUsername()
-                .equals(securityService.checkTokenGetUsername(usernameTokenDTO.getToken()));
+        return securityService.checkTokenGetUsername(usernameTokenDTO.getToken())!=null;
     }
 }
