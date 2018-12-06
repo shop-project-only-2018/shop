@@ -8,10 +8,8 @@ import shop.dtos.product.AddingBookDto;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
 import shop.mappers.product.BookMapper;
-import shop.model.customer.Customer;
 import shop.model.product.Author;
 import shop.model.product.Book;
-import shop.repository.customer.CustomerRepository;
 import shop.repository.product.AuthorRepository;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
@@ -27,25 +25,11 @@ public class BookService {
     private CategoryRepository categoryRepository;
     private BookRepository bookRepository;
     private BookMapper mapper;
-
-    private SecurityService securityService;
-
-    private CustomerRepository customerRepository;
     private AuthorRepository authorRepository;
 
     @Autowired
     public void setAuthorRepository(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
-    }
-
-    @Autowired
-    public void setCustomerRepository(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
-
-    @Autowired
-    public void setSecurityService(SecurityService securityService) {
-        this.securityService = securityService;
     }
 
     @Autowired
@@ -81,22 +65,10 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-//    @Transactional(readOnly = true)
-//    public List<ProductDto> getAll() {
-//        List<Book> list = bookRepository.findAll();
-//        List<ProductDto> dtoList = new ArrayList<>();
-//        for (Book product : list) {
-//            ProductDto dto = mapper.getDto(product);
-//            dtoList.add(dto);
-//        }
-//        return dtoList;
-//    }
-
-    // TODO: IMPLEMENT
     @Transactional(readOnly = true)
-    public List<BasicBookDto> getBestsellers() {
+    public List<BasicBookDto> getAll() {
 
-        // TODO: REDO
+        // TODO: IMPLEMENT PAGES
         List<BasicBookDto> dtoList = new ArrayList<>();
         bookRepository.findAll().forEach(book -> {
             BasicBookDto dto = mapper.getBasicDto(book);
@@ -115,18 +87,13 @@ public class BookService {
 
     @Transactional
     @Modifying
-    public void addBook(String token, AddingBookDto addingBookDto) throws CheckedException {
-        Customer customer;
-        customer = customerRepository.findById(securityService.checkTokenGetId(token)).orElse(null);
-        // TODO: REDO ROLES
-        if (customer.isAdmin()) {
-            Book book = mapper.getEntity(addingBookDto);
-            Author author = new Author(addingBookDto.getAuthorFN(), addingBookDto.getAuthorLN());
-            authorRepository.saveAndFlush(author);
-            book.setAuthor(author);
-            bookRepository.save(book);
-        } else {
-            throw new CheckedException("error.security.notAuthorized");
-        }
+    public Integer addBook(AddingBookDto addingBookDto) throws CheckedException {
+        Book book = mapper.getEntity(addingBookDto);
+        // TODO: Find existing writers
+        Author author = new Author(addingBookDto.getAuthorFN(), addingBookDto.getAuthorLN());
+        authorRepository.saveAndFlush(author);
+        book.setAuthor(author);
+        bookRepository.save(book);
+        return book.getBookId();
     }
 }

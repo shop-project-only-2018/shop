@@ -142,9 +142,9 @@ public class Customer implements EntityWithIntegerId, UserDetails {
         return true;
     }
 
-    public boolean isAdmin() {
+    public boolean hasRole(String s) {
         if (role == null)
             return false;
-        return role.getDescription().equals("ROLE_ADMIN");
+        return role.getDescription().equals("ROLE_" + s);
     }
 }

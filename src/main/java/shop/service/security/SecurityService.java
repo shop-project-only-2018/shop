@@ -43,14 +43,5 @@ public class SecurityService {
     public Integer checkTokenGetId(String token) throws JwtException {
         return customerDetailsMapper.toIdentifiedCustomerDetails(tokenService.verify(token)).getId();
     }
-//    public Integer getCurrentCustomerId() throws CheckedException {
-//        try {
-//            System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//            System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().getClass().getSimpleName());
-//            return ((IdentifiedUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-//        } catch (ClassCastException e) {
-//            throw new CheckedException("error.security.authentication");
-//        }
-//    }
 
 }

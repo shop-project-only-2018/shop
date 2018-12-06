@@ -4,14 +4,11 @@ package shop.controller.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import shop.dtos.message.Message;
-import shop.dtos.order.OrderDto;
 import shop.dtos.product.AddingBookDto;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
-import shop.service.customer.AuthorizationService;
 import shop.service.product.BookService;
-import shop.service.product.CategoryService;
-import shop.service.security.TokenParserService;
+import shop.service.security.RolesService;
 import shop.system.CheckedException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +19,7 @@ import java.util.List;
 public class BookRestController {
 
     private BookService bookService;
-
-    private CategoryService categoryService;
-    private AuthorizationService authorizationService;
-
-    @Autowired
-    public void setTokenParserService(TokenParserService tokenParserService) {
-        this.tokenParserService = tokenParserService;
-    }
-
-    private TokenParserService tokenParserService;
-
-
-    @Autowired
-    public void setAuthorizationService(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
-    }
-
+    private RolesService rolesService;
 
     @Autowired
     public void setBookService(BookService bookService) {
@@ -46,25 +27,45 @@ public class BookRestController {
     }
 
     @Autowired
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
+    public void setRolesService(RolesService rolesService) {
+        this.rolesService = rolesService;
     }
 
+    /**
+     * Retrieve one book
+     *
+     * @param id
+     * @return book
+     * @throws CheckedException if not found
+     */
     @GetMapping("/{id}")
     public FullBookDto getById(@PathVariable Integer id) throws CheckedException {
         return bookService.getDtoById(id);
     }
 
+    /**
+     * Retrieve all books
+     *
+     * @return list of books
+     */
     @GetMapping(value = {"api/books/bestsellers"})
-    public List<BasicBookDto> getBestsellers() {
-        List<BasicBookDto> list = bookService.getBestsellers();
+    public List<BasicBookDto> getAll() {
+        List<BasicBookDto> list = bookService.getAll();
         return list;
     }
 
+    /**
+     * Add a new book
+     *
+     * @param request       for authorization
+     * @param addingBookDto - data
+     * @return message with bookId
+     * @throws CheckedException if an error occurs
+     */
     @PostMapping(value = "admin/books/add")
-    public Message makeOrder(@Valid @RequestBody AddingBookDto addingBookDto,
-                             HttpServletRequest request) throws CheckedException {
-        bookService.addBook(tokenParserService.getTokenFromHeader(request), addingBookDto);
-        return new Message("i18n ADDED");
+    public Message addBook(HttpServletRequest request,
+                           @Valid @RequestBody AddingBookDto addingBookDto) throws CheckedException {
+        rolesService.mustHaveRole(request, "ADMIN");
+        return new Message(bookService.addBook(addingBookDto));
     }
 }
