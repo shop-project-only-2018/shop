@@ -61,16 +61,16 @@ public class Customer implements EntityWithIntegerId, UserDetails {
         return customerId;
     }
 
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
     public Order getCurrentOrder() {
         return currentOrder;
     }
 
     public void setCurrentOrder(Order currentOrder) {
         this.currentOrder = currentOrder;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
     }
 
     public String getFirstName() {
@@ -140,5 +140,11 @@ public class Customer implements EntityWithIntegerId, UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean isAdmin() {
+        if (role == null)
+            return false;
+        return role.getDescription().equals("ROLE_ADMIN");
     }
 }

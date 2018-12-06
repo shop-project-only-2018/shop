@@ -32,8 +32,10 @@ function validateForm() {
                 jqXHR.setRequestHeader('Authorization', tokenF);
             },
             success: function (result) {
+            l(result);
+                alert(result.message);
                 $('#errorMessage').hide();
-                window.location = '/';
+//                window.location = '/';
             },
             error: function (result) {
             }

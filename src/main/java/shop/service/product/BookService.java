@@ -15,7 +15,6 @@ import shop.repository.customer.CustomerRepository;
 import shop.repository.product.AuthorRepository;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
-import shop.service.order.OrderItemService;
 import shop.service.security.SecurityService;
 import shop.system.CheckedException;
 
@@ -120,7 +119,7 @@ public class BookService {
         Customer customer;
         customer = customerRepository.findById(securityService.checkTokenGetId(token)).orElse(null);
         // TODO: REDO ROLES
-        if(customer.getRole().getDescription().equals("ADMIN")) {
+        if (customer.isAdmin()) {
             Book book = mapper.getEntity(addingBookDto);
             Author author = new Author(addingBookDto.getAuthorFN(), addingBookDto.getAuthorLN());
             authorRepository.saveAndFlush(author);

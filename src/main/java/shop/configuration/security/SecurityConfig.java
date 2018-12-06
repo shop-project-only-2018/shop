@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -20,7 +19,6 @@ import shop.controller.AdviceController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import static shop.configuration.security.SecurityRouting.ADMIN_API_URLS;
 import static shop.configuration.security.SecurityRouting.PROTECTED_URLS;
 
 @Configuration
@@ -44,15 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authenticationProvider(provider)
-                .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
+//                .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
 
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
 
-                .authorizeRequests()
-                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
+//                .authorizeRequests()
+//                .requestMatchers(ADMIN_API_URLS).hasRole("ADMIN")
 //                .requestMatchers(USER_API_URLS).hasRole("USER")
-                .and()
+//                .and()
 
                 .httpBasic().disable()
                 .formLogin().disable()

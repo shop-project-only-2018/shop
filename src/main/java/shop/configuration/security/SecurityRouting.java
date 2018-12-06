@@ -19,16 +19,16 @@ public interface SecurityRouting {
             new AntPathRequestMatcher("/api/order")
     );
 
-    RequestMatcher ADMIN_API_URLS = new AndRequestMatcher(
-//            new NegatedRequestMatcher(USER_API_URLS),
-            new OrRequestMatcher(
-                    new AntPathRequestMatcher("/admin/**", "POST")
-            )
-    );
+//    RequestMatcher ADMIN_API_URLS = new AndRequestMatcher(
+////            new NegatedRequestMatcher(USER_API_URLS),
+//            new OrRequestMatcher(
+//                    new AntPathRequestMatcher("/admin/**", "POST")
+//            )
+//    );
 
     RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
             AUTHORIZED_API_URLS,
-            ADMIN_API_URLS,
+//            ADMIN_API_URLS,
             USER_API_URLS
     );
 }
