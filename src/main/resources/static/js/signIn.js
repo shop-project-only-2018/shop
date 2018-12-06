@@ -12,12 +12,8 @@ function validateForm() {
             }),
             success: function (result) {
                 var token = result.tokenType + ' ' + result.accessToken;
-                var userURI = result.user.userURI;
-                var userID = result.user.username;
 
                 localStorage.setItem('token', token);
-                localStorage.setItem('userURI', userURI);
-                localStorage.setItem('username', userID);
                 window.location = '/';
             },
             error: function (result) {

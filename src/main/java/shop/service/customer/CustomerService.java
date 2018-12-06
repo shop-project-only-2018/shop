@@ -109,7 +109,6 @@ public class CustomerService {
         }
 
         return new TokenDTO()
-                .setUser(mapper.toAuthDTO(user))
                 .setTokenType(securityService.getTokenType())
                 .setAccessToken(
                         securityService.login(

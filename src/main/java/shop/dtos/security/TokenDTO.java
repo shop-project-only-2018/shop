@@ -7,7 +7,6 @@ public class TokenDTO implements DTO {
 
     private String accessToken;
     private String tokenType;
-    private LoginDTO user;
 
 
     public String getAccessToken() {
@@ -28,12 +27,4 @@ public class TokenDTO implements DTO {
         return this;
     }
 
-    public LoginDTO getUser() {
-        return user;
-    }
-
-    public TokenDTO setUser(LoginDTO user) {
-        this.user = user;
-        return this;
-    }
 }

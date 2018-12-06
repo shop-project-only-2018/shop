@@ -6,7 +6,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import shop.dtos.customer.CreateUpdateCustomerDto;
 import shop.dtos.customer.CustomerDto;
-import shop.dtos.security.LoginDTO;
 import shop.mappers.util.CustomerURIMapper;
 import shop.model.customer.Customer;
 
@@ -23,8 +22,4 @@ public interface CustomerMapper {
 
     CustomerDto getDto(Customer entity);
 
-    @Mappings({
-            @Mapping(target = "username", source = "username"),
-            @Mapping(target = "userURI", source = "customerId")})
-    LoginDTO toAuthDTO(Customer customer);
 }
