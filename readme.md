@@ -15,3 +15,13 @@ Password: 123
 ## TODO
 **TODO** marks\
 **i18n** marks
+
+UI
+
+
+function show_message() {
+	
+}
+function show_error() {
+	
+}
