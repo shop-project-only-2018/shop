@@ -1,3 +1,14 @@
+function show_message() {
+
+}
+function show_error() {
+
+}
+
+
+
+
+
 function buttonComponent(className, content, id, f) {
     return "<span class=\"" + className + "\" onclick=\"" + f + "(" + id + ");\">" + content + "</span>";
 }
