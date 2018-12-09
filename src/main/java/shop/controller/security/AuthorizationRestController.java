@@ -1,7 +1,6 @@
 package shop.controller.security;
 
 
-import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +10,7 @@ import shop.dtos.message.Message;
 import shop.dtos.security.UsernameTokenDTO;
 import shop.service.customer.AuthorizationService;
 import shop.service.security.TokenParserService;
+import shop.system.CheckedException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,7 +33,7 @@ public class AuthorizationRestController {
 
     @PostMapping("cart")
     public Message cartAvailableCheck(@RequestBody UsernameTokenDTO usernameTokenDTO,
-                                      HttpServletRequest request) throws JwtException {
+                                      HttpServletRequest request) throws CheckedException {
         usernameTokenDTO.setToken(tokenParserService.getTokenFromHeader(request));
         return new Message(!authorizationService.isAuthenticated(usernameTokenDTO), "");
     }
