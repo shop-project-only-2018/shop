@@ -2,7 +2,7 @@
 A Spring Boot project.
 <p align="center">
 <img width="805" alt="Example of content" src="https://raw.githubusercontent.com/shop-project-only-2018/shop/master/src/main/resources/forGitHub/screenshot.jpg">
-<br/>An example of content</p>
+<br/><i>An example of content</i></p>
 
 <table border="0">
 <tr><td valign="top" width="50%">
@@ -31,14 +31,10 @@ http://localhost:8080/index
 http://localhost:8080/index.html
 ```
 ## Credentials
-|**Admin**         |**User**           |
-|------------------|-------------------|
-|Login: **admin**  | Login: **user**   |
-|Password: **123** | Password: **123** |
-
-
-
-
+|**Admin**              |**User**           |
+|-----------------------|-------------------|
+|Username: **admin**    | Username: **user**|
+|Password: **123**      | Password: **123** |
 
 </td></tr>
 </table>
