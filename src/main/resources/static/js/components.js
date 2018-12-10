@@ -1,13 +1,35 @@
 function show_message() {
 
 }
+
 function show_error() {
 
 }
 
 
+function paginationComponent(pageNum, totalNum) {
+    if (totalNum < 2) {
+        return "";
+    }
+    var result = "<div>";
+    for (i = 2; i > 0; i--) {
+        if (pageNum - i > 0) {
+            result += pageButtonComponent(pageNum - i);
+        }
+    }
+    result += "<span class=\"buttonBuy buttonBuyDeact\">" + pageNum + "</span>";
+    for (i = 1; i < 4; i++) {
+        if (pageNum + i <= totalNum) {
+            result += pageButtonComponent(pageNum + i);
+        }
+    }
+    result += "</div>";
+    return result;
+}
 
-
+function pageButtonComponent(number) {
+    return buttonComponent("buttonBuy", number, number, "renderPage");
+}
 
 function buttonComponent(className, content, id, f) {
     return "<span class=\"" + className + "\" onclick=\"" + f + "(" + id + ");\">" + content + "</span>";

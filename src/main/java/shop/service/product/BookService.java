@@ -1,9 +1,11 @@
 package shop.service.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shop.dtos.pagination.PageDTO;
 import shop.dtos.product.AddingBookDto;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
@@ -13,7 +15,6 @@ import shop.model.product.Book;
 import shop.repository.product.AuthorRepository;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
-import shop.service.security.SecurityService;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ import java.util.List;
 
 @Service
 public class BookService {
+
+    private static final int BOOK_PAGE_SIZE = 15;
 
     private CategoryRepository categoryRepository;
     private BookRepository bookRepository;
@@ -68,14 +71,25 @@ public class BookService {
     @Transactional(readOnly = true)
     public List<BasicBookDto> getAll() {
 
-        // TODO: IMPLEMENT PAGES
         List<BasicBookDto> dtoList = new ArrayList<>();
         bookRepository.findAll().forEach(book -> {
             BasicBookDto dto = mapper.getBasicDto(book);
             dtoList.add(dto);
         });
-
         return dtoList;
+    }
+
+    @Transactional(readOnly = true)
+    public PageDTO<BasicBookDto> getPage(Integer pageNumber) {
+        PageDTO<BasicBookDto> page = new PageDTO<>();
+
+        bookRepository.findAll(PageRequest.of(pageNumber - 1, BOOK_PAGE_SIZE)).forEach(book -> {
+            page.add(mapper.getBasicDto(book));
+        });
+        page.setNumberOfPages(bookRepository.count() / BOOK_PAGE_SIZE);
+        page.setPageNumber(pageNumber);
+
+        return page;
     }
 
     @Transactional(readOnly = true)
@@ -89,7 +103,7 @@ public class BookService {
     @Modifying
     public Integer addBook(AddingBookDto addingBookDto) throws CheckedException {
         Book book = mapper.getEntity(addingBookDto);
-        // TODO: Find existing writers
+        // TODO: Find existing authors
         Author author = new Author(addingBookDto.getAuthorFN(), addingBookDto.getAuthorLN());
         authorRepository.saveAndFlush(author);
         book.setAuthor(author);

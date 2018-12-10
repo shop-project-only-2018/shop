@@ -7,8 +7,8 @@
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        const buttonAddToCartText = /*[[#{button.addToCart}]]*/ 'Add to Cart!';
-        const buttonBuyNowText = /*[[#{button.buyNow}]]*/ 'Buy now!';
+        var buttonAddToCartText = /*[[#{button.addToCart}]]*/ 'Add to Cart!';
+        var buttonBuyNowText = /*[[#{button.buyNow}]]*/ 'Buy now!';
         /*]]>*/
     </script>
     <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
@@ -18,7 +18,7 @@
     <script src="../static/js/ajax.js" th:src="@{/js/ajax.js}"></script>
 
 </head>
-<body onload="renderPage()">
+<body onload="renderIndexPage()">
 <nav id="navbar">
     <div id="innernavbar" class="main">
         <a href="/" id="logo">Bookstore</a>
@@ -26,12 +26,15 @@
 </nav>
 <div id="menu">
     <div id="innermenubar" class="main">
-        <span class="topmenu" th:text="#{menu.Books}"></span><span class="topmenu" href="/" th:text="#{menu.Help}"></span><span class="topmenu" href="/"
-                                                                                          th:text="#{menu.About}"></span>
+        <span class="topmenu" th:text="#{menu.Books}"></span><span class="topmenu" href="/"
+                                                                   th:text="#{menu.Help}"></span><span class="topmenu"
+                                                                                                       href="/"
+                                                                                                       th:text="#{menu.About}"></span>
         <span id="menuRightLogout" onclick="logout();" class="menuright topmenu" th:text="#{menu.Logout}">
-        </span><span  id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu" th:text="#{menu.Cart}">
+        </span><span id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu"
+                     th:text="#{menu.Cart}">
         </span><a id="menuRightSignIn" href="/sign-in" class="menuright topmenu" th:text="#{menu.SignIn}">
-        </a><a id="menuRightSignUp" href="/sign-up" class="menuright topmenu" th:text="#{menu.SignUp}">
+    </a><a id="menuRightSignUp" href="/sign-up" class="menuright topmenu" th:text="#{menu.SignUp}">
     </a><a id="menuRightAddBook" href="/books/add" class="menuright topmenu" th:text="#{menu.addBook}">
     </a>
     </div>

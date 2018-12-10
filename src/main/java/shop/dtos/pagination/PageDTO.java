@@ -9,7 +9,7 @@ public class PageDTO<T> implements DTO {
 
     private List<T> items = new ArrayList<>();
     private Integer pageNumber;
-    private Integer numberOfPages;
+    private Long numberOfPages;
 
     public PageDTO() {
     }
@@ -30,11 +30,11 @@ public class PageDTO<T> implements DTO {
         this.pageNumber = pageNumber;
     }
 
-    public Integer getNumberOfPages() {
+    public Long getNumberOfPages() {
         return numberOfPages;
     }
 
-    public void setNumberOfPages(Integer numberOfPages) {
+    public void setNumberOfPages(Long numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
 

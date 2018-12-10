@@ -4,6 +4,7 @@ package shop.controller.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import shop.dtos.message.Message;
+import shop.dtos.pagination.PageDTO;
 import shop.dtos.product.AddingBookDto;
 import shop.dtos.product.BasicBookDto;
 import shop.dtos.product.FullBookDto;
@@ -13,6 +14,7 @@ import shop.system.CheckedException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -38,7 +40,7 @@ public class BookRestController {
      * @return book
      * @throws CheckedException if not found
      */
-    @GetMapping("/{id}")
+    @GetMapping(value = {"api/book/{page}"})
     public FullBookDto getById(@PathVariable Integer id) throws CheckedException {
         return bookService.getDtoById(id);
     }
@@ -52,6 +54,12 @@ public class BookRestController {
     public List<BasicBookDto> getAll() {
         List<BasicBookDto> list = bookService.getAll();
         return list;
+    }
+
+
+    @GetMapping(value = {"api/books/{page}"})
+    public PageDTO<BasicBookDto> getPage(@PathVariable @Min(1) Integer page) {
+        return bookService.getPage(page);
     }
 
     /**

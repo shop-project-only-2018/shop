@@ -1,4 +1,5 @@
 function requestNumberOfBooksInCart() {
+    // TODO: REDO
     var tokenF = localStorage.getItem('token');
     l('requestNumberOfBooksInCart()');
     $.ajax({
@@ -125,7 +126,7 @@ function showBook(bookId) {
     var tokenF = localStorage.getItem('token');
     $.ajax({
         type: 'GET',
-        url: '/api/books/' + bookId,
+        url: '/api/book/' + bookId,
         contentType: "application/json",
         beforeSend: function (jqXHR, settings) {
             l('Token: ' + tokenF);

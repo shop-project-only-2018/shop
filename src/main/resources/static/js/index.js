@@ -9,19 +9,20 @@ function l(message) {
 function renderNewBooks(data, elementId) {
     bookslist = "";
     var newBooksDiv = $(elementId).empty();
-    data.forEach(function (book) {
+    data.items.forEach(function (book) {
         newBooksDiv.append(bookComponent(book));
-//        if(!book.added) {
-//
-//        }
     });
+    newBooksDiv.append(paginationComponent(data.pageNumber, data.numberOfPages));
 }
 
-function renderPage() {
-    loadBooks('api/books/new', '#newBooks');
-    loadBooks('api/books/bestsellers', "#bestsellers");
+function renderPage(pageNumber) {
+    loadBooks('api/books/' + pageNumber, "#bestsellers");
+}
+
+
+function renderIndexPage() {
+    renderPage(1);
     requestNumberOfBooksInCart();
-  //TODO:  drawBuyButtons();
 
     //TODO:REDO
     checkAccess('cart', function (a) {
