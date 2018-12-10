@@ -31,10 +31,15 @@ http://localhost:8080/index
 http://localhost:8080/index.html
 ```
 ## Credentials
-|**Admin**              |**User**           |
-|-----------------------|-------------------|
-|Username: **admin**    | Username: **user**|
-|Password: **123**      | Password: **123** |
+| Username  | Password  | Role      |
+|-----------|-----------|-----------|
+| admin     | 123       | 'ADMIN'   |
+| user      | 123       | 'USER'    |
+
+Roles:
+```
+src\main\resources\db-migrations\v1.0\V1_2__security.sql
+```
 
 </td></tr>
 </table>

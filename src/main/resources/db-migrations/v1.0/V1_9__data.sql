@@ -1,7 +1,3 @@
--- ROLES
-INSERT INTO roles(role_id, description) VALUES(1, 'USER');
-INSERT INTO roles(role_id, description) VALUES(2, 'ADMIN');
-
 -- USERS
 INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "password") VALUES(100, 2, 'Admin', 'Admin', 'admin', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');
 INSERT INTO customer(customer_id, role_id, first_name, last_name, username, "password") VALUES(101, 1, 'User', 'User', 'user', '$2a$10$x8rXPNhpk2XVq37tg4lhTeAiAkhcRRwubhtYxoRudnKZB3f29pJp2');

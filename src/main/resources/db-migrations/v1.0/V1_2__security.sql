@@ -13,3 +13,7 @@ ALTER TABLE public.customer RENAME COLUMN roles TO role_id;
 ALTER TABLE public.customer
 ADD CONSTRAINT customer_roles_role_id_fk
 FOREIGN KEY (role_id) REFERENCES public.roles (role_id);
+
+-- ROLES
+INSERT INTO roles(role_id, description) VALUES(1, 'USER');
+INSERT INTO roles(role_id, description) VALUES(2, 'ADMIN');
