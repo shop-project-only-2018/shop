@@ -10,13 +10,13 @@ A Spring Boot project.
 ## List of technologies
 |Function           |                                       |
 |-------------------|---------------------------------------|
-|**Core**           | Spring Boot 2 <br/> Spring Core       |
-|**Security**       | Spring Security <br/> JJWT            |
-|**Persistence**    | Spring Data <br/> Hibernate 5.3.6     |
-|**DB**             | PostgreSQL <br/> Flyway               |
-|**UI**             | Thymeleaf <br/> jQuery 3.3.1               |
-|**Testing**        | JUnit <br/> *Spring Boot Test*             |
-|**Auxiliary**      | MapStruct <br/> Swagger 2 <br/> *Swagger UI*    |
+|**Core**           | Spring Boot 2 **+** Spring Core       |
+|**Security**       | Spring Security **+** JJWT            |
+|**Persistence**    | Spring Data **+** Hibernate 5.3.6     |
+|**DB**             | PostgreSQL **+** Flyway               |
+|**UI**             | Thymeleaf, jQuery 3.3.1               |
+|**Testing**        | JUnit, *Spring Boot Test*             |
+|**Auxiliary**      | MapStruct, Swagger 2, *Swagger UI*    |
 
 </td><td valign="top" width="50%">
 
