@@ -27,8 +27,6 @@ The jQuery client may be accessed by
 opening the start page:
 ```
 http://localhost:8080/
-http://localhost:8080/index
-http://localhost:8080/index.html
 ```
 ## Credentials
 | Username  | Password  | Role      |
