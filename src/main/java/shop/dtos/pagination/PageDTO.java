@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageDTO<T> implements DTO {
-    private List<T> items;
+
+    private List<T> items = new ArrayList<>();
     private Integer pageNumber;
     private Integer numberOfPages;
 
     public PageDTO() {
-        items = new ArrayList<>();
     }
 
     public List<T> getItems() {
@@ -37,4 +37,9 @@ public class PageDTO<T> implements DTO {
     public void setNumberOfPages(Integer numberOfPages) {
         this.numberOfPages = numberOfPages;
     }
+
+    public void add(T item) {
+        items.add(item);
+    }
+
 }
