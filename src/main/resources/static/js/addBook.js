@@ -33,7 +33,7 @@ function validateForm() {
             },
             success: function (result) {
             l(result);
-                alert(result.message);
+                l(result.message);
                 $('#errorMessage').hide();
 //                window.location = '/';
             },

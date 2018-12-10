@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 public class BookService {
 
-    private static final int BOOK_PAGE_SIZE = 15;
+    private static final int BOOK_PAGE_SIZE = 6;
 
     private CategoryRepository categoryRepository;
     private BookRepository bookRepository;
@@ -86,7 +86,9 @@ public class BookService {
         bookRepository.findAll(PageRequest.of(pageNumber - 1, BOOK_PAGE_SIZE)).forEach(book -> {
             page.add(mapper.getBasicDto(book));
         });
-        page.setNumberOfPages(bookRepository.count() / BOOK_PAGE_SIZE);
+        long count = bookRepository.count();
+        long additional = (count % BOOK_PAGE_SIZE == 0) ? 0 : 1;
+        page.setNumberOfPages(bookRepository.count() / BOOK_PAGE_SIZE + additional);
         page.setPageNumber(pageNumber);
 
         return page;

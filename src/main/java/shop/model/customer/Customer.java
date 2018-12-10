@@ -145,6 +145,6 @@ public class Customer implements EntityWithIntegerId, UserDetails {
     public boolean hasRole(String s) {
         if (role == null)
             return false;
-        return role.getDescription().equals("ROLE_" + s);
+        return role.getDescription().equals(s);
     }
 }
