@@ -1,8 +1,8 @@
 # Bookstore
-A Spring Boot project. An example of content:
+A Spring Boot project.
 <p align="center">
 <img width="805" alt="Example of content" src="https://raw.githubusercontent.com/shop-project-only-2018/shop/master/src/main/resources/forGitHub/screenshot.jpg">
-</p>
+<br/>An example of content</p>
 
 <table border="0">
 <tr><td valign="top" width="50%">
