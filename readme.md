@@ -5,7 +5,7 @@ A Spring Boot project. An example of content:
 </p>
 
 <table border="0">
-<tr><td valign="top">
+<tr><td valign="top" width="50%">
 
 ## List of technologies
 |Function           |                                       |
@@ -18,14 +18,18 @@ A Spring Boot project. An example of content:
 |**Testing**        | JUnit, *Spring Boot Test*             |
 |**Auxiliary**      | MapStruct, Swagger 2, *Swagger UI*    |
 
-</td><td valign="top">
+</td><td valign="top" width="50%">
 
 ## Description
 This app is a **jQuery** client that consumes 
 a **Spring**-based RESTful web service.
 The jQuery client may be accessed by
-opening the **/index.html** page.
-
+opening the start page:
+```
+http://localhost:8080/
+http://localhost:8080/index
+http://localhost:8080/index.html
+```
 ## Credentials
 |**Admin**         |**User**           |
 |------------------|-------------------|
