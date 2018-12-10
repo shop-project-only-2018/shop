@@ -36,10 +36,5 @@ http://localhost:8080/index.html
 | admin     | 123       | 'ADMIN'   |
 | user      | 123       | 'USER'    |
 
-Roles:
-```
-src\main\resources\db-migrations\v1.0\V1_2__security.sql
-```
-
 </td></tr>
 </table>
