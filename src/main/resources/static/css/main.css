@@ -73,6 +73,14 @@
     cursor: pointer;
 }
 
+.transition {
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+}
+
 .topmenu:hover {
     background-color: #67351c;
 }
@@ -246,4 +254,29 @@ table {
 .number-of-items {
     display: inline-block;
     padding: 5px;
+}
+
+#topSearchInput {
+    background-color: #562c17;
+    border: 0;
+    color: #fff;
+    font-family: Arial;
+    font-size: 20px !important;
+    width: 250px;
+}
+#topSearchInput:focus {
+    background-color: #fff;
+    border: 0;
+    color: #2d170c;
+    width: 300px;
+}
+#topSearchInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ddd;
+  opacity: 1; /* Firefox */
+}
+#topSearchInput:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #ddd;
+}
+#topSearchInput::-ms-input-placeholder { /* Microsoft Edge */
+  color: #ddd;
 }

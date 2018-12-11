@@ -7,7 +7,6 @@ function l(message) {
 }
 
 function renderNewBooks(data, elementId) {
-    bookslist = "";
     var newBooksDiv = $(elementId).empty();
     data.items.forEach(function (book) {
         newBooksDiv.append(bookComponent(book));
@@ -38,4 +37,10 @@ function renderIndexPage() {
         }
     });
     //
+    var topSearchInput = document.getElementById("topSearchInput");
+    topSearchInput.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+        searchBooks(document.getElementById("topSearchInput").value);
+      }
+    });
 }

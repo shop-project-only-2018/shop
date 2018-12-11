@@ -21,7 +21,11 @@
 <body onload="renderIndexPage()">
 <nav id="navbar">
     <div id="innernavbar" class="main">
-        <a href="/" id="logo">Bookstore</a>
+        <table border="0" width="100%"><tr><td>
+            <a href="/" id="logo">Bookstore</a>
+        </td><td align="right">
+            <input id="topSearchInput" class="transition" type="text" th:placeholder="#{general.Search}" />
+        </td></tr></table>
     </div>
 </nav>
 <div id="menu">

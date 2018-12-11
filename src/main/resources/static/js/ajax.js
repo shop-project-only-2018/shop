@@ -12,6 +12,21 @@ function loadBooks(u, elementId) {
     });
 }
 
+function searchBooks(str) {
+    l('api/books/search/' + str);
+    $.ajax({
+        type: 'GET',
+        url: 'api/books/search/' + str,
+        dataType: "json",
+        success: function (data) {
+            renderNewBooks(data, "#bestsellers");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('Error! Data:', jqXHR.responseJSON);
+        }
+    });
+}
+
 function checkToken(securedURL, successEvent, errorHandler) {
     var token = localStorage.getItem('token');
     if ((token === null) || (securedURL === null)) {

@@ -1,11 +1,14 @@
 package shop.model.product;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import shop.model.EntityWithIntegerId;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Indexed
 public class Book implements EntityWithIntegerId {
 
     @Id
@@ -13,9 +16,11 @@ public class Book implements EntityWithIntegerId {
     private int bookId;
 
     @Column
+    @Field
     private String name;
 
     @Column
+    @Field
     private String description;
 
     @Column

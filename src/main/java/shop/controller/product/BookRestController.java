@@ -40,7 +40,7 @@ public class BookRestController {
      * @return book
      * @throws CheckedException if not found
      */
-    @GetMapping(value = {"api/book/{page}"})
+    @GetMapping(value = {"api/book/{id}"})
     public FullBookDto getById(@PathVariable Integer id) throws CheckedException {
         return bookService.getDtoById(id);
     }

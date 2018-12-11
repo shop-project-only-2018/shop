@@ -81,14 +81,15 @@ public class BookService {
 
     @Transactional(readOnly = true)
     public PageDTO<BasicBookDto> getPage(Integer pageNumber) {
-        PageDTO<BasicBookDto> page = new PageDTO<>();
+        if(pageNumber < 1) pageNumber = 1;
 
+        PageDTO<BasicBookDto> page = new PageDTO<>();
         bookRepository.findAll(PageRequest.of(pageNumber - 1, BOOK_PAGE_SIZE)).forEach(book -> {
             page.add(mapper.getBasicDto(book));
         });
         long count = bookRepository.count();
         long additional = (count % BOOK_PAGE_SIZE == 0) ? 0 : 1;
-        page.setNumberOfPages(bookRepository.count() / BOOK_PAGE_SIZE + additional);
+        page.setNumberOfPages(count / BOOK_PAGE_SIZE + additional);
         page.setPageNumber(pageNumber);
 
         return page;
