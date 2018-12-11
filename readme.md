@@ -1,7 +1,7 @@
 # Bookstore
 A Spring Boot project.
 <p align="center">
-<img width="805" alt="Example of content" src="https://raw.githubusercontent.com/shop-project-only-2018/shop/master/src/main/resources/forGitHub/screenshot.jpg">
+<img width="900" alt="Example of content" src="https://raw.githubusercontent.com/shop-project-only-2018/shop/master/src/main/resources/forGitHub/screenshot.jpg">
 <br/><i>An example of content</i></p>
 
 <table border="0">
@@ -16,6 +16,7 @@ A Spring Boot project.
 |**DB**             | PostgreSQL **+** Flyway               |
 |**UI**             | Thymeleaf, jQuery 3.3.1               |
 |**Testing**        | JUnit, *Spring Boot Test*             |
+|**Search**         | Hibernate Search                      |
 |**Auxiliary**      | MapStruct, Swagger 2, *Swagger UI*    |
 
 </td><td valign="top" width="50%">
