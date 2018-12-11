@@ -5,6 +5,7 @@ function validateForm() {
     var p = document.forms["addBookForm"]["inputPrice"].value;
     var q = document.forms["addBookForm"]["inputQuantity"].value;
     var d = document.forms["addBookForm"]["inputDescription"].value;
+    var c = document.forms["addBookForm"]["inputCoverId"].value;
     if (t != "" && fn != "" && ln != "" && p != "" && q != "" && d != "") {
         var tokenF = localStorage.getItem('token');
         l(JSON.stringify({
@@ -14,6 +15,7 @@ function validateForm() {
             authorLN: ln,
             price: p,
             quantity: q,
+            coverId: c
         }));
         $.ajax({
             url: '/admin/books/add',
@@ -60,8 +62,9 @@ function uploadImage() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (result) {
-            alert(result.message);
-        },
+        if(!result.error){
+            document.forms["addBookForm"]["inputCoverId"].value = result.message;
+        }},
         error: function (result) {
         }
     });

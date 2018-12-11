@@ -19,7 +19,7 @@ function searchBooks(str) {
         url: 'api/books/search/' + str,
         dataType: "json",
         success: function (data) {
-            renderNewBooks(data, "#bestsellers");
+            renderNewBooks(data, "#content");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('Error! Data:', jqXHR.responseJSON);

@@ -118,7 +118,7 @@ function drawCart(data) {
     data.forEach(function (book) {
         books += (cartBookComponent(book));
     });
-    $('#container').html(books);
+    $('#content').html(books);
     showTotalPrice();
 }
 
@@ -139,7 +139,7 @@ function showBook(bookId) {
 }
 
 function drawBook(book) {
-    $('#container').html(fullBookComponent(book));
+    $('#content').html(fullBookComponent(book));
 }
 
 function increaseNumberOfItems(id) {

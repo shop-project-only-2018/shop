@@ -266,7 +266,7 @@ table {
 }
 #topSearchInput:focus {
     background-color: #fff;
-    border: 0;
+    outline: none;
     color: #2d170c;
     width: 300px;
 }
