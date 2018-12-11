@@ -1,5 +1,5 @@
 # Bookstore
-A Spring Boot project.
+A sample Spring Boot-based application.
 <p align="center">
 <img width="900" alt="Example of content" src="https://raw.githubusercontent.com/shop-project-only-2018/shop/master/src/main/resources/forGitHub/screenshot.jpg">
 <br/><i>An example of content</i></p>
