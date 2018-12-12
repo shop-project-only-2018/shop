@@ -38,9 +38,9 @@ function renderIndexPage() {
     });
     //
     var topSearchInput = document.getElementById("topSearchInput");
-    topSearchInput.addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) {
-        searchBooks(document.getElementById("topSearchInput").value);
-      }
+    topSearchInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            searchBooks(document.getElementById("topSearchInput").value);
+        }
     });
 }
