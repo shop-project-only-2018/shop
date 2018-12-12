@@ -18,7 +18,6 @@ import java.net.MalformedURLException;
 public class ImageService {
 
     private FileService fileService;
-    @Autowired
     private ImageRepository imageRepository;
 
     @Autowired
@@ -26,6 +25,7 @@ public class ImageService {
         this.fileService = fileService;
     }
 
+    @Autowired
     public void setImageRepository(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
     }
@@ -36,10 +36,9 @@ public class ImageService {
 
     @Transactional
     public Integer save(MultipartFile image) throws CheckedException {
-        System.out.println(image.getSize());
         // TODO @NotNull
         if(image == null)
-            throw new CheckedException("error.couldNotSave.image.isNotJpeg");
+            throw new CheckedException("error.couldNotSave.image");
         if (!image.getContentType().equals(MediaType.IMAGE_JPEG_VALUE)) {
             throw new CheckedException("error.couldNotSave.image.isNotJpeg");
         } else {

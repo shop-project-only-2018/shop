@@ -21,6 +21,8 @@ public class AddingBookDto implements DTO {
     @NotNull
     private BigDecimal price;
 
+    private Integer coverId;
+
 
     public Integer getQuantity() {
         return quantity;
@@ -36,6 +38,14 @@ public class AddingBookDto implements DTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getCoverId() {
+        return coverId;
+    }
+
+    public void setCoverId(Integer coverId) {
+        this.coverId = coverId;
     }
 
     public String getDescription() {

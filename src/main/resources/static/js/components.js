@@ -1,8 +1,8 @@
-
 // TODO
 function show_message() {
 
 }
+
 //TODO
 function show_error() {
 
@@ -70,13 +70,20 @@ function removeButtonComponent(id) {
 }
 
 function imageTdComponent(url) {
-    return "<td class=\"book-table-img\" style=\"background-image: url('" + url + "') !important;\">";
+    if (url === "null") {
+        return "<td class=\"book-table-img\">" + "</td>";
+    }
+    return "<td class=\"book-table-img\" style=\"background-image: url('" + url + "') !important;\">" + "</td>";
+}
+
+function imageImgComponent(id) {
+    return "<img src=\"/api/images/" + id + "\" style=\"max-width: 250px;\" />";
 }
 
 function bookComponent(book) {
 
     component = "<div class=\"book\"><table border=\"0\" class=\"book-table\"><tr>"
-        + imageTdComponent("/api/images/" + book.coverId) + "</td>"
+        + imageTdComponent("/api/images/" + book.coverId)
         + "<td class=\"book-table-main\" valign=\"top\">"
         + divClassOnclickComponent("book-name", book.name, "showBook", book.id)
         + divClassComponent("book-author", book.author);

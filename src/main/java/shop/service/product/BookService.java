@@ -12,9 +12,11 @@ import shop.dtos.product.FullBookDto;
 import shop.mappers.product.BookMapper;
 import shop.model.product.Author;
 import shop.model.product.Book;
+import shop.model.product.Image;
 import shop.repository.product.AuthorRepository;
 import shop.repository.product.BookRepository;
 import shop.repository.product.CategoryRepository;
+import shop.repository.product.ImageRepository;
 import shop.system.CheckedException;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class BookService {
 
     private static final int BOOK_PAGE_SIZE = 6;
 
-    private CategoryRepository categoryRepository;
+    private ImageRepository imageRepository;
     private BookRepository bookRepository;
     private BookMapper mapper;
     private AuthorRepository authorRepository;
@@ -41,8 +43,8 @@ public class BookService {
     }
 
     @Autowired
-    public void setCategoryRepository(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public void setImageRepository(ImageRepository imageRepository) {
+        this.imageRepository = imageRepository;
     }
 
     @Autowired
@@ -108,6 +110,10 @@ public class BookService {
         Book book = mapper.getEntity(addingBookDto);
         // TODO: Find existing authors
         Author author = new Author(addingBookDto.getAuthorFN(), addingBookDto.getAuthorLN());
+        if(addingBookDto.getCoverId() != null) {
+            Image image = imageRepository.getOne(addingBookDto.getCoverId());
+            book.setCover(image);
+        }
         authorRepository.saveAndFlush(author);
         book.setAuthor(author);
         bookRepository.save(book);

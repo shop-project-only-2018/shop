@@ -280,3 +280,11 @@ table {
 #topSearchInput::-ms-input-placeholder { /* Microsoft Edge */
   color: #ddd;
 }
+
+.inputsW90 input {
+    width: 90%;
+}
+
+form {
+    text-align: center;
+}

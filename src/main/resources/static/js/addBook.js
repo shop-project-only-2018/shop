@@ -28,18 +28,20 @@ function validateForm() {
                 authorLN: ln,
                 price: p,
                 quantity: q,
+                coverId: c
             }),
             beforeSend: function (jqXHR, settings) {
                 l('Token: ' + tokenF);
                 jqXHR.setRequestHeader('Authorization', tokenF);
             },
             success: function (result) {
-            l(result);
+                l(result);
                 l(result.message);
                 $('#errorMessage').hide();
-//                window.location = '/';
+                drawBook(result);
             },
             error: function (result) {
+                l(result);
             }
         });
     }
@@ -47,8 +49,12 @@ function validateForm() {
 }
 
 function uploadImage() {
-    var dataF = new FormData($('#addCoverForm'));
-    l(dataF);
+    var dataF = new FormData();
+    var d = $('#image')[0].files[0];
+    dataF.append("image", d, d.name);
+    for (var pair of dataF.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
     var tokenF = localStorage.getItem('token');
     $.ajax({
         url: '/api/images',
@@ -62,10 +68,14 @@ function uploadImage() {
             jqXHR.setRequestHeader('Authorization', tokenF);
         },
         success: function (result) {
-        if(!result.error){
-            document.forms["addBookForm"]["inputCoverId"].value = result.message;
-        }},
+            l(result);
+            if (!result.error) {
+                $('#inputCoverId').val(result);
+                $('#coverLoaded').html(imageImgComponent(result));
+            }
+        },
         error: function (result) {
+            l(result);
         }
     });
 }
