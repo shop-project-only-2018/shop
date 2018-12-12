@@ -37,8 +37,7 @@ function validateForm() {
             success: function (result) {
                 l(result);
                 l(result.message);
-                $('#errorMessage').hide();
-                drawBook(result);
+                showBook(result.message);
             },
             error: function (result) {
                 l(result);
