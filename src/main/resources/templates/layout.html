@@ -10,6 +10,7 @@
         var buttonAddToCartText = /*[[#{button.addToCart}]]*/ 'Add to Cart!';
         var buttonBuyNowText = /*[[#{button.buyNow}]]*/ 'Buy now!';
         /*]]>*/
+
     </script>
     <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script src="../static/js/index.js" th:src="@{/js/index.js}"></script>
@@ -21,19 +22,21 @@
 <body onload="renderIndexPage()">
 <nav id="navbar">
     <div id="innernavbar" class="main">
-        <table border="0" width="100%"><tr><td>
-            <a href="/" id="logo">Bookstore</a>
-        </td><td align="right">
-            <input id="topSearchInput" class="transition" type="text" th:placeholder="#{general.Search}" />
-        </td></tr></table>
+        <table border="0" width="100%">
+            <tr>
+                <td>
+                    <a href="/" id="logo">Bookstore</a>
+                </td>
+                <td align="right">
+                    <input id="topSearchInput" class="transition" type="text" th:placeholder="#{general.Search}"/>
+                </td>
+            </tr>
+        </table>
     </div>
 </nav>
 <div id="menu">
     <div id="innermenubar" class="main">
-        <span class="topmenu" th:text="#{menu.Books}"></span><span class="topmenu" href="/"
-                                                                   th:text="#{menu.Help}"></span><span class="topmenu"
-                                                                                                       href="/"
-                                                                                                       th:text="#{menu.About}"></span>
+        <a href="/" class="topmenu" th:text="#{menu.Books}"></a>
         <span id="menuRightLogout" onclick="logout();" class="menuright topmenu" th:text="#{menu.Logout}">
         </span><span id="menuRightCart" onclick="showCart(); return false;" class="menuright topmenu"
                      th:text="#{menu.Cart}">
