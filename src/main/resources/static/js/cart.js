@@ -113,7 +113,7 @@ function showCart() {
 }
 
 function drawCart(data) {
-    var books = "<h1>i18n Cart</h1>";
+    var books = "<h1>Cart</h1>";
     books += cartInfoComponent();
     data.forEach(function (book) {
         books += (cartBookComponent(book));
@@ -215,7 +215,7 @@ function drawTotalPrice(data) {
     data.forEach(function (book) {
         totalPrice += parseInt($("#number-of-items-" + book.orderItemId).text(), 10) * book.price;
     });
-    $("#cart-statistics").text("i18n Total price: " + totalPrice);
+    $("#cart-statistics").text("Total price: " + totalPrice);
 }
 
 function showTotalPrice() {

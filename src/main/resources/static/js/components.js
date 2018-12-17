@@ -62,11 +62,11 @@ function bBuyNow(id) {
 }
 
 function buyButtonsComponent(id) {
-    return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "$(this).text('i18n Added');addToCart");
+    return buttonComponent("buttonBuy bAddToCart", buttonAddToCartText, id, "$(this).text('Added');addToCart");
 }
 
 function removeButtonComponent(id) {
-    return buttonComponent("buttonBuy bRemoveFromCart", "i18n Remove", id, "removeFromCart");
+    return buttonComponent("buttonBuy bRemoveFromCart", "Remove", id, "removeFromCart");
 }
 
 function imageTdComponent(url) {
@@ -100,11 +100,11 @@ function bookComponent(book) {
 }
 
 function buttonMakeOrderComponent() {
-    return buttonComponent("buttonBuy", "i18n Make order", "", "makeOrder");
+    return buttonComponent("buttonBuy", "Make order", "", "makeOrder");
 }
 
 function buttonRemoveAllComponent() {
-    return buttonComponent("buttonBuy", "i18n Remove all", "", "removeAllFromCart");
+    return buttonComponent("buttonBuy", "Remove all", "", "removeAllFromCart");
 }
 
 
@@ -164,5 +164,5 @@ function textComponent(id) {
 
 function makeOrderComponent() {
     return textComponent("addressInput") +
-        buttonComponent("buttonBuy", "i18n Make order", '', "completeOrder");
+        buttonComponent("buttonBuy", "Make order", '', "completeOrder");
 }

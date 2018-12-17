@@ -46,7 +46,7 @@ public class CartRestController {
     public Message makeOrder(@Valid @RequestBody OrderDto orderDto,
             HttpServletRequest request) throws CheckedException {
         orderService.makeOrderFromCurrentCart(tokenParserService.getTokenFromHeader(request), orderDto);
-        return new Message("i18n MADE");
+        return new Message();
     }
 
     @GetMapping(value = "remove/{id}")
