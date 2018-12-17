@@ -3,11 +3,9 @@ package shop.controller.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import shop.dtos.customer.AddressDto;
 import shop.dtos.message.Message;
 import shop.dtos.order.OrderDto;
 import shop.dtos.product.OrderItemBookDto;
-import shop.service.customer.AuthorizationService;
 import shop.service.order.OrderService;
 import shop.service.security.TokenParserService;
 import shop.system.CheckedException;
@@ -21,14 +19,7 @@ import java.util.List;
 public class CartRestController {
 
     private OrderService orderService;
-    private AuthorizationService authorizationService;
     private TokenParserService tokenParserService;
-
-
-    @Autowired
-    public void setAuthorizationService(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
-    }
 
     @Autowired
     public void setOrderService(OrderService orderService) {

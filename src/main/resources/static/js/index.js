@@ -23,24 +23,29 @@ function renderIndexPage() {
     renderPage(1);
     requestNumberOfBooksInCart();
 
-    //TODO:REDO
-    checkAccess('cart', function (a) {
-        if (a.error) {
-            $('#menuRightCart').hide();
-            $('#menuRightLogout').hide();
-            $('.bAddToCart').hide();
-        } else {
-            $('#menuRightSignIn').hide();
-            $('#menuRightSignUp').hide();
-            $('.bAddToCart').show();
-            $('#menuRightCart').html($('#menuRightCart').html() + "<span id=\"menuRightCartNumber\"></span>");
-        }
-    });
-    //
+    getRole();
+    
     var topSearchInput = document.getElementById("topSearchInput");
     topSearchInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             searchBooks(document.getElementById("topSearchInput").value);
         }
     });
+}
+
+
+function renderMenu(role) {
+    var menuContent = "<a href=\"/\" class=\"topmenu\">Books</a>";
+    if (role === "NONE") {
+        menuContent += "<a id=\"menuRightSignUp\" href=\"/sign-up\" class=\"menuright topmenu\">Sign up</a>";
+        menuContent += "<a id=\"menuRightSignIn\" href=\"/sign-in\" class=\"menuright topmenu\">Sign in</a>";
+    } else if (role === "USER") {
+        menuContent += "<span id=\"menuRightLogout\" onclick=\"logout();\" class=\"menuright topmenu\">Log out</span>";
+        menuContent += "<span id=\"menuRightCart\" onclick=\"showCart(); return false;\" class=\"menuright topmenu\">Cart" +
+            "<span id=\"menuRightCartNumber\"></span></span>";
+    } else if (role === "ADMIN") {
+        menuContent += "<span id=\"menuRightLogout\" onclick=\"logout();\" class=\"menuright topmenu\">Log out</span>";
+        menuContent += "<a id=\"menuRightAddBook\" href=\"/books/add\" class=\"menuright topmenu\">Add book</a>";
+    }
+    $('#innermenubar').html(menuContent);
 }

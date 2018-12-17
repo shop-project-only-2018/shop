@@ -56,38 +56,22 @@ function checkToken(securedURL, successEvent, errorHandler) {
     }
 }
 
-// TODO: REDO
-function checkAccess(securedURL, successEvent) {
+function getRole() {
     var tokenF = localStorage.getItem('token');
-    var usernameF = localStorage.getItem('username');
-    if ((tokenF === null) || (securedURL === null)) {
-        console.log('Error ((token === null) || (securedURL === null))');
-        var data = {
-            error: true,
-            message: ""
-        };
-        successEvent(data);
-    } else {
-        securedURL = "/authorization/is-available/" + securedURL;
-        $.ajax({
-            type: 'POST',
-            url: securedURL,
-            contentType: 'application/json',
-            data: JSON.stringify({
-                username: usernameF,
-                token: tokenF
-            }),
-            beforeSend: function (jqXHR, settings) {
-                console.log('Setting the Authorization Header:', tokenF);
-                jqXHR.setRequestHeader('Authorization', tokenF);
-            },
-            success: function (data) {
-                l('checkAccess');
-                l(data);
-                successEvent(data)
-            }
-        });
-    }
+    var securedURL = '/api/get-menu';
+    $.ajax({
+        type: 'GET',
+        url: securedURL,
+        contentType: 'application/json',
+        beforeSend: function (jqXHR, settings) {
+            console.log('Setting the Authorization Header:', tokenF);
+            jqXHR.setRequestHeader('Authorization', tokenF);
+        },
+        success: function (data) {
+            l(data);
+            renderMenu(data);
+        }
+    });
 }
 
 

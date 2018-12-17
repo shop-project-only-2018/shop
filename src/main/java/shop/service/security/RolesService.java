@@ -30,6 +30,14 @@ public class RolesService {
         this.customerRepository = customerRepository;
     }
 
+    public Customer getCustomer(HttpServletRequest request) throws CheckedException {
+        String token = tokenParserService.getTokenFromHeader(request);
+        Customer customer;
+        customer = customerRepository.findById(securityService.checkTokenGetId(token))
+                .orElseThrow(() -> new CheckedException("error.security.authentication"));
+        return customer;
+    }
+
     /**
      * Throw exception if the user does not have a certain role
      *
@@ -38,11 +46,7 @@ public class RolesService {
      * @throws CheckedException if the user does not have a certain role
      */
     public void mustHaveRole(HttpServletRequest request, String role) throws CheckedException {
-        String token = tokenParserService.getTokenFromHeader(request);
-        Customer customer;
-        customer = customerRepository.findById(securityService.checkTokenGetId(token))
-                .orElseThrow(() -> new CheckedException("error.security.authentication"));
-        if (!customer.hasRole(role)) {
+        if (!getCustomer(request).hasRole(role)) {
             throw new CheckedException("error.security.notAuthorized");
         }
     }
