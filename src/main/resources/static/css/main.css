@@ -222,8 +222,9 @@ table {
     cursor: pointer;
     background: #562c17;
     color: white;
-    margin: 2px;
-    padding: 8px;
+    margin: 3px;
+    padding: 8px 10px;
+    border-radius: 3px;
 }
 
 .buttonBuy.buttonBuyDeact {
@@ -263,6 +264,7 @@ table {
     font-family: Arial;
     font-size: 20px !important;
     width: 250px;
+    border-radius: 3px;
 }
 #topSearchInput:focus {
     background-color: #fff;
